@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<elements>
+    <chansons>
+        <chanson>
+            <nom></nom>
+            <artiste></artiste>
+            <duree></duree>
+            <UUID></UUID>
+            <contenu>
+
+            </contenu>
+            <genre></genre>
+        </chanson>
+    </chansons>
+    <livreAudios>
+        <livreAudio>
+            <livreAudio>
+                <titre></titre>
+                <auteur></auteur>
+                <duree></duree>
+                <UUID></UUID>
+                <contenu>
+
+                </contenu>
+                <langue></langue>
+                <categorie></categorie>
+            </livreAudio>
+        </livreAudio>
+    </livreAudios>
+</elements>

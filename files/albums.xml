@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<albums>
+    <album>
+        <titre>Apeologies</titre>
+        <artiste>Shaka Ponk</artiste>
+        <duree>500</duree>
+        <dateSortie>15/11/2020</dateSortie>
+        <!-- <UUID>
+
+        </UUID> -->
+        <chansons>
+            <chanson>
+
+            </chanson>
+        </chansons>
+    </album>
+</albums>

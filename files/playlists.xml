@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<playlists>
+    <playlist>
+        <nom>MaPlaylist</nom>
+        <UUID></UUID>
+        <chansons>
+            <chanson>
+
+            </chanson>
+        </chansons>
+        <livreAudios>
+            <livreAudio>
+
+            </livreAudio>
+        </livreAudios>
+    </playlist>
+</playlists>
