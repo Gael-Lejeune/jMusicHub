@@ -1,1 +1,1 @@
-javac src\main\*.java src\business\*.java -d bin
+javac -d bin "src\musichub\main\*.java" "src\musichub\business\*.java"

@@ -1,1 +1,1 @@
-java -classpath bin main.
+java -classpath bin main.Main
