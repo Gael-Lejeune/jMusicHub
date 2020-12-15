@@ -7,15 +7,17 @@ public abstract class Audio
     protected int duree;
     protected int id;
 
-    public Audio(String titre, String artiste, int duree, int id, int contenu);
+    // public Audio(String titre, String artiste, int duree, int id, int contenu){
+	//
+	// };
 
     public String getTitre()
     {
     	return this.titre;
     }
-    public String getAuteur()
+    public String getArtiste()
     {
-    	return this.auteur;
+    	return this.artiste;
     }
     public int getDuree()
     {
@@ -25,4 +27,8 @@ public abstract class Audio
     {
     	return this.id;
     }
+
+	public void play(){
+		
+	};
 }

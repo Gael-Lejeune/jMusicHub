@@ -3,48 +3,44 @@ package business;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Playlist
-{
+public class Playlist{
 	private String nom;
 	private int id;
-	private ListedList<Audio> music = new LinkedList<Audio>();
-	private static int musicNumber = 0;
+	private LinkedList<Audio> audio = new LinkedList<Audio>();
+	private static int audioIndex = 0;
 
-	public Playlist(String nom, int id, ListedList<Audio> music)
-	{
+	public Playlist(String nom, int id, LinkedList<Audio> audio){
 		this.nom = nom;
 		this.id = id;
-		this.music = music;
+		this.audio = audio;
 	}
 
-	public Boolean playPlaylist()
-    { //Lecture de toutes les musiques de l'Album
-    	this.music.get(this.musicNumber).play();
-    	if(this.musicNumber<this.music.size())
-    	{ //Si il n'y a plus de musique arrêté la lecture
-    		musicNumber = 0;
-    		return 0;
-    	}
-    	else if(this.music.get(this.musicNumber).musicEnd())
-    	{ //Si
-    		musicNumber += 1;
-    		return 1;
-    	}
-    }
-    public void nextMusic()
-    { //Passer à la musique suivante
-    	musicNumber += 1;
-    }
-    public void previousMusic()
-    { //Revenir à la musique précédente
-    	musicNumber -= 1;
-    }
-    public void addMusicToPlaylist()
-    {
+	public Boolean play() {
+		//Lecture de toutes les musiques de la Playlist
+		this.audio.get(this.audioIndex).play();
+		if(this.audioIndex<this.audio.size()) {
+			//Si il n'y a plus de musique arrêter la lecture
+			audioIndex = 0;
+			return false;
+		}
+		// else if(this.audio.get(this.audioIndex).audioEnd()){
+			// audioIndex += 1;
+			return true;
+		// }
+	}
 
-    }
-    public void addAlbumToPlaylist()
-    {
-
-    }
+	public void nextMusic() {
+		//Passer à la musique suivante
+		audioIndex += 1;
+	}
+	public void previousMusic(){
+		//Revenir à la musique précédente
+		audioIndex -= 1;
+	}
+	public void addMusicToPlaylist(Chanson chanson){
+		this.audio.add(chanson);
+	}
+	public void addAlbumToPlaylist(Album album){
+		this.audio.addAll(album.getMusique());
+	}
 }

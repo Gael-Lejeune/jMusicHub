@@ -9,7 +9,7 @@ public enum Genre
 
     private Genre(String type)
     {
-        this.type = titre;
+        this.type = type;
     }
 
     public String getGenre()

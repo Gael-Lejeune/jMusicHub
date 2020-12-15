@@ -10,7 +10,7 @@ public enum Categorie
     private Categorie(String type)
     {
         this.type = type;
-    }
+    } 
 
     public String getTitre()
     {
