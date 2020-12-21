@@ -28,6 +28,7 @@ import java.util.UUID;
 * </pre>
 *	@author Felicia Ionascu
 */
+
 public class XMLReaderWriter{
 	private TransformerFactory transformerFactory;
 	private Transformer transformer;
@@ -36,7 +37,6 @@ public class XMLReaderWriter{
 
 	public XMLReaderWriter() {
 		try {
-
 			transformerFactory = TransformerFactory.newInstance();
 			transformer = transformerFactory.newTransformer();
 			documentFactory = DocumentBuilderFactory.newInstance();
@@ -137,6 +137,43 @@ public class XMLReaderWriter{
 						System.out.println(titre + " by " + artiste);
 						System.out.println("Duration : " + duree);
 						System.out.println("Released : " + dateSortie);
+						System.out.println("ID : " + uniqueID.toString());
+					} catch (Exception ex) {
+						System.out.println("Something is wrong with the XML client element");
+					}
+				}
+			}
+		}
+	}
+
+
+	/**
+	* Methode pour démontrer la lecture d'un fichier XML qui contient plusieurs éléments
+	*/
+	public void readPlaylistsXML(String inputFile) {
+
+		NodeList nodes = this.parseXMLFile(inputFile);
+		if (nodes == null) return;
+
+		for (int i = 0; i<nodes.getLength(); i++) {
+			if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)   {
+				Element currentElement = (Element) nodes.item(i);
+				if (currentElement.getNodeName().equals("playlist")) 	{
+					try {
+						String nom = currentElement.getElementsByTagName("nom").item(0).getTextContent();
+						String uuid = null;
+						UUID uniqueID = null;
+						try {
+							uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
+						}
+						catch (Exception ex) {
+							System.out.println("Empty UUID, will create a new one");
+						}
+						if ((uuid == null)  || (uuid.isEmpty()))
+						uniqueID = UUID.randomUUID();
+						else uniqueID = UUID.fromString(uuid);
+						//verify that I read everything correctly:
+						System.out.println("Playlist : " + nom);
 						System.out.println("ID : " + uniqueID.toString());
 					} catch (Exception ex) {
 						System.out.println("Something is wrong with the XML client element");

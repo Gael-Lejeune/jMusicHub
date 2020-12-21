@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <playlists>
     <playlist>
-        <nom>MaPlaylist</nom>
+        <nom>MaPlaylist1</nom>
+        <UUID></UUID>
+        <chansons>
+            <chanson>
+
+            </chanson>
+        </chansons>
+        <livreAudios>
+            <livreAudio>
+
+            </livreAudio>
+        </livreAudios>
+    </playlist>
+    <playlist>
+        <nom>MaPlaylist2</nom>
         <UUID></UUID>
         <chansons>
             <chanson>

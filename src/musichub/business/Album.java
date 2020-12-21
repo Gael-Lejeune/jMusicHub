@@ -25,7 +25,7 @@ public class Album {
     	return this.titre;
     }
 
-    public String getaArtiste(){
+    public String getArtiste(){
     	return this.artiste;
     }
 

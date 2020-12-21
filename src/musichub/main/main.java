@@ -15,12 +15,21 @@ import java.util.UUID;
 
 public class Main{
     public static void main(String[] args) {
-        System.out.println("Welcome in jMusicHub,");
-        System.out.println("Reading library...");
-        XMLReaderWriter Reader = new XMLReaderWriter();
-        NodeList albums = null;
-        albums = Reader.parseXMLFile("files/albums.xml");
-        Reader.readAlbumsXML("files/albums.xml");
+        // System.out.println("Welcome in jMusicHub,");
+        // System.out.println("Reading library...");
+        //
+        // XMLReaderWriter reader = new XMLReaderWriter();
+        //
+        // NodeList albums = reader.parseXMLFile("files/albums.xml");
+        // System.out.println(albums);
+        // reader.readAlbumsXML("files/albums.xml");
+        //
+        // NodeList playlists = reader.parseXMLFile("files/playlists.xml");
+        // System.out.println(playlists);
+        // reader.readPlaylistsXML("files/playlists.xml");
+
+        MusicPlayer player = new MusicPlayer();
+        player.play("files/test.mp3");
 
     }
 }

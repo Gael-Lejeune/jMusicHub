@@ -10,6 +10,20 @@
         </UUID> -->
         <chansons>
             <chanson>
+                
+            </chanson>
+        </chansons>
+    </album>
+    <album>
+        <titre>Moral Panic</titre>
+        <artiste>Nothing But Thieves</artiste>
+        <duree>570</duree>
+        <dateSortie>26/12/2020</dateSortie>
+        <!-- <UUID>
+
+        </UUID> -->
+        <chansons>
+            <chanson>
 
             </chanson>
         </chansons>
