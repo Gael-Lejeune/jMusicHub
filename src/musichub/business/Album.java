@@ -5,31 +5,47 @@ import java.util.List;
 
 public class Album {
 
-    private String titre;
-    private String artiste;
-    private int duree;
-    private String dateSortie;
-    private int id;
-    private LinkedList<Chanson> musique;
+    private String title;
+    private String artist;
+    private int duration;
+    private String releaseDate;
+    private String id;
+    private LinkedList<Chanson> songs;
 
-    public Album(String titre, String artiste, int duree, String dateSortie, int id, LinkedList<Chanson> musique) {
-    	this.titre = titre;
-    	this.artiste = artiste;
-    	this.duree = duree;
-    	this.dateSortie = dateSortie;
-    	this.id = id;
-    	this.musique = musique;
+    public Album(String title, String artist, int duration, String releaseDate, String id, LinkedList<Chanson> songs) {
+        this.title = title;
+        this.artist = artist;
+        this.duration = duration;
+        this.releaseDate = releaseDate;
+        this.id = id;
+        this.songs = songs;
     }
 
-    public String getTitre(){
-    	return this.titre;
+    public String getTitle(){
+        return this.title;
     }
 
-    public String getArtiste(){
-    	return this.artiste;
+    public String getArtist(){
+        return this.artist;
     }
 
-    public LinkedList<Chanson> getMusique() {
-    	return this.musique;
+    public LinkedList<Chanson> getSongs() {
+        return this.songs;
     }
+
+    public String toString(){
+        String str;
+        str = "Album " + this.title + "\nBy " + this.artist + "\nDuration " + this.duration + "\nReleased " + this.releaseDate + "\nSongs : ";
+        for (int i=0; i < this.songs.size(); i++) {
+            str += "\n      " + this.songs.get(i).getTitle() + " : " + this.songs.get(i).getDuree();
+        }
+        return str;
+    }
+
+    public void addSong(){
+
+    }
+
+
+
 }

@@ -1,31 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <albums>
     <album>
-        <titre>Apeologies</titre>
-        <artiste>Shaka Ponk</artiste>
-        <duree>500</duree>
-        <dateSortie>15/11/2020</dateSortie>
-        <!-- <UUID>
-
-        </UUID> -->
-        <chansons>
-            <chanson>
-                
-            </chanson>
-        </chansons>
+        <title>Apeologies</title>
+        <artist>Shaka Ponk</artist>
+        <duration>500</duration>
+        <releaseDate>15/11/2020</releaseDate>
+        <UUID></UUID>
+        <songs>
+            <song>
+                <title>Special</title>
+                <artist>Ashnikko</artist>
+                <duration>164</duration>
+                <UUID></UUID>
+                <contenu></contenu>
+                <genre></genre>
+            </song>
+            <song>
+                <title>Cry</title>
+                <artist>Ashnikko</artist>
+                <duration>164</duration>
+                <UUID></UUID>
+                <contenu></contenu>
+                <genre></genre>
+            </song>
+        </songs>
     </album>
     <album>
-        <titre>Moral Panic</titre>
-        <artiste>Nothing But Thieves</artiste>
-        <duree>570</duree>
-        <dateSortie>26/12/2020</dateSortie>
-        <!-- <UUID>
-
-        </UUID> -->
-        <chansons>
-            <chanson>
-
-            </chanson>
-        </chansons>
+        <title>Moral Panic</title>
+        <artist>Nothing But Thieves</artist>
+        <duration>570</duration>
+        <releaseDate>26/12/2020</releaseDate>
+        <UUID></UUID>
+        <songs>
+            <song>
+                <title>Special</title>
+                <artist>Ashnikko</artist>
+                <duration>164</duration>
+                <UUID></UUID>
+                <contenu></contenu>
+                <genre></genre>
+            </song>
+        </songs>
     </album>
 </albums>

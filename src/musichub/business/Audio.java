@@ -2,33 +2,28 @@ package business;
 
 public abstract class Audio
 {
-	protected String titre;
-    protected String artiste;
-    protected int duree;
-    protected int id;
+	protected String title;
+    protected int duration;
+    protected String id;
 
-    // public Audio(String titre, String artiste, int duree, int id, int contenu){
+    // public Audio(String title, String artist, int duration, int id, int contenu){
 	//
 	// };
 
-    public String getTitre()
+    public String getTitle()
     {
-    	return this.titre;
+    	return this.title;
     }
-    public String getArtiste()
+    public int getDuration()
     {
-    	return this.artiste;
+    	return this.duration;
     }
-    public int getDuree()
-    {
-    	return this.duree;
-    }
-    public int getID()
+    public String getID()
     {
     	return this.id;
     }
 
 	public void play(){
-		
+
 	};
 }

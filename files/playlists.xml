@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <playlists>
     <playlist>
-        <nom>MaPlaylist1</nom>
+        <name>MaPlaylist1</name>
         <UUID></UUID>
-        <chansons>
-            <chanson>
-
-            </chanson>
-        </chansons>
-        <livreAudios>
-            <livreAudio>
-
-            </livreAudio>
-        </livreAudios>
+        <songs>
+            <song>
+                <title>Special</title>
+                <artist>Ashnikko</artist>
+                <duration>164</duration>
+                <UUID></UUID>
+                <contenu></contenu>
+                <genre></genre>
+            </song>
+            <song>
+                <title>Cry</title>
+                <artist>Ashnikko</artist>
+                <duration>164</duration>
+                <UUID></UUID>
+                <contenu></contenu>
+                <genre></genre>
+            </song>
+        </songs>
+        <audioBooks>
+            <audioBook>
+            </audioBook>
+        </audioBooks>
     </playlist>
     <playlist>
-        <nom>MaPlaylist2</nom>
+        <name>MaPlaylist2</name>
         <UUID></UUID>
-        <chansons>
-            <chanson>
-
-            </chanson>
-        </chansons>
-        <livreAudios>
-            <livreAudio>
-
-            </livreAudio>
-        </livreAudios>
+        <songs>
+            <song>
+            </song>
+        </songs>
+        <audioBooks>
+            <audioBook>
+            </audioBook>
+        </audioBooks>
     </playlist>
 </playlists>

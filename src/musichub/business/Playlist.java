@@ -4,13 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Playlist{
-	private String nom;
+	private String name;
 	private int id;
 	private LinkedList<Audio> audio = new LinkedList<Audio>();
 	private static int audioIndex = 0;
 
-	public Playlist(String nom, int id, LinkedList<Audio> audio){
-		this.nom = nom;
+	public Playlist(String name, int id, LinkedList<Audio> audio){
+		this.name = name;
 		this.id = id;
 		this.audio = audio;
 	}

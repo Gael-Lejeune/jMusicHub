@@ -1,5 +1,7 @@
 package util;
 
+import business.*;
+
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
@@ -10,6 +12,8 @@ import org.w3c.dom.*;
 import java.io.IOException;
 import java.io.File;
 import java.util.UUID;
+import java.util.LinkedList;
+
 
 /** XMLReaderWriter classe qui demontre comment lire et ecrire un fichier XML
 * La classe lit un XML qui contient plusieurs elements <pre>{@code<client>}</pre> (mais n'en ecrit qu'un seul):
@@ -116,10 +120,10 @@ public class XMLReaderWriter{
 				Element currentElement = (Element) nodes.item(i);
 				if (currentElement.getNodeName().equals("album")) 	{
 					try {
-						String titre = currentElement.getElementsByTagName("titre").item(0).getTextContent();
-						String artiste = currentElement.getElementsByTagName("artiste").item(0).getTextContent();
-						String duree = currentElement.getElementsByTagName("duree").item(0).getTextContent();
-						String dateSortie = currentElement.getElementsByTagName("dateSortie").item(0).getTextContent();
+						String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
+						String artist = currentElement.getElementsByTagName("artist").item(0).getTextContent();
+						String duration = currentElement.getElementsByTagName("duration").item(0).getTextContent();
+						String releaseDate = currentElement.getElementsByTagName("releaseDate").item(0).getTextContent();
 						String uuid = null;
 						UUID uniqueID = null;
 						try {
@@ -132,9 +136,9 @@ public class XMLReaderWriter{
 						uniqueID = UUID.randomUUID();
 						else uniqueID = UUID.fromString(uuid);
 						//verify that I read everything correctly:
-						System.out.println(titre + " by " + artiste);
-						System.out.println("Duration : " + duree);
-						System.out.println("Released : " + dateSortie);
+						System.out.println(title + " by " + artist);
+						System.out.println("Duration : " + duration);
+						System.out.println("Released : " + releaseDate);
 						System.out.println("ID : " + uniqueID.toString());
 					} catch (Exception ex) {
 						System.out.println("Something is wrong with the XML client element");
@@ -144,6 +148,79 @@ public class XMLReaderWriter{
 		}
 	}
 
+	public LinkedList<Album> loadAlbumsXML(String inputFile) {
+		LinkedList<Album> albumList = new LinkedList<Album>();
+		NodeList nodes = this.parseXMLFile(inputFile);
+		// if (nodes == null) return;
+
+		for (int i = 0; i<nodes.getLength(); i++) {
+			if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)   {
+				Element currentElement = (Element) nodes.item(i);
+				if (currentElement.getNodeName().equals("album")) 	{
+					try {
+						String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
+						String artist = currentElement.getElementsByTagName("artist").item(0).getTextContent();
+						int duration = Integer.parseInt(currentElement.getElementsByTagName("duration").item(0).getTextContent());
+						String releaseDate = currentElement.getElementsByTagName("releaseDate").item(0).getTextContent();
+
+
+						LinkedList<Chanson> chansonsList = new LinkedList<Chanson>();
+						NodeList chansons = currentElement.getElementsByTagName("chansons");
+						System.out.println(chansons);
+						System.out.println(nodes);
+
+						for (int j = 0;  j < chansons.getLength(); j++) {
+							Element chanson = (Element)chansons.item(j);
+							System.out.println(chanson.getNodeName());
+							if (chanson.getNodeName().equals("chanson")){
+								String titleChanson = chanson.getElementsByTagName("title").item(0).getTextContent();
+								String artistChanson = chanson.getElementsByTagName("artist").item(0).getTextContent();
+								int durationChanson = Integer.parseInt(chanson.getElementsByTagName("duration").item(0).getTextContent());
+								String contenuChanson = chanson.getElementsByTagName("contenu").item(0).getTextContent();
+								String genreChanson = chanson.getElementsByTagName("genre").item(0).getTextContent();
+								String uuidChanson = null;
+								UUID uniqueIDChanson = null;
+
+								try {
+									uuidChanson = chanson.getElementsByTagName("UUID").item(0).getTextContent();
+								}
+								catch (Exception ex) {
+									System.out.println("Empty UUID, will create a new one");
+								}
+								if ((uuidChanson == null)  || (uuidChanson.isEmpty()))
+								uniqueIDChanson = UUID.randomUUID();
+								else uniqueIDChanson = UUID.fromString(uuidChanson);
+								chansonsList.add(new Chanson(titleChanson, artistChanson, durationChanson,uuidChanson, contenuChanson, Genre.JAZZ));
+							}
+						}
+
+						String uuid = null;
+						UUID uniqueID = null;
+						try {
+							uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
+						}
+						catch (Exception ex) {
+							System.out.println("Empty UUID, will create a new one");
+						}
+						if ((uuid == null)  || (uuid.isEmpty()))
+						uniqueID = UUID.randomUUID();
+						else uniqueID = UUID.fromString(uuid);
+						//verify that I read everything correctly:
+						albumList.add(new Album(title, artist, duration, releaseDate, uuid, chansonsList));
+						// System.out.println(title + " by " + artist);
+						// System.out.println("Duration : " + duration);
+						// System.out.println("Released : " + releaseDate);
+						// System.out.println("ID : " + uniqueID.toString());
+					} catch (Exception ex) {
+						System.out.println(ex.getMessage());
+						ex.printStackTrace();
+						System.out.println("Something is wrong with the XML client element");
+					}
+				}
+			}
+		}
+		return albumList;
+	}
 
 	public void readElementsXML(String inputFile) {
 		NodeList nodes = this.parseXMLFile(inputFile);
@@ -154,10 +231,10 @@ public class XMLReaderWriter{
 				Element currentElement = (Element) nodes.item(i);
 				if (currentElement.getNodeName().equals("chanson")){
 					try {
-						String titre = currentElement.getElementsByTagName("titre").item(0).getTextContent();
-						String artiste = currentElement.getElementsByTagName("artiste").item(0).getTextContent();
-						String duree = currentElement.getElementsByTagName("duree").item(0).getTextContent();
-						String dateSortie = currentElement.getElementsByTagName("contenu").item(0).getTextContent();
+						String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
+						String artist = currentElement.getElementsByTagName("artist").item(0).getTextContent();
+						String duration = currentElement.getElementsByTagName("duration").item(0).getTextContent();
+						String releaseDate = currentElement.getElementsByTagName("contenu").item(0).getTextContent();
 						String uuid = null;
 						UUID uniqueID = null;
 						try {
@@ -170,8 +247,8 @@ public class XMLReaderWriter{
 						uniqueID = UUID.randomUUID();
 						else uniqueID = UUID.fromString(uuid);
 						//verify that I read everything correctly:
-						System.out.println("Song " + titre + " by " + artiste);
-						System.out.println("Duration : " + duree);
+						System.out.println("Song " + title + " by " + artist);
+						System.out.println("Duration : " + duration);
 						System.out.println("ID : " + uniqueID.toString());
 					} catch (Exception ex) {
 						System.out.println("Something is wrong with the XML client element");
@@ -179,10 +256,10 @@ public class XMLReaderWriter{
 				}
 				else if (currentElement.getNodeName().equals("livreAudio")){
 					try {
-						String titre = currentElement.getElementsByTagName("titre").item(0).getTextContent();
-						String auteur = currentElement.getElementsByTagName("auteur").item(0).getTextContent();
-						String duree = currentElement.getElementsByTagName("duree").item(0).getTextContent();
-						String dateSortie = currentElement.getElementsByTagName("contenu").item(0).getTextContent();
+						String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
+						String author = currentElement.getElementsByTagName("author").item(0).getTextContent();
+						String duration = currentElement.getElementsByTagName("duration").item(0).getTextContent();
+						String releaseDate = currentElement.getElementsByTagName("contenu").item(0).getTextContent();
 						String uuid = null;
 						UUID uniqueID = null;
 						try {
@@ -195,8 +272,8 @@ public class XMLReaderWriter{
 						uniqueID = UUID.randomUUID();
 						else uniqueID = UUID.fromString(uuid);
 						//verify that I read everything correctly:
-						System.out.println("Audio-Book " + titre + " by " + auteur);
-						System.out.println("Duration : " + duree);
+						System.out.println("Audio-Book " + title + " by " + author);
+						System.out.println("Duration : " + duration);
 						System.out.println("ID : " + uniqueID.toString());
 					} catch (Exception ex) {
 						System.out.println("Something is wrong with the XML client element");
@@ -289,5 +366,50 @@ public class XMLReaderWriter{
 	// 	demo.readXML();
 	// 	demo.writeXML();
 	// }
+
+
+	private Song getSong(Node node){
+
+
+	}
+
+	private Playlist getPlaylist(Node songs){
+		// String name = "";
+		// UUID id = UUID.randomUUID();
+		LinkedList<Audio> = new LinkedList<Audio>();
+
+		NodeList list = songs.getChildNodes();
+		int nbChild = list.getLength();
+
+		for (int i = 0; i < nbChild; i++) {
+			Node song = list.item(i);
+
+			if (song instanceof Element){
+				try {
+					String name = currentElement.getElementsByTagName("name").item(0).getTextContent();
+					String uuid = null;
+					UUID uniqueID = null;
+					try {
+						uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
+					}
+					catch (Exception ex) {
+						System.out.println("Empty UUID, will create a new one");
+					}
+					if ((uuid == null)  || (uuid.isEmpty()))
+					uniqueID = UUID.randomUUID();
+					else uniqueID = UUID.fromString(uuid);
+					//verify that I read everything correctly:
+					for (; ; ) {
+
+					}
+					return new Playlist();
+				} catch (Exception ex) {
+					System.out.println("Something is wrong with the XML client element");
+				}
+			}
+		}
+	}
+
+
 
 }

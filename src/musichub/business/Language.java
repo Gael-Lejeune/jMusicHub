@@ -1,19 +1,19 @@
 package business;
 
-public enum Langue
+public enum Language
 {
     FRANCAIS("Français"), ANGLAIS("Anglais"), ITALIEN("Italien"),
     ESPAGNOL("Espagnol"), ALLEMAND("Allemand");
 
-    private String langue;
+    private String language;
 
-    private Langue(String langue)
+    private Language(String language)
     {
-        this.langue = langue;
+        this.language = language;
     }
 
     public String getLangue()
     {
-        return this.langue;
+        return this.language;
     }
 }

@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <elements>
-    <!-- <chansons> -->
-    <chanson>
-        <titre>Special</titre>
-        <artiste>Ashnikko</artiste>
-        <duree>164</duree>
+    <!-- <songs> -->
+    <song>
+        <title>Special</title>
+        <artist>Ashnikko</artist>
+        <duration>164</duration>
         <UUID></UUID>
-        <contenu>
+        <content>
 
-        </contenu>
+        </content>
         <genre></genre>
-    </chanson>
-    <!-- </chansons> -->
-    <!-- <livreAudios> -->
-    <livreAudio>
-        <titre>Le père de nos pères</titre>
+    </song>
+    <!-- </songs> -->
+    <!-- <audioBooks> -->
+    <audioBook>
+        <title>Le père de nos pères</title>
         <auteur>Bernard Werber</auteur>
-        <duree>10000</duree>
+        <duration>10000</duration>
         <UUID></UUID>
-        <contenu>
+        <content>
 
-        </contenu>
-        <langue></langue>
-        <categorie></categorie>
-    </livreAudio>
-    <!-- </livreAudios> -->
+        </content>
+        <language></language>
+        <category></category>
+    </audioBook>
+    <!-- </audioBooks> -->
 </elements>
