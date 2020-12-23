@@ -2,6 +2,8 @@ package business;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
+
 
 public class Album {
 
@@ -9,10 +11,10 @@ public class Album {
     private String artist;
     private int duration;
     private String releaseDate;
-    private String id;
+    private UUID id;
     private LinkedList<Song> songs;
 
-    public Album(String title, String artist, int duration, String releaseDate, String id, LinkedList<Song> songs) {
+    public Album(String title, String artist, int duration, String releaseDate, UUID id, LinkedList<Song> songs) {
         this.title = title;
         this.artist = artist;
         this.duration = duration;

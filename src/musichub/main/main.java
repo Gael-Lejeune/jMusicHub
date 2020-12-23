@@ -97,6 +97,17 @@ public class Main{
             ex.printStackTrace();
         }
 
+        try {
+            LinkedList<Album> albums = reader.readAlbumXML("files/albums.xml");
+            System.out.println("Existing albums :\n");
+            for (int i = 0; i < albums.size() ; i++) {
+                System.out.println(albums.get(i) + "\n");
+            }
+        } catch (Exception ex) {
+            System.out.println("erreur");
+            ex.printStackTrace();
+        }
+
 
 
 

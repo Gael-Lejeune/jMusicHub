@@ -406,7 +406,7 @@ public class XMLReaderWriter{
 			else uniqueID = UUID.fromString(uuid);
 			//verify that I read everything correctly:
 			NodeList audios = element.getElementsByTagName("audios").item(0).getChildNodes();
-			Node audio1 = audios.item(0);
+			// Node audio1 = audios.item(0);
 			// System.out.println(audio1.getNodeName());
 			for (int i = 0; i<audios.getLength(); i++) {
 				if (audios.item(i).getNodeType() == Node.ELEMENT_NODE) {
@@ -426,6 +426,47 @@ public class XMLReaderWriter{
 		return new Playlist(name, uniqueID, audioList);
 	}
 
+	Album getAlbum(Element element) {
+		LinkedList<Song> songList = new LinkedList<Song>();
+		String title = "";
+		String artist = "";
+		int duration = 0;
+		String releaseDate = "";
+		UUID uniqueID = null;
+
+		try {
+			title = element.getElementsByTagName("title").item(0).getTextContent();
+			artist = element.getElementsByTagName("artist").item(0).getTextContent();
+			duration = Integer.parseInt(element.getElementsByTagName("duration").item(0).getTextContent());
+			releaseDate = element.getElementsByTagName("releaseDate").item(0).getTextContent();
+			String uuid = null;
+			try {
+				uuid = element.getElementsByTagName("UUID").item(0).getTextContent();
+			}
+			catch (Exception ex) {
+				System.out.println("Empty UUID, will create a new one");
+			}
+			if ((uuid == null)  || (uuid.isEmpty()))
+			uniqueID = UUID.randomUUID();
+			else uniqueID = UUID.fromString(uuid);
+			//verify that I read everything correctly:
+			NodeList songs = element.getElementsByTagName("songs").item(0).getChildNodes();
+			// Node audio1 = audios.item(0);
+			// System.out.println(audio1.getNodeName());
+			for (int i = 0; i<songs.getLength(); i++) {
+				if (songs.item(i).getNodeType() == Node.ELEMENT_NODE) {
+					Element currentElement = (Element) songs.item(i);
+					// System.out.println(audios.item(i).getNodeName());
+						songList.add(getSong(currentElement));
+				}
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.out.println("Something is wrong with the XML client element");
+		}
+		return new Album(title, artist, duration, releaseDate, uniqueID, songList);
+	}
+
 	public LinkedList<Playlist> readPlaylistXML(String file){
 		NodeList list = this.parseXMLFile(file);
 		// System.out.println(list.getLength());
@@ -440,5 +481,21 @@ public class XMLReaderWriter{
 			}
 		}
 		return playlistList;
+	}
+
+	public LinkedList<Album> readAlbumXML(String file){
+		NodeList list = this.parseXMLFile(file);
+		// System.out.println(list.getLength());
+		LinkedList<Album> albumList = new LinkedList<Album>();
+
+		for (int i = 0; i<list.getLength(); i++) {
+			if (list.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				Element currentElement = (Element) list.item(i);
+				if (currentElement.getNodeName().equals("album")) {
+					albumList.add(getAlbum(currentElement));
+				}
+			}
+		}
+		return albumList;
 	}
 }
