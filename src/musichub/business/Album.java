@@ -10,9 +10,9 @@ public class Album {
     private int duration;
     private String releaseDate;
     private String id;
-    private LinkedList<Chanson> songs;
+    private LinkedList<Song> songs;
 
-    public Album(String title, String artist, int duration, String releaseDate, String id, LinkedList<Chanson> songs) {
+    public Album(String title, String artist, int duration, String releaseDate, String id, LinkedList<Song> songs) {
         this.title = title;
         this.artist = artist;
         this.duration = duration;
@@ -29,7 +29,7 @@ public class Album {
         return this.artist;
     }
 
-    public LinkedList<Chanson> getSongs() {
+    public LinkedList<Song> getSongs() {
         return this.songs;
     }
 
@@ -37,7 +37,7 @@ public class Album {
         String str;
         str = "Album " + this.title + "\nBy " + this.artist + "\nDuration " + this.duration + "\nReleased " + this.releaseDate + "\nSongs : ";
         for (int i=0; i < this.songs.size(); i++) {
-            str += "\n      " + this.songs.get(i).getTitle() + " : " + this.songs.get(i).getDuree();
+            str += "\n      " + this.songs.get(i).getTitle() + " : " + this.songs.get(i).getDuration();
         }
         return str;
     }

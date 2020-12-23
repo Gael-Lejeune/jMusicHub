@@ -3,39 +3,85 @@
     <playlist>
         <name>MaPlaylist1</name>
         <UUID></UUID>
-        <songs>
+        <audio>
+            <!-- <songs> -->
             <song>
                 <title>Special</title>
                 <artist>Ashnikko</artist>
                 <duration>164</duration>
-                <UUID></UUID>
-                <contenu></contenu>
-                <genre></genre>
+                <UUID>4f392743-c9ba-4230-9b93-a1c79c0a13c4</UUID>
+                <content>chemin</content>
+                <genre>POP</genre>
             </song>
             <song>
                 <title>Cry</title>
                 <artist>Ashnikko</artist>
                 <duration>164</duration>
-                <UUID></UUID>
-                <contenu></contenu>
-                <genre></genre>
+                <UUID>4f392743-c9ba-4230-9b93-a1c79c0a13c7</UUID>
+                <content>chemin2</content>
+                <genre>RAP</genre>
             </song>
-        </songs>
-        <audioBooks>
+            <!-- </songs> -->
+            <!-- <audioBooks> -->
             <audioBook>
             </audioBook>
-        </audioBooks>
+            <!-- </audioBooks> -->
+        </audio>
     </playlist>
     <playlist>
-        <name>MaPlaylist2</name>
+        <name>MaPlaylist1</name>
         <UUID></UUID>
-        <songs>
+        <audio>
+            <!-- <songs> -->
             <song>
+                <title>Special</title>
+                <artist>Ashnikko</artist>
+                <duration>164</duration>
+                <UUID>4f392743-c9ba-4230-9b93-a1c79c0a13c4</UUID>
+                <content>chemin</content>
+                <genre>POP</genre>
             </song>
-        </songs>
-        <audioBooks>
+            <song>
+                <title>Cry</title>
+                <artist>Ashnikko</artist>
+                <duration>164</duration>
+                <UUID>4f392743-c9ba-4230-9b93-a1c79c0a13c7</UUID>
+                <content>chemin2</content>
+                <genre>RAP</genre>
+            </song>
+            <!-- </songs> -->
+            <!-- <audioBooks> -->
             <audioBook>
             </audioBook>
-        </audioBooks>
+            <!-- </audioBooks> -->
+        </audio>
+    </playlist>
+    <playlist>
+        <name>MaPlaylist1</name>
+        <UUID></UUID>
+        <audio>
+            <!-- <songs> -->
+            <song>
+                <title>Special</title>
+                <artist>Ashnikko</artist>
+                <duration>164</duration>
+                <UUID>4f392743-c9ba-4230-9b93-a1c79c0a13c4</UUID>
+                <content>chemin</content>
+                <genre>POP</genre>
+            </song>
+            <song>
+                <title>Cry</title>
+                <artist>Ashnikko</artist>
+                <duration>164</duration>
+                <UUID>4f392743-c9ba-4230-9b93-a1c79c0a13c7</UUID>
+                <content>chemin2</content>
+                <genre>RAP</genre>
+            </song>
+            <!-- </songs> -->
+            <!-- <audioBooks> -->
+            <audioBook>
+            </audioBook>
+            <!-- </audioBooks> -->
+        </audio>
     </playlist>
 </playlists>

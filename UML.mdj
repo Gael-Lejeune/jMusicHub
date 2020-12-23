@@ -220,7 +220,7 @@
 											"top": 681,
 											"width": 186.44970703125,
 											"height": 13,
-											"text": "-musique: LinkedList<Chanson>",
+											"text": "-musique: LinkedList<Song>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -797,7 +797,7 @@
 											"top": 327,
 											"width": 80.9326171875,
 											"height": 13,
-											"text": "Chanson"
+											"text": "Song"
 										},
 										{
 											"_type": "LabelView",
@@ -2085,7 +2085,7 @@
 							},
 							"name": "musique",
 							"visibility": "private",
-							"type": "LinkedList<Chanson>"
+							"type": "LinkedList<Song>"
 						}
 					],
 					"operations": [
@@ -2187,7 +2187,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Chanson",
+					"name": "Song",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",

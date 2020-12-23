@@ -15,7 +15,7 @@
     <!-- <audioBooks> -->
     <audioBook>
         <title>Le père de nos pères</title>
-        <auteur>Bernard Werber</auteur>
+        <author>Bernard Werber</author>
         <duration>10000</duration>
         <UUID></UUID>
         <content>

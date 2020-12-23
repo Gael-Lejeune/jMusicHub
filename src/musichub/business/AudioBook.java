@@ -18,7 +18,7 @@ public class AudioBook extends Audio
     	this.category = category;
     }
 
-    public int getContent()
+    public String getContent()
     {
     	return this.content;
     }

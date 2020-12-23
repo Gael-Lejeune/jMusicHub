@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Playlist{
 	private String name;
-	private int id;
+	private String id;
 	private LinkedList<Audio> audio = new LinkedList<Audio>();
 	private static int audioIndex = 0;
 
-	public Playlist(String name, int id, LinkedList<Audio> audio){
+	public Playlist(String name, String id, LinkedList<Audio> audio){
 		this.name = name;
 		this.id = id;
 		this.audio = audio;
@@ -37,10 +37,19 @@ public class Playlist{
 		//Revenir à la musique précédente
 		audioIndex -= 1;
 	}
-	public void addMusicToPlaylist(Chanson chanson){
-		this.audio.add(chanson);
+	public void addMusicToPlaylist(Song song){
+		this.audio.add(song);
 	}
 	public void addAlbumToPlaylist(Album album){
-		this.audio.addAll(album.getMusique());
+		this.audio.addAll(album.getSongs());
+	}
+
+	public String toString(){
+		String str;
+		str = "Playlist " + this.name;
+		// for (int i=0; i < this.audio.size(); i++) {
+		// 	str += "\n      " + this.audio.get(i).getTitle() + " : " + this.audio.get(i).getDuration();
+		// }
+		return str;
 	}
 }

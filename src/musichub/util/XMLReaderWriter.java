@@ -57,33 +57,33 @@ public class XMLReaderWriter{
 	* @param document le document à transformer
 	* @param filePath le chemin (répértoire et nom) du fichier XML à créer
 	*/
-	public void createXMLFile(Document document, String filePath){
-		try {
-			DOMSource domSource = new DOMSource(document);
-			StreamResult streamResult = new StreamResult(new File(filePath));
-
-			// If you use
-			// StreamResult result = new StreamResult(System.out);
-			// the output will be pushed to the standard output ...
-			// You can use that for debugging
-
-			//transform the DOM Object to an XML File
-			transformer.transform(domSource, streamResult);
-
-		} catch (TransformerException tfe) {
-			tfe.printStackTrace();
-		}
-		System.out.println("Done creating XML File");
-	}
-
-	/**
-	* La methode qui crée le document en memoire
-	* @return le document créé
-	*/
-	public Document createXMLDocument() {
-		return documentBuilder.newDocument();
-	}
-
+	// public void createXMLFile(Document document, String filePath){
+	// 	try {
+	// 		DOMSource domSource = new DOMSource(document);
+	// 		StreamResult streamResult = new StreamResult(new File(filePath));
+	//
+	// 		// If you use
+	// 		// StreamResult result = new StreamResult(System.out);
+	// 		// the output will be pushed to the standard output ...
+	// 		// You can use that for debugging
+	//
+	// 		//transform the DOM Object to an XML File
+	// 		transformer.transform(domSource, streamResult);
+	//
+	// 	} catch (TransformerException tfe) {
+	// 		tfe.printStackTrace();
+	// 	}
+	// 	System.out.println("Done creating XML File");
+	// }
+	//
+	// /**
+	// * La methode qui crée le document en memoire
+	// * @return le document créé
+	// */
+	// public Document createXMLDocument() {
+	// 	return documentBuilder.newDocument();
+	// }
+	//
 	/**
 	* La methode qui lit un fichier XML et le transforme en liste de noeuds en mémoire
 	* @param filePath le chemin (répértoire et nom) du fichier XML à lire
@@ -108,308 +108,334 @@ public class XMLReaderWriter{
 		return elementNodes;
 	}
 
-	/**
-	* Methode pour démontrer la lecture d'un fichier XML qui contient plusieurs éléments
-	*/
-	public void readAlbumsXML(String inputFile) {
-		NodeList nodes = this.parseXMLFile(inputFile);
-		if (nodes == null) return;
-
-		for (int i = 0; i<nodes.getLength(); i++) {
-			if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)   {
-				Element currentElement = (Element) nodes.item(i);
-				if (currentElement.getNodeName().equals("album")) 	{
-					try {
-						String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
-						String artist = currentElement.getElementsByTagName("artist").item(0).getTextContent();
-						String duration = currentElement.getElementsByTagName("duration").item(0).getTextContent();
-						String releaseDate = currentElement.getElementsByTagName("releaseDate").item(0).getTextContent();
-						String uuid = null;
-						UUID uniqueID = null;
-						try {
-							uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
-						}
-						catch (Exception ex) {
-							System.out.println("Empty UUID, will create a new one");
-						}
-						if ((uuid == null)  || (uuid.isEmpty()))
-						uniqueID = UUID.randomUUID();
-						else uniqueID = UUID.fromString(uuid);
-						//verify that I read everything correctly:
-						System.out.println(title + " by " + artist);
-						System.out.println("Duration : " + duration);
-						System.out.println("Released : " + releaseDate);
-						System.out.println("ID : " + uniqueID.toString());
-					} catch (Exception ex) {
-						System.out.println("Something is wrong with the XML client element");
-					}
-				}
-			}
-		}
-	}
-
-	public LinkedList<Album> loadAlbumsXML(String inputFile) {
-		LinkedList<Album> albumList = new LinkedList<Album>();
-		NodeList nodes = this.parseXMLFile(inputFile);
-		// if (nodes == null) return;
-
-		for (int i = 0; i<nodes.getLength(); i++) {
-			if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)   {
-				Element currentElement = (Element) nodes.item(i);
-				if (currentElement.getNodeName().equals("album")) 	{
-					try {
-						String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
-						String artist = currentElement.getElementsByTagName("artist").item(0).getTextContent();
-						int duration = Integer.parseInt(currentElement.getElementsByTagName("duration").item(0).getTextContent());
-						String releaseDate = currentElement.getElementsByTagName("releaseDate").item(0).getTextContent();
-
-
-						LinkedList<Chanson> chansonsList = new LinkedList<Chanson>();
-						NodeList chansons = currentElement.getElementsByTagName("chansons");
-						System.out.println(chansons);
-						System.out.println(nodes);
-
-						for (int j = 0;  j < chansons.getLength(); j++) {
-							Element chanson = (Element)chansons.item(j);
-							System.out.println(chanson.getNodeName());
-							if (chanson.getNodeName().equals("chanson")){
-								String titleChanson = chanson.getElementsByTagName("title").item(0).getTextContent();
-								String artistChanson = chanson.getElementsByTagName("artist").item(0).getTextContent();
-								int durationChanson = Integer.parseInt(chanson.getElementsByTagName("duration").item(0).getTextContent());
-								String contenuChanson = chanson.getElementsByTagName("contenu").item(0).getTextContent();
-								String genreChanson = chanson.getElementsByTagName("genre").item(0).getTextContent();
-								String uuidChanson = null;
-								UUID uniqueIDChanson = null;
-
-								try {
-									uuidChanson = chanson.getElementsByTagName("UUID").item(0).getTextContent();
-								}
-								catch (Exception ex) {
-									System.out.println("Empty UUID, will create a new one");
-								}
-								if ((uuidChanson == null)  || (uuidChanson.isEmpty()))
-								uniqueIDChanson = UUID.randomUUID();
-								else uniqueIDChanson = UUID.fromString(uuidChanson);
-								chansonsList.add(new Chanson(titleChanson, artistChanson, durationChanson,uuidChanson, contenuChanson, Genre.JAZZ));
-							}
-						}
-
-						String uuid = null;
-						UUID uniqueID = null;
-						try {
-							uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
-						}
-						catch (Exception ex) {
-							System.out.println("Empty UUID, will create a new one");
-						}
-						if ((uuid == null)  || (uuid.isEmpty()))
-						uniqueID = UUID.randomUUID();
-						else uniqueID = UUID.fromString(uuid);
-						//verify that I read everything correctly:
-						albumList.add(new Album(title, artist, duration, releaseDate, uuid, chansonsList));
-						// System.out.println(title + " by " + artist);
-						// System.out.println("Duration : " + duration);
-						// System.out.println("Released : " + releaseDate);
-						// System.out.println("ID : " + uniqueID.toString());
-					} catch (Exception ex) {
-						System.out.println(ex.getMessage());
-						ex.printStackTrace();
-						System.out.println("Something is wrong with the XML client element");
-					}
-				}
-			}
-		}
-		return albumList;
-	}
-
-	public void readElementsXML(String inputFile) {
-		NodeList nodes = this.parseXMLFile(inputFile);
-		if (nodes == null) return;
-
-		for (int i = 0; i<nodes.getLength(); i++) {
-			if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)   {
-				Element currentElement = (Element) nodes.item(i);
-				if (currentElement.getNodeName().equals("chanson")){
-					try {
-						String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
-						String artist = currentElement.getElementsByTagName("artist").item(0).getTextContent();
-						String duration = currentElement.getElementsByTagName("duration").item(0).getTextContent();
-						String releaseDate = currentElement.getElementsByTagName("contenu").item(0).getTextContent();
-						String uuid = null;
-						UUID uniqueID = null;
-						try {
-							uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
-						}
-						catch (Exception ex) {
-							System.out.println("Empty UUID, will create a new one");
-						}
-						if ((uuid == null)  || (uuid.isEmpty()))
-						uniqueID = UUID.randomUUID();
-						else uniqueID = UUID.fromString(uuid);
-						//verify that I read everything correctly:
-						System.out.println("Song " + title + " by " + artist);
-						System.out.println("Duration : " + duration);
-						System.out.println("ID : " + uniqueID.toString());
-					} catch (Exception ex) {
-						System.out.println("Something is wrong with the XML client element");
-					}
-				}
-				else if (currentElement.getNodeName().equals("livreAudio")){
-					try {
-						String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
-						String author = currentElement.getElementsByTagName("author").item(0).getTextContent();
-						String duration = currentElement.getElementsByTagName("duration").item(0).getTextContent();
-						String releaseDate = currentElement.getElementsByTagName("contenu").item(0).getTextContent();
-						String uuid = null;
-						UUID uniqueID = null;
-						try {
-							uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
-						}
-						catch (Exception ex) {
-							System.out.println("Empty UUID, will create a new one");
-						}
-						if ((uuid == null)  || (uuid.isEmpty()))
-						uniqueID = UUID.randomUUID();
-						else uniqueID = UUID.fromString(uuid);
-						//verify that I read everything correctly:
-						System.out.println("Audio-Book " + title + " by " + author);
-						System.out.println("Duration : " + duration);
-						System.out.println("ID : " + uniqueID.toString());
-					} catch (Exception ex) {
-						System.out.println("Something is wrong with the XML client element");
-					}
-				}
-			}
-		}
-	}
-	/**
-	* Methode pour démontrer la lecture d'un fichier XML qui contient plusieurs éléments
-	*/
-	public void readPlaylistsXML(String inputFile) {
-
-		NodeList nodes = this.parseXMLFile(inputFile);
-		if (nodes == null) return;
-
-		for (int i = 0; i<nodes.getLength(); i++) {
-			if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)   {
-				Element currentElement = (Element) nodes.item(i);
-				if (currentElement.getNodeName().equals("playlist")) 	{
-					try {
-						String nom = currentElement.getElementsByTagName("nom").item(0).getTextContent();
-						String uuid = null;
-						UUID uniqueID = null;
-						try {
-							uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
-						}
-						catch (Exception ex) {
-							System.out.println("Empty UUID, will create a new one");
-						}
-						if ((uuid == null)  || (uuid.isEmpty()))
-						uniqueID = UUID.randomUUID();
-						else uniqueID = UUID.fromString(uuid);
-						//verify that I read everything correctly:
-						System.out.println("Playlist : " + nom);
-						System.out.println("ID : " + uniqueID.toString());
-					} catch (Exception ex) {
-						System.out.println("Something is wrong with the XML client element");
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	* Methode pour démontrer l'écriture d'un fichier XML avec un seul élément
-	*/
-	public void writeXML(String outputFile) {
-		Document document = this.createXMLDocument();
-		if (document == null) return;
-
-		// create root element
-		Element root = document.createElement("clients");
-		document.appendChild(root);
-
-		//save one "client" element; create a loop to save more elements!!
-		Element client = document.createElement("client");
-		// clientUUID element
-		UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
-		Element clientUUID = document.createElement("UUID");
-		clientUUID.appendChild(document.createTextNode(uniqueID.toString()));
-		client.appendChild(clientUUID);
-
-		// firstName element
-		String firstName = "Brad";
-		Element firstNameElement = document.createElement("firstName");
-		firstNameElement.appendChild(document.createTextNode(firstName));
-		client.appendChild(firstNameElement);
-
-		//lastName element
-		String lastName = "Pitt";
-		Element lastNameElement = document.createElement("lastName");
-		lastNameElement.appendChild(document.createTextNode(lastName));
-		client.appendChild(lastNameElement);
-
-		//address element
-		String address = "150 Broadway St., New York";
-		Element addressElement = document.createElement("address");
-		addressElement.appendChild(document.createTextNode(address));
-		client.appendChild(addressElement);
-
-		root.appendChild(client);
-
-		this.createXMLFile(document, outputFile);
-	}
-
-	// public static void main (String[] args)
-	// {
-	// 	XMLReaderWriter demo = new XMLReaderWriter();
-	// 	demo.readXML();
-	// 	demo.writeXML();
+	// /**
+	// * Methode pour démontrer la lecture d'un fichier XML qui contient plusieurs éléments
+	// */
+	// public void readAlbumsXML(String inputFile) {
+	// 	NodeList nodes = this.parseXMLFile(inputFile);
+	// 	if (nodes == null) return;
+	//
+	// 	for (int i = 0; i<nodes.getLength(); i++) {
+	// 		if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)   {
+	// 			Element currentElement = (Element) nodes.item(i);
+	// 			if (currentElement.getNodeName().equals("album")) 	{
+	// 				try {
+	// 					String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
+	// 					String artist = currentElement.getElementsByTagName("artist").item(0).getTextContent();
+	// 					String duration = currentElement.getElementsByTagName("duration").item(0).getTextContent();
+	// 					String releaseDate = currentElement.getElementsByTagName("releaseDate").item(0).getTextContent();
+	// 					String uuid = null;
+	// 					UUID uniqueID = null;
+	// 					try {
+	// 						uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
+	// 					}
+	// 					catch (Exception ex) {
+	// 						System.out.println("Empty UUID, will create a new one");
+	// 					}
+	// 					if ((uuid == null)  || (uuid.isEmpty()))
+	// 					uniqueID = UUID.randomUUID();
+	// 					else uniqueID = UUID.fromString(uuid);
+	// 					//verify that I read everything correctly:
+	// 					System.out.println(title + " by " + artist);
+	// 					System.out.println("Duration : " + duration);
+	// 					System.out.println("Released : " + releaseDate);
+	// 					System.out.println("ID : " + uniqueID.toString());
+	// 				} catch (Exception ex) {
+	// 					System.out.println("Something is wrong with the XML client element");
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
+	//
+	// public LinkedList<Album> loadAlbumsXML(String inputFile) {
+	// 	LinkedList<Album> albumList = new LinkedList<Album>();
+	// 	NodeList nodes = this.parseXMLFile(inputFile);
+	// 	// if (nodes == null) return;
+	//
+	// 	for (int i = 0; i<nodes.getLength(); i++) {
+	// 		if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)   {
+	// 			Element currentElement = (Element) nodes.item(i);
+	// 			if (currentElement.getNodeName().equals("album")) 	{
+	// 				try {
+	// 					String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
+	// 					String artist = currentElement.getElementsByTagName("artist").item(0).getTextContent();
+	// 					int duration = Integer.parseInt(currentElement.getElementsByTagName("duration").item(0).getTextContent());
+	// 					String releaseDate = currentElement.getElementsByTagName("releaseDate").item(0).getTextContent();
+	//
+	//
+	// 					LinkedList<Song> songsList = new LinkedList<Song>();
+	// 					NodeList songs = currentElement.getElementsByTagName("songs");
+	// 					System.out.println(songs);
+	// 					System.out.println(nodes);
+	//
+	// 					for (int j = 0;  j < songs.getLength(); j++) {
+	// 						Element song = (Element)songs.item(j);
+	// 						System.out.println(song.getNodeName());
+	// 						if (song.getNodeName().equals("song")){
+	// 							String titleSong = song.getElementsByTagName("title").item(0).getTextContent();
+	// 							String artistSong = song.getElementsByTagName("artist").item(0).getTextContent();
+	// 							int durationSong = Integer.parseInt(song.getElementsByTagName("duration").item(0).getTextContent());
+	// 							String contenuSong = song.getElementsByTagName("contenu").item(0).getTextContent();
+	// 							String genreSong = song.getElementsByTagName("genre").item(0).getTextContent();
+	// 							String uuidSong = null;
+	// 							UUID uniqueIDSong = null;
+	//
+	// 							try {
+	// 								uuidSong = song.getElementsByTagName("UUID").item(0).getTextContent();
+	// 							}
+	// 							catch (Exception ex) {
+	// 								System.out.println("Empty UUID, will create a new one");
+	// 							}
+	// 							if ((uuidSong == null)  || (uuidSong.isEmpty()))
+	// 							uniqueIDSong = UUID.randomUUID();
+	// 							else uniqueIDSong = UUID.fromString(uuidSong);
+	// 							songsList.add(new Song(titleSong, artistSong, durationSong,uuidSong, contenuSong, Genre.JAZZ));
+	// 						}
+	// 					}
+	//
+	// 					String uuid = null;
+	// 					UUID uniqueID = null;
+	// 					try {
+	// 						uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
+	// 					}
+	// 					catch (Exception ex) {
+	// 						System.out.println("Empty UUID, will create a new one");
+	// 					}
+	// 					if ((uuid == null)  || (uuid.isEmpty()))
+	// 					uniqueID = UUID.randomUUID();
+	// 					else uniqueID = UUID.fromString(uuid);
+	// 					//verify that I read everything correctly:
+	// 					albumList.add(new Album(title, artist, duration, releaseDate, uuid, songsList));
+	// 					// System.out.println(title + " by " + artist);
+	// 					// System.out.println("Duration : " + duration);
+	// 					// System.out.println("Released : " + releaseDate);
+	// 					// System.out.println("ID : " + uniqueID.toString());
+	// 				} catch (Exception ex) {
+	// 					System.out.println(ex.getMessage());
+	// 					ex.printStackTrace();
+	// 					System.out.println("Something is wrong with the XML client element");
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// 	return albumList;
+	// }
+	//
+	// public void readElementsXML(String inputFile) {
+	// 	NodeList nodes = this.parseXMLFile(inputFile);
+	// 	if (nodes == null) return;
+	//
+	// 	for (int i = 0; i<nodes.getLength(); i++) {
+	// 		if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)   {
+	// 			Element currentElement = (Element) nodes.item(i);
+	// 			if (currentElement.getNodeName().equals("song")){
+	// 				try {
+	// 					String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
+	// 					String artist = currentElement.getElementsByTagName("artist").item(0).getTextContent();
+	// 					String duration = currentElement.getElementsByTagName("duration").item(0).getTextContent();
+	// 					String releaseDate = currentElement.getElementsByTagName("contenu").item(0).getTextContent();
+	// 					String uuid = null;
+	// 					UUID uniqueID = null;
+	// 					try {
+	// 						uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
+	// 					}
+	// 					catch (Exception ex) {
+	// 						System.out.println("Empty UUID, will create a new one");
+	// 					}
+	// 					if ((uuid == null)  || (uuid.isEmpty()))
+	// 					uniqueID = UUID.randomUUID();
+	// 					else uniqueID = UUID.fromString(uuid);
+	// 					//verify that I read everything correctly:
+	// 					System.out.println("Song " + title + " by " + artist);
+	// 					System.out.println("Duration : " + duration);
+	// 					System.out.println("ID : " + uniqueID.toString());
+	// 				} catch (Exception ex) {
+	// 					System.out.println("Something is wrong with the XML client element");
+	// 				}
+	// 			}
+	// 			else if (currentElement.getNodeName().equals("livreAudio")){
+	// 				try {
+	// 					String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
+	// 					String author = currentElement.getElementsByTagName("author").item(0).getTextContent();
+	// 					String duration = currentElement.getElementsByTagName("duration").item(0).getTextContent();
+	// 					String releaseDate = currentElement.getElementsByTagName("contenu").item(0).getTextContent();
+	// 					String uuid = null;
+	// 					UUID uniqueID = null;
+	// 					try {
+	// 						uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
+	// 					}
+	// 					catch (Exception ex) {
+	// 						System.out.println("Empty UUID, will create a new one");
+	// 					}
+	// 					if ((uuid == null)  || (uuid.isEmpty()))
+	// 					uniqueID = UUID.randomUUID();
+	// 					else uniqueID = UUID.fromString(uuid);
+	// 					//verify that I read everything correctly:
+	// 					System.out.println("Audio-Book " + title + " by " + author);
+	// 					System.out.println("Duration : " + duration);
+	// 					System.out.println("ID : " + uniqueID.toString());
+	// 				} catch (Exception ex) {
+	// 					System.out.println("Something is wrong with the XML client element");
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
+	// /**
+	// * Methode pour démontrer la lecture d'un fichier XML qui contient plusieurs éléments
+	// */
+	// public void readPlaylistsXML(String inputFile) {
+	// 	NodeList nodes = this.parseXMLFile(inputFile);
+	// 	if (nodes == null) return;
+	//
+	// 	for (int i = 0; i<nodes.getLength(); i++) {
+	// 		if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)   {
+	// 			Element currentElement = (Element) nodes.item(i);
+	// 			if (currentElement.getNodeName().equals("playlist")) 	{
+	// 				try {
+	// 					String nom = currentElement.getElementsByTagName("nom").item(0).getTextContent();
+	// 					String uuid = null;
+	// 					UUID uniqueID = null;
+	// 					try {
+	// 						uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
+	// 					}
+	// 					catch (Exception ex) {
+	// 						System.out.println("Empty UUID, will create a new one");
+	// 					}
+	// 					if ((uuid == null)  || (uuid.isEmpty()))
+	// 					uniqueID = UUID.randomUUID();
+	// 					else uniqueID = UUID.fromString(uuid);
+	// 					//verify that I read everything correctly:
+	// 					System.out.println("Playlist : " + nom);
+	// 					System.out.println("ID : " + uniqueID.toString());
+	// 				} catch (Exception ex) {
+	// 					System.out.println("Something is wrong with the XML client element");
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
+	//
+	// /**
+	// * Methode pour démontrer l'écriture d'un fichier XML avec un seul élément
+	// */
+	// public void writeXML(String outputFile) {
+	// 	Document document = this.createXMLDocument();
+	// 	if (document == null) return;
+	//
+	// 	// create root element
+	// 	Element root = document.createElement("clients");
+	// 	document.appendChild(root);
+	//
+	// 	//save one "client" element; create a loop to save more elements!!
+	// 	Element client = document.createElement("client");
+	// 	// clientUUID element
+	// 	UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
+	// 	Element clientUUID = document.createElement("UUID");
+	// 	clientUUID.appendChild(document.createTextNode(uniqueID.toString()));
+	// 	client.appendChild(clientUUID);
+	//
+	// 	// firstName element
+	// 	String firstName = "Brad";
+	// 	Element firstNameElement = document.createElement("firstName");
+	// 	firstNameElement.appendChild(document.createTextNode(firstName));
+	// 	client.appendChild(firstNameElement);
+	//
+	// 	//lastName element
+	// 	String lastName = "Pitt";
+	// 	Element lastNameElement = document.createElement("lastName");
+	// 	lastNameElement.appendChild(document.createTextNode(lastName));
+	// 	client.appendChild(lastNameElement);
+	//
+	// 	//address element
+	// 	String address = "150 Broadway St., New York";
+	// 	Element addressElement = document.createElement("address");
+	// 	addressElement.appendChild(document.createTextNode(address));
+	// 	client.appendChild(addressElement);
+	//
+	// 	root.appendChild(client);
+	//
+	// 	this.createXMLFile(document, outputFile);
 	// }
 
 
-	private Song getSong(Node node){
+	private Song getSong(Node node) {
+		// NodeList song = node.getChildNodes();
+		Element song = (Element) node;
+		String title = song.getElementsByTagName("title").item(0).getTextContent();
+		String artist = song.getElementsByTagName("artist").item(0).getTextContent();
+		int duration = Integer.parseInt(song.getElementsByTagName("duration").item(0).getTextContent());
+		String id = song.getElementsByTagName("UUID").item(0).getTextContent();
+		String content = song.getElementsByTagName("content").item(0).getTextContent();
+		String genre = song.getElementsByTagName("genre").item(0).getTextContent();
 
 
+		return new Song(title, artist, duration, id, content, Genre.valueOf(genre));
 	}
 
-	private Playlist getPlaylist(Node songs){
-		// String name = "";
-		// UUID id = UUID.randomUUID();
-		LinkedList<Audio> = new LinkedList<Audio>();
+	private AudioBook getAudioBook(Node node) {
+		// NodeList song = node.getChildNodes();
+		Element audioBook = (Element) node;
+		String title = audioBook.getElementsByTagName("title").item(0).getTextContent();
+		String author = audioBook.getElementsByTagName("author").item(0).getTextContent();
+		int duration = Integer.parseInt(audioBook.getElementsByTagName("duration").item(0).getTextContent());
+		String id = audioBook.getElementsByTagName("UUID").item(0).getTextContent();
+		String content = audioBook.getElementsByTagName("content").item(0).getTextContent();
+		String category = audioBook.getElementsByTagName("category").item(0).getTextContent();
+		String language = audioBook.getElementsByTagName("language").item(0).getTextContent();
 
-		NodeList list = songs.getChildNodes();
-		int nbChild = list.getLength();
 
-		for (int i = 0; i < nbChild; i++) {
-			Node song = list.item(i);
+		return new AudioBook(title, author, duration, id, content,Language.valueOf(language), Category.valueOf(category));
+	}
 
-			if (song instanceof Element){
-				try {
-					String name = currentElement.getElementsByTagName("name").item(0).getTextContent();
-					String uuid = null;
-					UUID uniqueID = null;
-					try {
-						uuid = currentElement.getElementsByTagName("UUID").item(0).getTextContent();
+	Playlist getPlaylist(Node node) {
+		String name = "";
+		String id = "";
+		LinkedList<Audio> audioList = new LinkedList<Audio>();
+
+		NodeList list = node.getChildNodes();
+		System.out.println(list.getLength());
+		for (int i = 0; i < list.getLength(); i++) {
+			Node currentNode = list.item(i);
+			switch(currentNode.getNodeName()){
+				case "name":
+				name = currentNode.getTextContent();
+				System.out.println("Name " + name);
+				break;
+				case "UUID":
+				id = currentNode.getTextContent();
+				break;
+				case "audio":
+				NodeList audios = currentNode.getChildNodes();
+				for (int j = 0; j < audios.getLength(); j++) {
+					Node currentAudio = audios.item(j);
+					if (currentAudio.getNodeName().equals("song")) {
+						audioList.add(getSong(currentAudio));
+					} else {
+						audioList.add(getAudioBook(currentAudio));
 					}
-					catch (Exception ex) {
-						System.out.println("Empty UUID, will create a new one");
-					}
-					if ((uuid == null)  || (uuid.isEmpty()))
-					uniqueID = UUID.randomUUID();
-					else uniqueID = UUID.fromString(uuid);
-					//verify that I read everything correctly:
-					for (; ; ) {
-
-					}
-					return new Playlist();
-				} catch (Exception ex) {
-					System.out.println("Something is wrong with the XML client element");
 				}
+				break;
 			}
 		}
+		return new Playlist(name, id, audioList);
 	}
 
+	public LinkedList<Playlist> readPlaylistXML(String file){
+		NodeList list = this.parseXMLFile(file);
+		Node node = list.item(1);
+		System.out.println(node.getNodeName());
+		System.out.println(list.getLength());
+		LinkedList<Playlist> playlistList = new LinkedList<Playlist>();
 
-
+		for (int i = 0; i < list.getLength() ; i++) {
+			if (i%2 == 0) {
+				// System.out.println(i);
+				node = list.item(i);
+				playlistList.add(getPlaylist(node));
+			}
+		}
+		return playlistList;
+	}
 }

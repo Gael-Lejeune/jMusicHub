@@ -3,7 +3,6 @@ package business;
 
 public class Song extends Audio
 {
-	private String content;
     private Genre genre;
 	protected String artist;
 

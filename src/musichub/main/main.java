@@ -71,44 +71,41 @@ public class Main{
         System.out.println("Reading library...");
         XMLReaderWriter reader = new XMLReaderWriter();
 
-        // NodeList albums = reader.parseXMLFile("files/albums.xml");
-        LinkedList<Album> albumList = reader.loadAlbumsXML("files/albums.xml");
-        System.out.println("\nAlbum list loaded");
-
-        // NodeList playlists = reader.parseXMLFile("files/playlists.xml");
-        LinkedList<Playlist> playlistList = reader.loadPlaylistsXML("files/playlists.xml");
-        System.out.println("\nPlaylist list loaded");
-
-        // NodeList elements = reader.parseXMLFile("files/elements.xml");
-        LinkedList<Audio> elementList = reader.loadElementsXML("files/elements.xml");
-        System.out.println("\nElement list loaded");
-
-
-
+        // // NodeList albums = reader.parseXMLFile("files/albums.xml");
+        // LinkedList<Album> albumList = reader.loadAlbumsXML("files/albums.xml");
+        // System.out.println("\nAlbum list loaded");
+        //
+        // // NodeList playlists = reader.parseXMLFile("files/playlists.xml");
+        // LinkedList<Playlist> playlistList = reader.loadPlaylistsXML("files/playlists.xml");
+        // System.out.println("\nPlaylist list loaded");
+        //
+        // // NodeList elements = reader.parseXMLFile("files/elements.xml");
+        // LinkedList<Audio> elementList = reader.loadElementsXML("files/elements.xml");
+        // System.out.println("\nElement list loaded");
+        //
 
 
 
-
-
-
-
-
-
+        try {
+            LinkedList<Playlist> playlists = reader.readPlaylistXML("files/playlists.xml");
+            System.out.println(playlists.get(0));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
 
 
 
 
 
-        LinkedList<Chanson> chansonList = new LinkedList<Chanson>();
-        Chanson chanson1 = new Chanson("Daisy", "Ashnikko", 160, "id1", "chemin1", Genre.JAZZ);
-        Chanson chanson2 = new Chanson("Cry", "Ashnikko", 160, "id2", "chemin2", Genre.POP);
-        chansonList.add(chanson1);
-        chansonList.add(chanson2);
-        LinkedList<Album> albumList = new LinkedList<Album>();
-        Album album1 = new Album("Yes", "Ashnikko", 160*2, "10-12-2020", "id3", chansonList);
-        System.out.println(album1);
-        LinkedList<Audio> chansonList = new LinkedList<Audio>();
+        // LinkedList<Song> songList = new LinkedList<Song>();
+        // Song song1 = new Song("Daisy", "Ashnikko", 160, "id1", "chemin1", Genre.JAZZ);
+        // Song song2 = new Song("Cry", "Ashnikko", 160, "id2", "chemin2", Genre.POP);
+        // songList.add(song1);
+        // songList.add(song2);
+        // LinkedList<Album> albumList = new LinkedList<Album>();
+        // Album album1 = new Album("Yes", "Ashnikko", 160*2, "10-12-2020", "id3", songList);
+        // System.out.println(album1);
 
     }
 }
