@@ -67,8 +67,8 @@ public class Main{
     }
 
     public static void main(String[] args) {
-        System.out.println("Welcome in jMusicHub,");
-        System.out.println("Reading library...");
+        System.out.println("\n\nWelcome in jMusicHub,");
+        System.out.println("Reading library...\n\n");
         XMLReaderWriter reader = new XMLReaderWriter();
 
         // // NodeList albums = reader.parseXMLFile("files/albums.xml");
@@ -88,8 +88,12 @@ public class Main{
 
         try {
             LinkedList<Playlist> playlists = reader.readPlaylistXML("files/playlists.xml");
-            System.out.println(playlists.get(0));
+            System.out.println("Existing playlists :\n");
+            for (int i = 0; i < playlists.size() ; i++) {
+                System.out.println(playlists.get(i) + "\n");
+            }
         } catch (Exception ex) {
+            System.out.println("erreur");
             ex.printStackTrace();
         }
 

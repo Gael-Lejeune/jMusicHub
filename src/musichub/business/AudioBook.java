@@ -30,4 +30,9 @@ public class AudioBook extends Audio
     {
     	return this.category;
     }
+
+	public String toString(){
+		return this.title + " written by " + this.author + " : " + this.duration;
+	}
+
 }

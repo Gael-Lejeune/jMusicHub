@@ -2,17 +2,17 @@ package util;
 
 import business.*;
 
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.UUID;
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.xml.sax.SAXException;
-
-import org.w3c.dom.*;
-import java.io.IOException;
-import java.io.File;
-import java.util.UUID;
-import java.util.LinkedList;
 
 
 /** XMLReaderWriter classe qui demontre comment lire et ecrire un fichier XML
@@ -360,80 +360,83 @@ public class XMLReaderWriter{
 	// }
 
 
-	private Song getSong(Node node) {
+	private Song getSong(Element element) {
 		// NodeList song = node.getChildNodes();
-		Element song = (Element) node;
-		String title = song.getElementsByTagName("title").item(0).getTextContent();
-		String artist = song.getElementsByTagName("artist").item(0).getTextContent();
-		int duration = Integer.parseInt(song.getElementsByTagName("duration").item(0).getTextContent());
-		String id = song.getElementsByTagName("UUID").item(0).getTextContent();
-		String content = song.getElementsByTagName("content").item(0).getTextContent();
-		String genre = song.getElementsByTagName("genre").item(0).getTextContent();
+		String title = element.getElementsByTagName("title").item(0).getTextContent();
+		String artist = element.getElementsByTagName("artist").item(0).getTextContent();
+		int duration = Integer.parseInt(element.getElementsByTagName("duration").item(0).getTextContent());
+		String id = element.getElementsByTagName("UUID").item(0).getTextContent();
+		String content = element.getElementsByTagName("content").item(0).getTextContent();
+		String genre = element.getElementsByTagName("genre").item(0).getTextContent();
 
 
 		return new Song(title, artist, duration, id, content, Genre.valueOf(genre));
 	}
 
-	private AudioBook getAudioBook(Node node) {
+	private AudioBook getAudioBook(Element element) {
 		// NodeList song = node.getChildNodes();
-		Element audioBook = (Element) node;
-		String title = audioBook.getElementsByTagName("title").item(0).getTextContent();
-		String author = audioBook.getElementsByTagName("author").item(0).getTextContent();
-		int duration = Integer.parseInt(audioBook.getElementsByTagName("duration").item(0).getTextContent());
-		String id = audioBook.getElementsByTagName("UUID").item(0).getTextContent();
-		String content = audioBook.getElementsByTagName("content").item(0).getTextContent();
-		String category = audioBook.getElementsByTagName("category").item(0).getTextContent();
-		String language = audioBook.getElementsByTagName("language").item(0).getTextContent();
+		String title = element.getElementsByTagName("title").item(0).getTextContent();
+		String author = element.getElementsByTagName("author").item(0).getTextContent();
+		int duration = Integer.parseInt(element.getElementsByTagName("duration").item(0).getTextContent());
+		String id = element.getElementsByTagName("UUID").item(0).getTextContent();
+		String content = element.getElementsByTagName("content").item(0).getTextContent();
+		String category = element.getElementsByTagName("category").item(0).getTextContent();
+		String language = element.getElementsByTagName("language").item(0).getTextContent();
 
 
 		return new AudioBook(title, author, duration, id, content,Language.valueOf(language), Category.valueOf(category));
 	}
 
-	Playlist getPlaylist(Node node) {
-		String name = "";
-		String id = "";
+	Playlist getPlaylist(Element element) {
 		LinkedList<Audio> audioList = new LinkedList<Audio>();
+		String name = "";
+		UUID uniqueID = null;
 
-		NodeList list = node.getChildNodes();
-		System.out.println(list.getLength());
-		for (int i = 0; i < list.getLength(); i++) {
-			Node currentNode = list.item(i);
-			switch(currentNode.getNodeName()){
-				case "name":
-				name = currentNode.getTextContent();
-				System.out.println("Name " + name);
-				break;
-				case "UUID":
-				id = currentNode.getTextContent();
-				break;
-				case "audio":
-				NodeList audios = currentNode.getChildNodes();
-				for (int j = 0; j < audios.getLength(); j++) {
-					Node currentAudio = audios.item(j);
-					if (currentAudio.getNodeName().equals("song")) {
-						audioList.add(getSong(currentAudio));
-					} else {
-						audioList.add(getAudioBook(currentAudio));
+		try {
+			name = element.getElementsByTagName("name").item(0).getTextContent();
+			String uuid = null;
+			try {
+				uuid = element.getElementsByTagName("UUID").item(0).getTextContent();
+			}
+			catch (Exception ex) {
+				System.out.println("Empty UUID, will create a new one");
+			}
+			if ((uuid == null)  || (uuid.isEmpty()))
+			uniqueID = UUID.randomUUID();
+			else uniqueID = UUID.fromString(uuid);
+			//verify that I read everything correctly:
+			NodeList audios = element.getElementsByTagName("audios").item(0).getChildNodes();
+			Node audio1 = audios.item(0);
+			// System.out.println(audio1.getNodeName());
+			for (int i = 0; i<audios.getLength(); i++) {
+				if (audios.item(i).getNodeType() == Node.ELEMENT_NODE) {
+					Element currentElement = (Element) audios.item(i);
+					// System.out.println(audios.item(i).getNodeName());
+					if (currentElement.getNodeName().equals("song")) {
+						audioList.add(getSong(currentElement));
+					} else if (currentElement.getNodeName().equals("audioBook")) {
+						audioList.add(getAudioBook(currentElement));
 					}
 				}
-				break;
 			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.out.println("Something is wrong with the XML client element");
 		}
-		return new Playlist(name, id, audioList);
+		return new Playlist(name, uniqueID, audioList);
 	}
 
 	public LinkedList<Playlist> readPlaylistXML(String file){
 		NodeList list = this.parseXMLFile(file);
-		Node node = list.item(1);
-		System.out.println(node.getNodeName());
-		System.out.println(list.getLength());
+		// System.out.println(list.getLength());
 		LinkedList<Playlist> playlistList = new LinkedList<Playlist>();
 
-		for (int i = 0; i < list.getLength() ; i++) {
-			if (i%2 == 0) {
-				// System.out.println(i);
-				node = list.item(i);
-				playlistList.add(getPlaylist(node));
+		for (int i = 0; i<list.getLength(); i++) {
+			if (list.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				Element currentElement = (Element) list.item(i);
+				if (currentElement.getNodeName().equals("playlist")) {
+					playlistList.add(getPlaylist(currentElement));
+				}
 			}
 		}
 		return playlistList;
