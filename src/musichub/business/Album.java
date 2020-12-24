@@ -39,7 +39,7 @@ public class Album {
         String str;
         str = "Album " + this.title + "\nBy " + this.artist + "\nDuration " + this.duration + "\nReleased " + this.releaseDate + "\nSongs : ";
         for (int i=0; i < this.songs.size(); i++) {
-            str += "\n      " + this.songs.get(i).getTitle() + " : " + this.songs.get(i).getDuration();
+            str += "\n      " + this.songs.get(i);
         }
         return str;
     }

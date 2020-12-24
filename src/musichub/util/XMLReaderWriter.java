@@ -498,4 +498,23 @@ public class XMLReaderWriter{
 		}
 		return albumList;
 	}
+
+
+	public LinkedList<Audio> readElementXML(String file){
+		NodeList list = this.parseXMLFile(file);
+		// System.out.println(list.getLength());
+		LinkedList<Audio> elementList = new LinkedList<Audio>();
+
+		for (int i = 0; i<list.getLength(); i++) {
+			if (list.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				Element currentElement = (Element) list.item(i);
+				if (currentElement.getNodeName().equals("song")) {
+					elementList.add(getSong(currentElement));
+				} else if (currentElement.getNodeName().equals("audioBook")) {
+					elementList.add(getAudioBook(currentElement));
+				}
+			}
+		}
+		return elementList;
+	}
 }

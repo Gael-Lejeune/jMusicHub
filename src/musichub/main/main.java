@@ -99,7 +99,7 @@ public class Main{
 
         try {
             LinkedList<Album> albums = reader.readAlbumXML("files/albums.xml");
-            System.out.println("Existing albums :\n");
+            System.out.println("\n\n\nExisting albums :\n");
             for (int i = 0; i < albums.size() ; i++) {
                 System.out.println(albums.get(i) + "\n");
             }
@@ -108,6 +108,17 @@ public class Main{
             ex.printStackTrace();
         }
 
+
+        try {
+            LinkedList<Audio> elements = reader.readElementXML("files/elements.xml");
+            System.out.println("\n\n\nExisting elements :\n");
+            for (int i = 0; i < elements.size() ; i++) {
+                System.out.println(elements.get(i) + "\n");
+            }
+        } catch (Exception ex) {
+            System.out.println("erreur");
+            ex.printStackTrace();
+        }
 
 
 

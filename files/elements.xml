@@ -5,11 +5,17 @@
         <title>Special</title>
         <artist>Ashnikko</artist>
         <duration>164</duration>
-        <UUID></UUID>
-        <content>
-
-        </content>
-        <genre></genre>
+        <UUID>4f392743-c9ba-4230-9b93-a1c79c0a13c4</UUID>
+        <content>chemin</content>
+        <genre>POP</genre>
+    </song>
+    <song>
+        <title>Cry</title>
+        <artist>Ashnikko</artist>
+        <duration>175</duration>
+        <UUID>4f392743-c9ba-4230-9b93-a1c79c0a13c7</UUID>
+        <content>chemin2</content>
+        <genre>POP</genre>
     </song>
     <!-- </songs> -->
     <!-- <audioBooks> -->
@@ -18,11 +24,9 @@
         <author>Bernard Werber</author>
         <duration>10000</duration>
         <UUID></UUID>
-        <content>
-
-        </content>
-        <language></language>
-        <category></category>
+        <content></content>
+        <language>FRANCAIS</language>
+        <category>ROMAN</category>
     </audioBook>
     <!-- </audioBooks> -->
 </elements>
