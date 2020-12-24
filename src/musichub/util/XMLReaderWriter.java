@@ -499,7 +499,6 @@ public class XMLReaderWriter{
 		return albumList;
 	}
 
-
 	public LinkedList<Audio> readElementXML(String file){
 		NodeList list = this.parseXMLFile(file);
 		// System.out.println(list.getLength());
