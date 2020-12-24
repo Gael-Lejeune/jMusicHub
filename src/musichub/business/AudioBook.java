@@ -2,7 +2,6 @@ package business;
 
 public class AudioBook extends Audio
 {
-	private String content;
 	private String author;
     private Language language;
     private Category category;
@@ -18,9 +17,10 @@ public class AudioBook extends Audio
     	this.category = category;
     }
 
-    public String getContent()
+
+    public String getAuthor()
     {
-    	return this.content;
+    	return this.author;
     }
     public Language getLanguage()
     {

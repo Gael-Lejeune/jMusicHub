@@ -5,15 +5,15 @@ public enum Category
     JEUNESSE("Jeunesse"), ROMAN("Roman"), THEATRE("Théâtre"),
     DISCOURS("Discours"), DOCUMENTAIRE("Documentaire");
 
-    private String type;
+    private String category;
 
-    private Category(String type)
+    private Category(String category)
     {
-        this.type = type;
+        this.category = category;
     }
 
-    public String getTitle()
+    public String toString()
     {
-        return this.type;
+        return this.category;
     }
 }

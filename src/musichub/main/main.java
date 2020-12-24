@@ -1,18 +1,20 @@
 package main;
-import business.*;
-import util.*;
 
+import business.*;
+
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.UUID;
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.xml.sax.SAXException;
 
-import org.w3c.dom.*;
-import java.io.IOException;
-import java.io.File;
-import java.util.UUID;
-import java.util.LinkedList;
+import util.*;
 
 
 
@@ -92,30 +94,20 @@ public class Main{
             for (int i = 0; i < playlists.size() ; i++) {
                 System.out.println(playlists.get(i) + "\n");
             }
-        } catch (Exception ex) {
-            System.out.println("erreur");
-            ex.printStackTrace();
-        }
-
-        try {
             LinkedList<Album> albums = reader.readAlbumXML("files/albums.xml");
             System.out.println("\n\n\nExisting albums :\n");
             for (int i = 0; i < albums.size() ; i++) {
                 System.out.println(albums.get(i) + "\n");
             }
-        } catch (Exception ex) {
-            System.out.println("erreur");
-            ex.printStackTrace();
-        }
-
-
-        try {
             LinkedList<Audio> elements = reader.readElementXML("files/elements.xml");
             System.out.println("\n\n\nExisting elements :\n");
             for (int i = 0; i < elements.size() ; i++) {
                 System.out.println(elements.get(i) + "\n");
             }
-        } catch (Exception ex) {
+            reader.writeElementXML("files/elements1.xml", elements);
+
+        }
+        catch (Exception ex) {
             System.out.println("erreur");
             ex.printStackTrace();
         }

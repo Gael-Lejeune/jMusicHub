@@ -5,15 +5,15 @@ public enum Genre
     JAZZ("Jazz"), CLASSIQUE("Classique"), HIPHOP("Hip-Hop"),
     ROCK("Rock"), POP("Pop"), RAP("Rap"), METAL("Metal");
 
-    private String type;
+    private String genre;
 
-    private Genre(String type)
+    private Genre(String genre)
     {
-        this.type = type;
+        this.genre = genre;
     }
 
-    public String getGenre()
+    public String toString()
     {
-        return this.type;
+        return this.genre;
     }
 }

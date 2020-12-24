@@ -17,13 +17,14 @@ public class Song extends Audio
     	this.genre = genre;
     }
 
-    public String getContent()
-    {
-    	return this.content;
-    }
     public Genre getGenre()
     {
     	return this.genre;
+    }
+
+    public String getArtist()
+    {
+    	return this.artist;
     }
 
     public String toString(){

@@ -57,33 +57,33 @@ public class XMLReaderWriter{
 	* @param document le document à transformer
 	* @param filePath le chemin (répértoire et nom) du fichier XML à créer
 	*/
-	// public void createXMLFile(Document document, String filePath){
-	// 	try {
-	// 		DOMSource domSource = new DOMSource(document);
-	// 		StreamResult streamResult = new StreamResult(new File(filePath));
-	//
-	// 		// If you use
-	// 		// StreamResult result = new StreamResult(System.out);
-	// 		// the output will be pushed to the standard output ...
-	// 		// You can use that for debugging
-	//
-	// 		//transform the DOM Object to an XML File
-	// 		transformer.transform(domSource, streamResult);
-	//
-	// 	} catch (TransformerException tfe) {
-	// 		tfe.printStackTrace();
-	// 	}
-	// 	System.out.println("Done creating XML File");
-	// }
-	//
-	// /**
-	// * La methode qui crée le document en memoire
-	// * @return le document créé
-	// */
-	// public Document createXMLDocument() {
-	// 	return documentBuilder.newDocument();
-	// }
-	//
+	public void createXMLFile(Document document, String filePath){
+		try {
+			DOMSource domSource = new DOMSource(document);
+			StreamResult streamResult = new StreamResult(new File(filePath));
+
+			// If you use
+			// StreamResult result = new StreamResult(System.out);
+			// the output will be pushed to the standard output ...
+			// You can use that for debugging
+
+			//transform the DOM Object to an XML File
+			transformer.transform(domSource, streamResult);
+
+		} catch (TransformerException tfe) {
+			tfe.printStackTrace();
+		}
+		System.out.println("Done creating XML File");
+	}
+
+	/**
+	* La methode qui crée le document en memoire
+	* @return le document créé
+	*/
+	public Document createXMLDocument() {
+		return documentBuilder.newDocument();
+	}
+
 	/**
 	* La methode qui lit un fichier XML et le transforme en liste de noeuds en mémoire
 	* @param filePath le chemin (répértoire et nom) du fichier XML à lire
@@ -457,7 +457,7 @@ public class XMLReaderWriter{
 				if (songs.item(i).getNodeType() == Node.ELEMENT_NODE) {
 					Element currentElement = (Element) songs.item(i);
 					// System.out.println(audios.item(i).getNodeName());
-						songList.add(getSong(currentElement));
+					songList.add(getSong(currentElement));
 				}
 			}
 		} catch (Exception ex) {
@@ -516,4 +516,204 @@ public class XMLReaderWriter{
 		}
 		return elementList;
 	}
+
+	public void writeElementXML(String outputFile, LinkedList<Audio> audioList) {
+		Document document = this.createXMLDocument();
+		if (document == null) return;
+
+		// create root element
+		Element root = document.createElement("elements");
+		document.appendChild(root);
+
+		for (int i = 0; i < audioList.size(); i++) {
+			if (audioList.get(i) instanceof Song) {
+				Song audio = (Song) audioList.get(i);
+
+				Element songElement = document.createElement("song");
+
+				String title = audio.getTitle();
+				Element titleElement = document.createElement("title");
+				titleElement.appendChild(document.createTextNode(title));
+				songElement.appendChild(titleElement);
+
+				String artist = audio.getArtist();
+				Element artistElement = document.createElement("artist");
+				artistElement.appendChild(document.createTextNode(artist));
+				songElement.appendChild(artistElement);
+
+				String duration = String.valueOf(audio.getDuration());
+				Element durationElement = document.createElement("duration");
+				durationElement.appendChild(document.createTextNode(duration));
+				songElement.appendChild(durationElement);
+
+				UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
+				Element songUUID = document.createElement("UUID");
+				songUUID.appendChild(document.createTextNode(uniqueID.toString()));
+
+				String content = audio.getContent();
+				Element contentElement = document.createElement("content");
+				contentElement.appendChild(document.createTextNode(content));
+				songElement.appendChild(contentElement);
+
+				String genre = audio.getGenre().toString();
+				Element genreElement = document.createElement("genre");
+				genreElement.appendChild(document.createTextNode(genre));
+				songElement.appendChild(genreElement);
+
+				songElement.appendChild(songUUID);
+				root.appendChild(songElement);
+			} else if (audioList.get(i) instanceof AudioBook) {
+				AudioBook audio = (AudioBook) audioList.get(i);
+
+				Element audioBookElement = document.createElement("audioBook");
+
+				String title = audio.getTitle();
+				Element titleElement = document.createElement("title");
+				titleElement.appendChild(document.createTextNode(title));
+				audioBookElement.appendChild(titleElement);
+
+				String author = audio.getAuthor();
+				Element authorElement = document.createElement("author");
+				authorElement.appendChild(document.createTextNode(author));
+				audioBookElement.appendChild(authorElement);
+
+				String duration = String.valueOf(audio.getDuration());
+				Element durationElement = document.createElement("duration");
+				durationElement.appendChild(document.createTextNode(duration));
+				audioBookElement.appendChild(durationElement);
+
+				UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
+				Element songUUID = document.createElement("UUID");
+				songUUID.appendChild(document.createTextNode(uniqueID.toString()));
+
+				String content = audio.getContent();
+				Element contentElement = document.createElement("content");
+				contentElement.appendChild(document.createTextNode(content));
+				audioBookElement.appendChild(contentElement);
+
+				String language = audio.getLanguage().toString();
+				Element languageElement = document.createElement("language");
+				languageElement.appendChild(document.createTextNode(language));
+				audioBookElement.appendChild(languageElement);
+
+				String category = audio.getCategory().toString();
+				Element categoryElement = document.createElement("category");
+				categoryElement.appendChild(document.createTextNode(category));
+				audioBookElement.appendChild(categoryElement);
+
+				audioBookElement.appendChild(songUUID);
+				root.appendChild(audioBookElement);
+			}
+
+		}
+		this.createXMLFile(document, outputFile);
+	}
+
+	// public void writeAlbumXML(String outputFile, LinkedList<Playlist> playlistList) {
+		Document document = this.createXMLDocument();
+		if (document == null) return;
+
+		// create root element
+		Element root = document.createElement("playlists");
+		document.appendChild(root);
+
+		for (int i = 0; i < playlistList.size(); i++) {
+			Playlist playlist = playlistList.get(i);
+			Element playlistElement = document.createElement("playlist");
+
+			String name = audio.getName();
+			Element nameElement = document.createElement("name");
+			nameElement.appendChild(document.createTextNode(name));
+			playlistElement.appendChild(nameElement);
+
+			UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
+			Element songUUID = document.createElement("UUID");
+			songUUID.appendChild(document.createTextNode(uniqueID.toString()));
+
+
+
+
+
+
+			Song audio = (Song) audioList.get(i);
+			Element songElement = document.createElement("song");
+
+			String title = audio.getTitle();
+			Element titleElement = document.createElement("title");
+			titleElement.appendChild(document.createTextNode(title));
+			songElement.appendChild(titleElement);
+
+			String artist = audio.getArtist();
+			Element artistElement = document.createElement("artist");
+			artistElement.appendChild(document.createTextNode(artist));
+			songElement.appendChild(artistElement);
+
+			String duration = String.valueOf(audio.getDuration());
+			Element durationElement = document.createElement("duration");
+			durationElement.appendChild(document.createTextNode(duration));
+			songElement.appendChild(durationElement);
+
+
+			String content = audio.getContent();
+			Element contentElement = document.createElement("content");
+			contentElement.appendChild(document.createTextNode(content));
+			songElement.appendChild(contentElement);
+
+			String genre = audio.getGenre().toString();
+			Element genreElement = document.createElement("genre");
+			genreElement.appendChild(document.createTextNode(genre));
+			songElement.appendChild(genreElement);
+
+			songElement.appendChild(songUUID);
+			root.appendChild(songElement);
+		} else if (audioList.get(i) instanceof AudioBook) {
+			AudioBook audio = (AudioBook) audioList.get(i);
+
+			Element audioBookElement = document.createElement("audioBook");
+
+			String title = audio.getTitle();
+			Element titleElement = document.createElement("title");
+			titleElement.appendChild(document.createTextNode(title));
+			audioBookElement.appendChild(titleElement);
+
+			String author = audio.getAuthor();
+			Element authorElement = document.createElement("author");
+			authorElement.appendChild(document.createTextNode(author));
+			audioBookElement.appendChild(authorElement);
+
+			String duration = String.valueOf(audio.getDuration());
+			Element durationElement = document.createElement("duration");
+			durationElement.appendChild(document.createTextNode(duration));
+			audioBookElement.appendChild(durationElement);
+
+			UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
+			Element songUUID = document.createElement("UUID");
+			songUUID.appendChild(document.createTextNode(uniqueID.toString()));
+
+			String content = audio.getContent();
+			Element contentElement = document.createElement("content");
+			contentElement.appendChild(document.createTextNode(content));
+			audioBookElement.appendChild(contentElement);
+
+			String language = audio.getLanguage().toString();
+			Element languageElement = document.createElement("language");
+			languageElement.appendChild(document.createTextNode(language));
+			audioBookElement.appendChild(languageElement);
+
+			String category = audio.getCategory().toString();
+			Element categoryElement = document.createElement("category");
+			categoryElement.appendChild(document.createTextNode(category));
+			audioBookElement.appendChild(categoryElement);
+
+			audioBookElement.appendChild(songUUID);
+			root.appendChild(audioBookElement);
+
+
+		}
+
+
+		this.createXMLFile(document, outputFile);
+	}
+
+
 }

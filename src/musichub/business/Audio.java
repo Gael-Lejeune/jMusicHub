@@ -23,8 +23,9 @@ public abstract class Audio
     {
     	return this.id;
     }
+    public String getContent()
+    {
+    	return this.content;
+    }
 
-	public void play(){
-
-	};
 }

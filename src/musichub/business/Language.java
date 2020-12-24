@@ -12,7 +12,7 @@ public enum Language
         this.language = language;
     }
 
-    public String getLangue()
+    public String toString()
     {
         return this.language;
     }
