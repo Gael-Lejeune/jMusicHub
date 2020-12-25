@@ -29,22 +29,39 @@ public class jMusicHub{
 
     public jMusicHub()
     {
-        xmlEditor = new XMLReaderWriter();
-        playlists = xmlEditor.readPlaylistXML("files/playlists.xml");
-        albums = xmlEditor.readAlbumXML("files/albums.xml");
-        elements = xmlEditor.readElementXML("files/elements.xml");
+        this.xmlEditor = new XMLReaderWriter();
+        this.playlists = this.xmlEditor.readPlaylistXML("files/playlists.xml");
+        this.albums = this.xmlEditor.readAlbumXML("files/albums.xml");
+        this.elements = this.xmlEditor.readElementXML("files/elements.xml");
     }
 
     public void displayAlbumByReleaseDate(){
 
     }
 
-    public void displayAlbumByGenre(){
+    public void displaySongByGenre(){
 
     }
 
     public void displayPlaylists(){
+        System.out.println("Existing playlists :\n");
+        for (int i = 0; i < playlists.size() ; i++) {
+            System.out.println(playlists.get(i) + "\n");
+        }
+    }
 
+    public void displayAlbums(){
+        System.out.println("\n\n\nExisting albums :\n");
+        for (int i = 0; i < albums.size() ; i++) {
+            System.out.println(albums.get(i) + "\n");
+        }
+    }
+
+    public void displayElements(){
+        System.out.println("\n\n\nExisting elements :\n");
+        for (int i = 0; i < elements.size() ; i++) {
+            System.out.println(elements.get(i) + "\n");
+        }
     }
 
     public void displayAudioBooks(){
@@ -71,14 +88,18 @@ public class jMusicHub{
 
     }
 
-    public void deletePlaylist(){
-
+    public void deletePlaylist(String name){
+        for (int i = 0; i < this.playlists.size(); i++) {
+            if (this.playlists.get(i).getName().equals(name)) {
+                
+            }
+        }
     }
 
     public void save(){
-        writeElementXML("files/elements1.xml", elements);
-        writeAlbumXML("files/albums1.xml", albums);
-        writePlaylistXML("files/playlists1.xml", playlists);
+        this.xmlEditor.writeElementXML("files/elements1.xml", elements);
+        this.xmlEditor.writeAlbumXML("files/albums1.xml", albums);
+        this.xmlEditor.writePlaylistXML("files/playlists1.xml", playlists);
     }
 
     public void help(){
@@ -86,61 +107,14 @@ public class jMusicHub{
     }
 
     public static void main(String[] args) {
-
-        jMusicHub jmusichub = new jMusicHub();
         System.out.println("\n\nWelcome in jMusicHub,");
         System.out.println("Reading library...\n\n");
+        jMusicHub jmusichub = new jMusicHub();
 
-        // // NodeList albums = reader.parseXMLFile("files/albums.xml");
-        // LinkedList<Album> albumList = reader.loadAlbumsXML("files/albums.xml");
-        // System.out.println("\nAlbum list loaded");
-        //
-        // // NodeList playlists = reader.parseXMLFile("files/playlists.xml");
-        // LinkedList<Playlist> playlistList = reader.loadPlaylistsXML("files/playlists.xml");
-        // System.out.println("\nPlaylist list loaded");
-        //
-        // // NodeList elements = reader.parseXMLFile("files/elements.xml");
-        // LinkedList<Audio> elementList = reader.loadElementsXML("files/elements.xml");
-        // System.out.println("\nElement list loaded");
-        //
+        jmusichub.displayPlaylists();
+        jmusichub.displayAlbums();
+        jmusichub.displayElements();
 
-
-
-        try {
-            System.out.println("Existing playlists :\n");
-            for (int i = 0; i < playlists.size() ; i++) {
-                System.out.println(playlists.get(i) + "\n");
-            }
-
-            System.out.println("\n\n\nExisting albums :\n");
-            for (int i = 0; i < albums.size() ; i++) {
-                System.out.println(albums.get(i) + "\n");
-            }
-            System.out.println("\n\n\nExisting elements :\n");
-            for (int i = 0; i < elements.size() ; i++) {
-                System.out.println(elements.get(i) + "\n");
-            }
-
-            save();
-
-        }
-        catch (Exception ex) {
-            System.out.println("erreur");
-            ex.printStackTrace();
-        }
-
-
-
-
-
-        // LinkedList<Song> songList = new LinkedList<Song>();
-        // Song song1 = new Song("Daisy", "Ashnikko", 160, "id1", "chemin1", Genre.JAZZ);
-        // Song song2 = new Song("Cry", "Ashnikko", 160, "id2", "chemin2", Genre.POP);
-        // songList.add(song1);
-        // songList.add(song2);
-        // LinkedList<Album> albumList = new LinkedList<Album>();
-        // Album album1 = new Album("Yes", "Ashnikko", 160*2, "10-12-2020", "id3", songList);
-        // System.out.println(album1);
-
+        jmusichub.save();
     }
 }

@@ -28,6 +28,8 @@ public class Song extends Audio
     }
 
     public String toString(){
-        return this.title + " by " + this.artist + " : " + this.duration;
+        return this.title + " by " + this.artist
+        + "\nDuration : " + this.duration
+        + "\nGenre : " + this.genre;
     }
 }
