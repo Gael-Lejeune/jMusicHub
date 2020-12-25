@@ -1,1 +1,1 @@
-java -classpath bin main.Main
+java -classpath bin main.jMusicHub

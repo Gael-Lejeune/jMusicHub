@@ -13,7 +13,7 @@ import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
+import java.text.Normalizer;
 
 /** XMLReaderWriter classe qui demontre comment lire et ecrire un fichier XML
 * La classe lit un XML qui contient plusieurs elements <pre>{@code<client>}</pre> (mais n'en ecrit qu'un seul):
@@ -517,6 +517,134 @@ public class XMLReaderWriter{
 		return elementList;
 	}
 
+	public Element writeSongXML(Document document, Song audio){
+		Element songElement = document.createElement("song");
+
+		String title = audio.getTitle();
+		Element titleElement = document.createElement("title");
+		titleElement.appendChild(document.createTextNode(title));
+		songElement.appendChild(titleElement);
+
+		String artist = audio.getArtist();
+		Element artistElement = document.createElement("artist");
+		artistElement.appendChild(document.createTextNode(artist));
+		songElement.appendChild(artistElement);
+
+		String duration = String.valueOf(audio.getDuration());
+		Element durationElement = document.createElement("duration");
+		durationElement.appendChild(document.createTextNode(duration));
+		songElement.appendChild(durationElement);
+
+		UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
+		Element songUUID = document.createElement("UUID");
+		songUUID.appendChild(document.createTextNode(uniqueID.toString()));
+		songElement.appendChild(songUUID);
+
+		String content = audio.getContent();
+		Element contentElement = document.createElement("content");
+		contentElement.appendChild(document.createTextNode(content));
+		songElement.appendChild(contentElement);
+
+		String genre = Normalizer.normalize(audio.getGenre().toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toUpperCase();
+		Element genreElement = document.createElement("genre");
+		genreElement.appendChild(document.createTextNode(genre));
+		songElement.appendChild(genreElement);
+
+		return songElement;
+	}
+
+	public Element writeAudioBookXML(Document document, AudioBook audio){
+		Element audioBookElement = document.createElement("audioBook");
+
+		String title = audio.getTitle();
+		Element titleElement = document.createElement("title");
+		titleElement.appendChild(document.createTextNode(title));
+		audioBookElement.appendChild(titleElement);
+
+		String author = audio.getAuthor();
+		Element authorElement = document.createElement("author");
+		authorElement.appendChild(document.createTextNode(author));
+		audioBookElement.appendChild(authorElement);
+
+		String duration = String.valueOf(audio.getDuration());
+		Element durationElement = document.createElement("duration");
+		durationElement.appendChild(document.createTextNode(duration));
+		audioBookElement.appendChild(durationElement);
+
+		UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
+		Element songUUID = document.createElement("UUID");
+		songUUID.appendChild(document.createTextNode(uniqueID.toString()));
+		audioBookElement.appendChild(songUUID);
+
+		String content = audio.getContent();
+		Element contentElement = document.createElement("content");
+		contentElement.appendChild(document.createTextNode(content));
+		audioBookElement.appendChild(contentElement);
+
+		String language = Normalizer.normalize(audio.getLanguage().toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toUpperCase();
+		Element languageElement = document.createElement("language");
+		languageElement.appendChild(document.createTextNode(language));
+		audioBookElement.appendChild(languageElement);
+
+		String category = Normalizer.normalize(audio.getCategory().toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toUpperCase();
+		Element categoryElement = document.createElement("category");
+		categoryElement.appendChild(document.createTextNode(category));
+		audioBookElement.appendChild(categoryElement);
+
+		return audioBookElement;
+	}
+
+	public void writeAlbumXML(String outputFile, LinkedList<Album> albumList){
+		Document document = this.createXMLDocument();
+		if (document == null) return;
+
+
+		Element root = document.createElement("albums");
+		document.appendChild(root);
+
+		for (int i = 0; i < albumList.size() ; i++) {
+			Album album = albumList.get(i);
+			// System.out.println(album);
+			Element albumElement = document.createElement("album");
+
+			String title = album.getTitle();
+			Element titleElement = document.createElement("title");
+			titleElement.appendChild(document.createTextNode(title));
+			albumElement.appendChild(titleElement);
+
+			String artist = album.getArtist();
+			Element artistElement = document.createElement("artist");
+			artistElement.appendChild(document.createTextNode(artist));
+			albumElement.appendChild(artistElement);
+
+			String duration = String.valueOf(album.getDuration());
+			Element durationElement = document.createElement("duration");
+			durationElement.appendChild(document.createTextNode(duration));
+			albumElement.appendChild(durationElement);
+
+			String releaseDate = album.getReleaseDate();
+			Element releaseDateElement = document.createElement("releaseDate");
+			releaseDateElement.appendChild(document.createTextNode(releaseDate));
+			albumElement.appendChild(releaseDateElement);
+
+			UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
+			Element songUUID = document.createElement("UUID");
+			songUUID.appendChild(document.createTextNode(uniqueID.toString()));
+			albumElement.appendChild(songUUID);
+
+			Element songs = document.createElement("songs");
+			LinkedList<Song> songList = album.getSongs();
+			for (int j = 0; j < songList.size(); j++) {
+				if (songList.get(j) instanceof Song) {
+					songs.appendChild(writeSongXML(document, (Song)songList.get(j)));
+				}
+			}
+			albumElement.appendChild(songs);
+			root.appendChild(albumElement);
+		}
+		this.createXMLFile(document, outputFile);
+	}
+
 	public void writeElementXML(String outputFile, LinkedList<Audio> audioList) {
 		Document document = this.createXMLDocument();
 		if (document == null) return;
@@ -527,101 +655,28 @@ public class XMLReaderWriter{
 
 		for (int i = 0; i < audioList.size(); i++) {
 			if (audioList.get(i) instanceof Song) {
-				Song audio = (Song) audioList.get(i);
-
-				Element songElement = document.createElement("song");
-
-				String title = audio.getTitle();
-				Element titleElement = document.createElement("title");
-				titleElement.appendChild(document.createTextNode(title));
-				songElement.appendChild(titleElement);
-
-				String artist = audio.getArtist();
-				Element artistElement = document.createElement("artist");
-				artistElement.appendChild(document.createTextNode(artist));
-				songElement.appendChild(artistElement);
-
-				String duration = String.valueOf(audio.getDuration());
-				Element durationElement = document.createElement("duration");
-				durationElement.appendChild(document.createTextNode(duration));
-				songElement.appendChild(durationElement);
-
-				UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
-				Element songUUID = document.createElement("UUID");
-				songUUID.appendChild(document.createTextNode(uniqueID.toString()));
-
-				String content = audio.getContent();
-				Element contentElement = document.createElement("content");
-				contentElement.appendChild(document.createTextNode(content));
-				songElement.appendChild(contentElement);
-
-				String genre = audio.getGenre().toString();
-				Element genreElement = document.createElement("genre");
-				genreElement.appendChild(document.createTextNode(genre));
-				songElement.appendChild(genreElement);
-
-				songElement.appendChild(songUUID);
-				root.appendChild(songElement);
+				root.appendChild(writeSongXML(document, (Song)audioList.get(i)));
 			} else if (audioList.get(i) instanceof AudioBook) {
-				AudioBook audio = (AudioBook) audioList.get(i);
-
-				Element audioBookElement = document.createElement("audioBook");
-
-				String title = audio.getTitle();
-				Element titleElement = document.createElement("title");
-				titleElement.appendChild(document.createTextNode(title));
-				audioBookElement.appendChild(titleElement);
-
-				String author = audio.getAuthor();
-				Element authorElement = document.createElement("author");
-				authorElement.appendChild(document.createTextNode(author));
-				audioBookElement.appendChild(authorElement);
-
-				String duration = String.valueOf(audio.getDuration());
-				Element durationElement = document.createElement("duration");
-				durationElement.appendChild(document.createTextNode(duration));
-				audioBookElement.appendChild(durationElement);
-
-				UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
-				Element songUUID = document.createElement("UUID");
-				songUUID.appendChild(document.createTextNode(uniqueID.toString()));
-
-				String content = audio.getContent();
-				Element contentElement = document.createElement("content");
-				contentElement.appendChild(document.createTextNode(content));
-				audioBookElement.appendChild(contentElement);
-
-				String language = audio.getLanguage().toString();
-				Element languageElement = document.createElement("language");
-				languageElement.appendChild(document.createTextNode(language));
-				audioBookElement.appendChild(languageElement);
-
-				String category = audio.getCategory().toString();
-				Element categoryElement = document.createElement("category");
-				categoryElement.appendChild(document.createTextNode(category));
-				audioBookElement.appendChild(categoryElement);
-
-				audioBookElement.appendChild(songUUID);
-				root.appendChild(audioBookElement);
+				root.appendChild(writeAudioBookXML(document, (AudioBook)audioList.get(i)));
 			}
-
 		}
 		this.createXMLFile(document, outputFile);
 	}
 
-	// public void writeAlbumXML(String outputFile, LinkedList<Playlist> playlistList) {
+	public void writePlaylistXML(String outputFile, LinkedList<Playlist> playlistList){
 		Document document = this.createXMLDocument();
 		if (document == null) return;
 
-		// create root element
+
 		Element root = document.createElement("playlists");
 		document.appendChild(root);
 
-		for (int i = 0; i < playlistList.size(); i++) {
+		for (int i = 0; i < playlistList.size() ; i++) {
 			Playlist playlist = playlistList.get(i);
+			// System.out.println(album);
 			Element playlistElement = document.createElement("playlist");
 
-			String name = audio.getName();
+			String name = playlist.getName();
 			Element nameElement = document.createElement("name");
 			nameElement.appendChild(document.createTextNode(name));
 			playlistElement.appendChild(nameElement);
@@ -629,91 +684,21 @@ public class XMLReaderWriter{
 			UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
 			Element songUUID = document.createElement("UUID");
 			songUUID.appendChild(document.createTextNode(uniqueID.toString()));
+			playlistElement.appendChild(songUUID);
 
-
-
-
-
-
-			Song audio = (Song) audioList.get(i);
-			Element songElement = document.createElement("song");
-
-			String title = audio.getTitle();
-			Element titleElement = document.createElement("title");
-			titleElement.appendChild(document.createTextNode(title));
-			songElement.appendChild(titleElement);
-
-			String artist = audio.getArtist();
-			Element artistElement = document.createElement("artist");
-			artistElement.appendChild(document.createTextNode(artist));
-			songElement.appendChild(artistElement);
-
-			String duration = String.valueOf(audio.getDuration());
-			Element durationElement = document.createElement("duration");
-			durationElement.appendChild(document.createTextNode(duration));
-			songElement.appendChild(durationElement);
-
-
-			String content = audio.getContent();
-			Element contentElement = document.createElement("content");
-			contentElement.appendChild(document.createTextNode(content));
-			songElement.appendChild(contentElement);
-
-			String genre = audio.getGenre().toString();
-			Element genreElement = document.createElement("genre");
-			genreElement.appendChild(document.createTextNode(genre));
-			songElement.appendChild(genreElement);
-
-			songElement.appendChild(songUUID);
-			root.appendChild(songElement);
-		} else if (audioList.get(i) instanceof AudioBook) {
-			AudioBook audio = (AudioBook) audioList.get(i);
-
-			Element audioBookElement = document.createElement("audioBook");
-
-			String title = audio.getTitle();
-			Element titleElement = document.createElement("title");
-			titleElement.appendChild(document.createTextNode(title));
-			audioBookElement.appendChild(titleElement);
-
-			String author = audio.getAuthor();
-			Element authorElement = document.createElement("author");
-			authorElement.appendChild(document.createTextNode(author));
-			audioBookElement.appendChild(authorElement);
-
-			String duration = String.valueOf(audio.getDuration());
-			Element durationElement = document.createElement("duration");
-			durationElement.appendChild(document.createTextNode(duration));
-			audioBookElement.appendChild(durationElement);
-
-			UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
-			Element songUUID = document.createElement("UUID");
-			songUUID.appendChild(document.createTextNode(uniqueID.toString()));
-
-			String content = audio.getContent();
-			Element contentElement = document.createElement("content");
-			contentElement.appendChild(document.createTextNode(content));
-			audioBookElement.appendChild(contentElement);
-
-			String language = audio.getLanguage().toString();
-			Element languageElement = document.createElement("language");
-			languageElement.appendChild(document.createTextNode(language));
-			audioBookElement.appendChild(languageElement);
-
-			String category = audio.getCategory().toString();
-			Element categoryElement = document.createElement("category");
-			categoryElement.appendChild(document.createTextNode(category));
-			audioBookElement.appendChild(categoryElement);
-
-			audioBookElement.appendChild(songUUID);
-			root.appendChild(audioBookElement);
-
-
+			Element audios = document.createElement("audios");
+			LinkedList<Audio> audiosList = playlist.getAudios();
+			for (int j = 0; j < audiosList.size(); j++) {
+				if (audiosList.get(j) instanceof Song) {
+					audios.appendChild(writeSongXML(document, (Song)audiosList.get(j)));
+				} else if (audiosList.get(j) instanceof AudioBook) {
+					audios.appendChild(writeAudioBookXML(document, (AudioBook)audiosList.get(j)));
+				}
+			}
+			playlistElement.appendChild(audios);
+			root.appendChild(playlistElement);
 		}
-
-
 		this.createXMLFile(document, outputFile);
 	}
-
 
 }

@@ -4,7 +4,6 @@
         <name>MaPlaylist1</name>
         <UUID></UUID>
         <audios>
-            <!-- <songs> -->
             <song>
                 <title>Special</title>
                 <artist>Ashnikko</artist>
@@ -21,8 +20,6 @@
                 <content>chemin2</content>
                 <genre>POP</genre>
             </song>
-            <!-- </songs> -->
-            <!-- <audioBooks> -->
             <audioBook>
                 <title>Le père de nos pères</title>
                 <author>Bernard Werber</author>
@@ -32,14 +29,12 @@
                 <language>FRANCAIS</language>
                 <category>ROMAN</category>
             </audioBook>
-            <!-- </audioBooks> -->
         </audios>
     </playlist>
     <playlist>
         <name>MaPlaylist2</name>
         <UUID></UUID>
         <audios>
-            <!-- <songs> -->
             <song>
                 <title>Specia2</title>
                 <artist>Ashnikko</artist>
@@ -56,8 +51,6 @@
                 <content>chemin2</content>
                 <genre>RAP</genre>
             </song>
-            <!-- </songs> -->
-            <!-- <audioBooks> -->
             <audioBook>
                 <title>Le père de nos pères</title>
                 <author>Bernard Werber</author>
@@ -67,14 +60,12 @@
                 <language>FRANCAIS</language>
                 <category>ROMAN</category>
             </audioBook>
-            <!-- </audioBooks> -->
         </audios>
     </playlist>
     <playlist>
         <name>MaPlaylist3</name>
         <UUID></UUID>
         <audios>
-            <!-- <songs> -->
             <song>
                 <title>Special</title>
                 <artist>Ashnikko</artist>
@@ -91,8 +82,6 @@
                 <content>chemin2</content>
                 <genre>RAP</genre>
             </song>
-            <!-- </songs> -->
-            <!-- <audioBooks> -->
             <audioBook>
                 <title>Le père de nos pères</title>
                 <author>Bernard Werber</author>
@@ -102,7 +91,6 @@
                 <language>FRANCAIS</language>
                 <category>ROMAN</category>
             </audioBook>
-            <!-- </audioBooks> -->
         </audios>
     </playlist>
 </playlists>

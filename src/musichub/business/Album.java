@@ -31,8 +31,16 @@ public class Album {
         return this.artist;
     }
 
+    public String getReleaseDate(){
+        return this.releaseDate;
+    }
+
     public LinkedList<Song> getSongs() {
         return this.songs;
+    }
+
+    public int getDuration() {
+        return this.duration;
     }
 
     public String toString(){

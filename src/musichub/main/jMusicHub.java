@@ -19,7 +19,22 @@ import util.*;
 
 
 
-public class Main{
+public class jMusicHub{
+
+    private XMLReaderWriter xmlEditor;
+    private LinkedList<Playlist> playlists;
+    private LinkedList<Album> albums;
+    private LinkedList<Audio> elements;
+
+
+    public jMusicHub()
+    {
+        xmlEditor = new XMLReaderWriter();
+        playlists = xmlEditor.readPlaylistXML("files/playlists.xml");
+        albums = xmlEditor.readAlbumXML("files/albums.xml");
+        elements = xmlEditor.readElementXML("files/elements.xml");
+    }
+
     public void displayAlbumByReleaseDate(){
 
     }
@@ -61,7 +76,9 @@ public class Main{
     }
 
     public void save(){
-
+        writeElementXML("files/elements1.xml", elements);
+        writeAlbumXML("files/albums1.xml", albums);
+        writePlaylistXML("files/playlists1.xml", playlists);
     }
 
     public void help(){
@@ -69,9 +86,10 @@ public class Main{
     }
 
     public static void main(String[] args) {
+
+        jMusicHub jmusichub = new jMusicHub();
         System.out.println("\n\nWelcome in jMusicHub,");
         System.out.println("Reading library...\n\n");
-        XMLReaderWriter reader = new XMLReaderWriter();
 
         // // NodeList albums = reader.parseXMLFile("files/albums.xml");
         // LinkedList<Album> albumList = reader.loadAlbumsXML("files/albums.xml");
@@ -89,22 +107,21 @@ public class Main{
 
 
         try {
-            LinkedList<Playlist> playlists = reader.readPlaylistXML("files/playlists.xml");
             System.out.println("Existing playlists :\n");
             for (int i = 0; i < playlists.size() ; i++) {
                 System.out.println(playlists.get(i) + "\n");
             }
-            LinkedList<Album> albums = reader.readAlbumXML("files/albums.xml");
+
             System.out.println("\n\n\nExisting albums :\n");
             for (int i = 0; i < albums.size() ; i++) {
                 System.out.println(albums.get(i) + "\n");
             }
-            LinkedList<Audio> elements = reader.readElementXML("files/elements.xml");
             System.out.println("\n\n\nExisting elements :\n");
             for (int i = 0; i < elements.size() ; i++) {
                 System.out.println(elements.get(i) + "\n");
             }
-            reader.writeElementXML("files/elements1.xml", elements);
+
+            save();
 
         }
         catch (Exception ex) {
