@@ -365,7 +365,17 @@ public class XMLReaderWriter{
 		String title = element.getElementsByTagName("title").item(0).getTextContent();
 		String artist = element.getElementsByTagName("artist").item(0).getTextContent();
 		int duration = Integer.parseInt(element.getElementsByTagName("duration").item(0).getTextContent());
-		String id = element.getElementsByTagName("UUID").item(0).getTextContent();
+		UUID id;
+		String uuid = "";
+		try {
+			uuid = element.getElementsByTagName("UUID").item(0).getTextContent();
+		}
+		catch (Exception ex) {
+			System.out.println("Empty UUID, will create a new one");
+		}
+		if ((uuid == null)  || (uuid.isEmpty()))
+		id = UUID.randomUUID();
+		else id = UUID.fromString(uuid);
 		String content = element.getElementsByTagName("content").item(0).getTextContent();
 		String genre = element.getElementsByTagName("genre").item(0).getTextContent();
 
@@ -378,7 +388,17 @@ public class XMLReaderWriter{
 		String title = element.getElementsByTagName("title").item(0).getTextContent();
 		String author = element.getElementsByTagName("author").item(0).getTextContent();
 		int duration = Integer.parseInt(element.getElementsByTagName("duration").item(0).getTextContent());
-		String id = element.getElementsByTagName("UUID").item(0).getTextContent();
+		UUID id;
+		String uuid = "";
+		try {
+			uuid = element.getElementsByTagName("UUID").item(0).getTextContent();
+		}
+		catch (Exception ex) {
+			System.out.println("Empty UUID, will create a new one");
+		}
+		if ((uuid == null)  || (uuid.isEmpty()))
+		id = UUID.randomUUID();
+		else id = UUID.fromString(uuid);
 		String content = element.getElementsByTagName("content").item(0).getTextContent();
 		String category = element.getElementsByTagName("category").item(0).getTextContent();
 		String language = element.getElementsByTagName("language").item(0).getTextContent();
@@ -535,7 +555,7 @@ public class XMLReaderWriter{
 		durationElement.appendChild(document.createTextNode(duration));
 		songElement.appendChild(durationElement);
 
-		UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
+		UUID uniqueID = audio.getID();
 		Element songUUID = document.createElement("UUID");
 		songUUID.appendChild(document.createTextNode(uniqueID.toString()));
 		songElement.appendChild(songUUID);
@@ -571,7 +591,7 @@ public class XMLReaderWriter{
 		durationElement.appendChild(document.createTextNode(duration));
 		audioBookElement.appendChild(durationElement);
 
-		UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
+		UUID uniqueID = audio.getID();
 		Element songUUID = document.createElement("UUID");
 		songUUID.appendChild(document.createTextNode(uniqueID.toString()));
 		audioBookElement.appendChild(songUUID);
@@ -627,7 +647,7 @@ public class XMLReaderWriter{
 			releaseDateElement.appendChild(document.createTextNode(releaseDate));
 			albumElement.appendChild(releaseDateElement);
 
-			UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
+			UUID uniqueID = album.getID();
 			Element songUUID = document.createElement("UUID");
 			songUUID.appendChild(document.createTextNode(uniqueID.toString()));
 			albumElement.appendChild(songUUID);
@@ -681,7 +701,7 @@ public class XMLReaderWriter{
 			nameElement.appendChild(document.createTextNode(name));
 			playlistElement.appendChild(nameElement);
 
-			UUID uniqueID = UUID.fromString("4f392743-c9ba-4230-9b93-a1c79c0a13c4");
+			UUID uniqueID = playlist.getID();
 			Element songUUID = document.createElement("UUID");
 			songUUID.appendChild(document.createTextNode(uniqueID.toString()));
 			playlistElement.appendChild(songUUID);
