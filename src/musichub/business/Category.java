@@ -15,7 +15,7 @@ package business;
 
 public enum Category
 {
-    JEUNESSE("Jeunesse"), ROMAN("Roman"), THEATRE("Théâtre"),
+    JEUNESSE("Jeunesse"), ROMAN("Roman"), THEATRE("Theatre"),
     DISCOURS("Discours"), DOCUMENTAIRE("Documentaire");
 
     private String category;

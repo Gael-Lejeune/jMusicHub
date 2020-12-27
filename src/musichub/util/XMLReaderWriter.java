@@ -57,7 +57,7 @@ public class XMLReaderWriter{
 	* @param document le document à transformer
 	* @param filePath le chemin (répértoire et nom) du fichier XML à créer
 	*/
-	public void createXMLFile(Document document, String filePath){
+	public void createXMLFile(Document document, String filePath) {
 		try {
 			DOMSource domSource = new DOMSource(document);
 			StreamResult streamResult = new StreamResult(new File(filePath));
@@ -172,7 +172,7 @@ public class XMLReaderWriter{
 	// 					for (int j = 0;  j < songs.getLength(); j++) {
 	// 						Element song = (Element)songs.item(j);
 	// 						System.out.println(song.getNodeName());
-	// 						if (song.getNodeName().equals("song")){
+	// 						if (song.getNodeName().equals("song")) {
 	// 							String titleSong = song.getElementsByTagName("title").item(0).getTextContent();
 	// 							String artistSong = song.getElementsByTagName("artist").item(0).getTextContent();
 	// 							int durationSong = Integer.parseInt(song.getElementsByTagName("duration").item(0).getTextContent());
@@ -229,7 +229,7 @@ public class XMLReaderWriter{
 	// 	for (int i = 0; i<nodes.getLength(); i++) {
 	// 		if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE)   {
 	// 			Element currentElement = (Element) nodes.item(i);
-	// 			if (currentElement.getNodeName().equals("song")){
+	// 			if (currentElement.getNodeName().equals("song")) {
 	// 				try {
 	// 					String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
 	// 					String artist = currentElement.getElementsByTagName("artist").item(0).getTextContent();
@@ -254,7 +254,7 @@ public class XMLReaderWriter{
 	// 					System.out.println("Something is wrong with the XML client element");
 	// 				}
 	// 			}
-	// 			else if (currentElement.getNodeName().equals("livreAudio")){
+	// 			else if (currentElement.getNodeName().equals("livreAudio")) {
 	// 				try {
 	// 					String title = currentElement.getElementsByTagName("title").item(0).getTextContent();
 	// 					String author = currentElement.getElementsByTagName("author").item(0).getTextContent();
@@ -487,7 +487,7 @@ public class XMLReaderWriter{
 		return new Album(title, artist, duration, releaseDate, uniqueID, songList);
 	}
 
-	public LinkedList<Playlist> readPlaylistXML(String file){
+	public LinkedList<Playlist> readPlaylistXML(String file) {
 		NodeList list = this.parseXMLFile(file);
 		// System.out.println(list.getLength());
 		LinkedList<Playlist> playlistList = new LinkedList<Playlist>();
@@ -503,7 +503,7 @@ public class XMLReaderWriter{
 		return playlistList;
 	}
 
-	public LinkedList<Album> readAlbumXML(String file){
+	public LinkedList<Album> readAlbumXML(String file) {
 		NodeList list = this.parseXMLFile(file);
 		// System.out.println(list.getLength());
 		LinkedList<Album> albumList = new LinkedList<Album>();
@@ -519,7 +519,7 @@ public class XMLReaderWriter{
 		return albumList;
 	}
 
-	public LinkedList<Audio> readElementXML(String file){
+	public LinkedList<Audio> readElementXML(String file) {
 		NodeList list = this.parseXMLFile(file);
 		// System.out.println(list.getLength());
 		LinkedList<Audio> elementList = new LinkedList<Audio>();
@@ -537,7 +537,7 @@ public class XMLReaderWriter{
 		return elementList;
 	}
 
-	public Element writeSongXML(Document document, Song audio){
+	public Element writeSongXML(Document document, Song audio) {
 		Element songElement = document.createElement("song");
 
 		String title = audio.getTitle();
@@ -573,7 +573,7 @@ public class XMLReaderWriter{
 		return songElement;
 	}
 
-	public Element writeAudioBookXML(Document document, AudioBook audio){
+	public Element writeAudioBookXML(Document document, AudioBook audio) {
 		Element audioBookElement = document.createElement("audioBook");
 
 		String title = audio.getTitle();
@@ -614,7 +614,7 @@ public class XMLReaderWriter{
 		return audioBookElement;
 	}
 
-	public void writeAlbumXML(String outputFile, LinkedList<Album> albumList){
+	public void writeAlbumXML(String outputFile, LinkedList<Album> albumList) {
 		Document document = this.createXMLDocument();
 		if (document == null) return;
 
@@ -683,7 +683,7 @@ public class XMLReaderWriter{
 		this.createXMLFile(document, outputFile);
 	}
 
-	public void writePlaylistXML(String outputFile, LinkedList<Playlist> playlistList){
+	public void writePlaylistXML(String outputFile, LinkedList<Playlist> playlistList) {
 		Document document = this.createXMLDocument();
 		if (document == null) return;
 

@@ -1,13 +1,7 @@
-package business;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
-
 /*
  * Nom de classe : Album
  *
- * Description   : Classe contenant les informations d'un album fait de chansons
+ * Description   :
  *
  * Version       : 1.6
  *
@@ -16,38 +10,67 @@ import java.util.UUID;
  * Copyright     : Lejeune Gaël
  */
 
-/**
- * description de la classe.
- * explication supplémentaire si nécessaire
+package business;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.UUID;
+
+
+/** Album class representing an audio album
+ * The class contain all the common informations about an album
  *
- * @version 1.0
+ * Version       : 1.0
  *
- * @see UneAutreClasse
- * @author Jean Michel D.
+ * Date          : 23/02/2001
+ *
+ * @author Gaël Lejeune
  */
 public class Album {
+    /**
+    * Title of the album
+    */
     private String title;
-    private String artist;
-    private int duration;
-    private String releaseDate;
-    private UUID id;
-    private LinkedList<Song> songs;
 
     /**
-     * description de la méthode.
-     * explication supplémentaire si nécessaire
-     *
-     * @return      description de la valeur de retour
-     * @param       arg1 description du 1er argument
-     *    :           :         :
-     * @param       argN description du Neme argument
-     * @exception   Exception1  description de la première exception
-     *    :           :         :
-     * @exception ExceptionN  description de la Neme exception
-     *
-     * @see UneAutreClasse#UneAutreMethode
-     * @author   Jean Dupond
-     */
+    * Artist of the album
+    */
+    private String artist;
+
+    /**
+    * Duration of the album
+    */
+    private int duration;
+
+    /**
+    * Release date of the album
+    */
+    private String releaseDate;
+
+    /**
+    * Unique ID identifying the album
+    */
+    private UUID id;
+
+    /**
+    * Song list of the album
+    */
+    private LinkedList<Song> songs;
+
+    // /**
+    //  * Album constructor
+    //  *
+    //  * @param       title Title of the album
+    //  * @param       artist Artist of the album
+    //  * @param       artist Release date of the album
+    //  * @param       id Unique id of the album
+    //  * @param       songs List of the album songs
+    //  * @exception   Exception1  description de la première exception
+    //  *    :           :         :
+    //  * @exception ExceptionN  description de la Neme exception
+    //  *
+    //  * @author      Gaël Lejeune
+    //  */
     public Album(String title, String artist, int duration, String releaseDate, UUID id, LinkedList<Song> songs) {
         this.title = title;
         this.artist = artist;
@@ -58,99 +81,54 @@ public class Album {
     }
 
     /**
-     * description de la méthode.
-     * explication supplémentaire si nécessaire
-     *
-     * @return      description de la valeur de retour
-     * @param       arg1 description du 1er argument
-     *    :           :         :
-     * @param       argN description du Neme argument
-     * @exception   Exception1  description de la première exception
-     *    :           :         :
-     * @exception ExceptionN  description de la Neme exception
-     *
-     * @see UneAutreClasse#UneAutreMethode
-     * @author   Jean Dupond
+     * Accessor of the title
+     * @return      String containing the album's title
+     * @author      Gaël Lejeune
      */
-    public String getTitle(){
+    public String getTitle() {
         return this.title;
     }
 
     /**
-     * description de la méthode.
-     * explication supplémentaire si nécessaire
-     *
-     * @return      description de la valeur de retour
-     * @param       arg1 description du 1er argument
-     *    :           :         :
-     * @param       argN description du Neme argument
-     * @exception   Exception1  description de la première exception
-     *    :           :         :
-     * @exception ExceptionN  description de la Neme exception
-     *
-     * @see UneAutreClasse#UneAutreMethode
-     * @author   Jean Dupond
+     * Accessor of the artist
+     * @return      String containing the album's artist
+     * @author      Gaël Lejeune
      */
-    public String getArtist(){
+    public String getArtist() {
         return this.artist;
     }
 
-    public String getReleaseDate(){
+    /**
+     * Accessor of the release date
+     * @return      String containing the album's release date
+     * @author      Gaël Lejeune
+     */
+    public String getReleaseDate() {
         return this.releaseDate;
     }
 
     /**
-     * description de la méthode.
-     * explication supplémentaire si nécessaire
-     *
-     * @return      description de la valeur de retour
-     * @param       arg1 description du 1er argument
-     *    :           :         :
-     * @param       argN description du Neme argument
-     * @exception   Exception1  description de la première exception
-     *    :           :         :
-     * @exception ExceptionN  description de la Neme exception
-     *
-     * @see UneAutreClasse#UneAutreMethode
-     * @author   Jean Dupond
+     * Accessor of the song list
+     * @return      String containing the album's song list
+     * @author      Gaël Lejeune
      */
     public LinkedList<Song> getSongs() {
         return this.songs;
     }
 
     /**
-     * description de la méthode.
-     * explication supplémentaire si nécessaire
-     *
-     * @return      description de la valeur de retour
-     * @param       arg1 description du 1er argument
-     *    :           :         :
-     * @param       argN description du Neme argument
-     * @exception   Exception1  description de la première exception
-     *    :           :         :
-     * @exception ExceptionN  description de la Neme exception
-     *
-     * @see UneAutreClasse#UneAutreMethode
-     * @author   Jean Dupond
+     * Accessor of the duration
+     * @return      int containing the album's duration
+     * @author      Gaël Lejeune
      */
     public int getDuration() {
         return this.duration;
     }
 
     /**
-     * description de la méthode.
-     * explication supplémentaire si nécessaire
-     *
-     * @return      description de la valeur de retour
-     * @param       arg1 description du 1er argument
-     *    :           :         :
-     * @param       argN description du Neme argument
-     * @exception   Exception1  description de la première exception
-     *    :           :         :
-     * @exception ExceptionN  description de la Neme exception
-     *
-     * @see UneAutreClasse#UneAutreMethode
-     * @author   Jean Dupond
+     * Accessor of the unique id
+     * @return      UUID containing the album's unique id
+     * @author      Gaël Lejeune
      */
     public UUID getID()
     {
@@ -158,21 +136,11 @@ public class Album {
     }
 
     /**
-     * description de la méthode.
-     * explication supplémentaire si nécessaire
-     *
-     * @return      description de la valeur de retour
-     * @param       arg1 description du 1er argument
-     *    :           :         :
-     * @param       argN description du Neme argument
-     * @exception   Exception1  description de la première exception
-     *    :           :         :
-     * @exception ExceptionN  description de la Neme exception
-     *
-     * @see UneAutreClasse#UneAutreMethode
-     * @author   Jean Dupond
+     * Override of the toString java method
+     * @return      String containing the album's informations
+     * @author      Gaël Lejeune
      */
-    public String toString(){
+    public String toString() {
         String str;
         str = "Album " + this.title + "\nBy " + this.artist + "\nDuration " + this.duration + "\nReleased " + this.releaseDate + "\nSongs : ";
         for (int i=0; i < this.songs.size(); i++) {
@@ -182,21 +150,12 @@ public class Album {
     }
 
     /**
-     * description de la méthode.
-     * explication supplémentaire si nécessaire
-     *
-     * @return      description de la valeur de retour
-     * @param       arg1 description du 1er argument
-     *    :           :         :
-     * @param       argN description du Neme argument
-     * @exception   Exception1  description de la première exception
-     *    :           :         :
-     * @exception ExceptionN  description de la Neme exception
-     *
-     * @see UneAutreClasse#UneAutreMethode
-     * @author   Jean Dupond
+     * Accessor of the title
+     * @param       Song
+     * @see         Song
+     * @author      Gaël Lejeune
      */
-    public void addSong(){
+    public void addSong() {
 
     }
 

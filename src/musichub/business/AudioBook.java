@@ -70,7 +70,7 @@ public class AudioBook extends Audio
 	/**
 	 *  Description de la methode
 	 */
-	public String toString(){
+	public String toString() {
 		return this.title + " written by " + this.author + " : " + this.duration;
 	}
 

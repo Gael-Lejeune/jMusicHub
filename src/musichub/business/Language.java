@@ -15,7 +15,7 @@ package business;
 
 public enum Language
 {
-    FRANCAIS("Français"), ANGLAIS("Anglais"), ITALIEN("Italien"),
+    FRANCAIS("Francais"), ANGLAIS("Anglais"), ITALIEN("Italien"),
     ESPAGNOL("Espagnol"), ALLEMAND("Allemand");
 
     private String language;

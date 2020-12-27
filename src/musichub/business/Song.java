@@ -60,7 +60,7 @@ public class Song extends Audio
     /**
      *  Description de la methode
      */
-    public String toString(){
+    public String toString() {
         return this.title + " by " + this.artist
         + "\nDuration : " + this.duration
         + "\nGenre : " + this.genre;

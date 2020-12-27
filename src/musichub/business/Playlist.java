@@ -33,7 +33,7 @@ public class Playlist{
 	/**
 	 *  Description de la methode
 	 */
-	public Playlist(String name, UUID id, LinkedList<Audio> audios){
+	public Playlist(String name, UUID id, LinkedList<Audio> audios) {
 		this.name = name;
 		this.id = id;
 		this.audios = audios;
@@ -42,14 +42,14 @@ public class Playlist{
 	/**
 	 *  Description de la methode
 	 */
-	public String getName(){
+	public String getName() {
 		return this.name;
 	}
 
 	/**
 	 *  Description de la methode
 	 */
-	public LinkedList<Audio> getAudios(){
+	public LinkedList<Audio> getAudios() {
 		return this.audios;
 	}
 
@@ -64,7 +64,7 @@ public class Playlist{
 	/**
 	 *  Description de la methode
 	 */
-	public String toString(){
+	public String toString() {
 		String str;
 		str = "Playlist " + this.name;
 		for (int i=0; i < this.audios.size(); i++) {

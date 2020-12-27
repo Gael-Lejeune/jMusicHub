@@ -2,7 +2,7 @@
 <playlists>
     <playlist>
         <name>MaPlaylist1</name>
-        <UUID>3c980253-504b-4694-a431-68cd0121d702</UUID>
+        <UUID>f28e990a-23da-4d98-adf7-bc2cc8b2900b</UUID>
         <audios>
             <song>
                 <title>Special</title>
@@ -24,21 +24,21 @@
                 <title>Le père de nos pères</title>
                 <author>Bernard Werber</author>
                 <duration>10000</duration>
-                <UUID>7f8ddd94-0ec0-4b76-9316-203c39c19dfe</UUID><content/>
-                <language>FRANAAIS</language>
+                <UUID>a00af8fc-aab8-49f7-a03c-218d598c498a</UUID><content/>
+                <language>FRANCAIS</language>
                 <category>ROMAN</category>
             </audioBook>
         </audios>
     </playlist>
     <playlist>
         <name>MaPlaylist2</name>
-        <UUID>4608bfbe-b389-4983-8978-32fe23583c61</UUID>
+        <UUID>7ac9685c-5c4b-4453-bbe2-6d480652c9dc</UUID>
         <audios>
             <song>
                 <title>Specia2</title>
                 <artist>Ashnikko</artist>
                 <duration>164</duration>
-                <UUID>7498b3bb-1e07-4079-a473-8dfe3d19dfec</UUID>
+                <UUID>6d076a66-7848-4661-a386-ac6dd8efea5c</UUID>
                 <content>chemin</content>
                 <genre>POP</genre>
             </song>
@@ -54,10 +54,54 @@
                 <title>Le père de nos pères</title>
                 <author>Bernard Werber</author>
                 <duration>10000</duration>
-                <UUID>7db83ae4-2e1d-4337-92c8-184d68bfd918</UUID><content/>
-                <language>FRANAAIS</language>
+                <UUID>d13c2cb6-9d34-432d-9c47-5109e9fba048</UUID><content/>
+                <language>FRANCAIS</language>
                 <category>ROMAN</category>
             </audioBook>
+        </audios>
+    </playlist>
+    <playlist>
+        <name>MaPlaylist3</name>
+        <UUID>ee12c272-3d8b-4ea9-92d8-749dff001454</UUID>
+        <audios>
+            <song>
+                <title>Special</title>
+                <artist>Ashnikko</artist>
+                <duration>164</duration>
+                <UUID>4f392743-c9ba-4230-9b93-a1c79c0a13c4</UUID>
+                <content>chemin</content>
+                <genre>POP</genre>
+            </song>
+            <song>
+                <title>Cry</title>
+                <artist>Ashnikko</artist>
+                <duration>164</duration>
+                <UUID>4f392743-c9ba-4230-9b93-a1c79c0a13c7</UUID>
+                <content>chemin2</content>
+                <genre>RAP</genre>
+            </song>
+            <audioBook>
+                <title>Le père de nos pères</title>
+                <author>Bernard Werber</author>
+                <duration>10000</duration>
+                <UUID>15e809a1-4e84-4363-9233-823bca0c66d9</UUID><content/>
+                <language>FRANCAIS</language>
+                <category>ROMAN</category>
+            </audioBook>
+        </audios>
+    </playlist>
+    <playlist>
+        <name>dq</name>
+        <UUID>95725d0f-5d4f-4338-b153-4071c43b3aaf</UUID>
+        <audios>
+            <song>
+                <title>Cry</title>
+                <artist>Ashnikko</artist>
+                <duration>175</duration>
+                <UUID>4f392743-c9ba-4230-9b93-a1c79c0a13c7</UUID>
+                <content>chemin2</content>
+                <genre>POP</genre>
+            </song>
         </audios>
     </playlist>
 </playlists>
