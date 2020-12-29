@@ -155,8 +155,8 @@ public class Album {
      * @see         Song
      * @author      Gaël Lejeune
      */
-    public void addSong() {
-
+    public void addSong(Song new) {
+        songs.add(new);
     }
 
 
