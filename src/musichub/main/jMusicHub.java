@@ -17,7 +17,7 @@ import javax.xml.transform.stream.StreamResult;
 
 
 /**
- * 
+ *
  * explication supplémentaire si nécessaire
  *
  * @version 1.0
@@ -47,7 +47,7 @@ public class jMusicHub{
     *  Description de la methode
     */
     public void displayAlbumByReleaseDate() {
-
+        
     }
 
     /**
