@@ -1,27 +1,61 @@
 package business;
 
-/*
- * Nom de classe : Genre
+/** Genre Enumeration of the different available song genres
  *
- * Description   :
+ * Version : 1.0
  *
- * Version       : 1.6
+ * Date : 30/02/2001
  *
- * Date          : 26/12/2020
- *
- * Copyright     : Lejeune Gaël
+ * @author Gaël Lejeune
  */
-
-
 public enum Genre
 {
-    JAZZ("Jazz"), CLASSIQUE("Classique"), HIPHOP("Hip-Hop"),
-    ROCK("Rock"), POP("Pop"), RAP("Rap"), METAL("Metal");
+    /**
+     * "Jazz" genre
+     */
+    JAZZ("Jazz"),
 
+    /**
+     * "Classical" genre
+     */
+    CLASSIQUE("Classique"),
+
+    /**
+     * "Hip-Hop" genre
+     */
+    HIPHOP("Hip-Hop"),
+
+    /**
+     * "Rock" genre
+     */
+    ROCK("Rock"),
+
+    /**
+     * "Pop" genre
+     */
+    POP("Pop"),
+
+    /**
+     * "Rap" genre
+     */
+    RAP("Rap"),
+
+    /**
+     * "Metal" genre
+     */
+    METAL("Metal");
+
+    /**
+     * Genre of the enum
+     */
     private String genre;
 
     /**
-     *  Description de la methode
+     * Genre constructor
+     *
+     * @param       genre
+     *
+     * @author      Gaël Lejeune
      */
     private Genre(String genre)
     {
@@ -29,7 +63,9 @@ public enum Genre
     }
 
     /**
-     *  Description de la methode
+     * Override of the toString java method
+     * @return      String containing the genre
+     * @author      Gaël Lejeune
      */
     public String toString()
     {

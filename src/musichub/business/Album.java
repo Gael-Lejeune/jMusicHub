@@ -1,15 +1,3 @@
-/*
- * Nom de classe : Album
- *
- * Description   :
- *
- * Version       : 1.6
- *
- * Date          : 26/12/2020
- *
- * Copyright     : Lejeune Gaël
- */
-
 package business;
 
 import java.util.LinkedList;
@@ -18,59 +6,58 @@ import java.util.UUID;
 
 
 /** Album class representing an audio album
- * The class contain all the common informations about an album
  *
- * Version       : 1.0
+ * Version : 1.6
  *
- * Date          : 23/02/2001
+ * Date : 30/02/2001
  *
- * @author Gaël Lejeune
+ * @author       Gaël Lejeune
  */
 public class Album {
+
     /**
-    * Title of the album
-    */
+     * Title of the album
+     */
     private String title;
 
     /**
-    * Artist of the album
-    */
+     * Artist of the album
+     */
     private String artist;
 
     /**
-    * Duration of the album
-    */
+     * Duration of the album
+     */
     private int duration;
 
     /**
-    * Release date of the album
-    */
+     * Release date of the album
+     */
     private String releaseDate;
 
     /**
-    * Unique ID identifying the album
-    */
+     * Unique ID identifying the album
+     */
     private UUID id;
 
     /**
-    * Song list of the album
-    */
+     * Song list of the album
+     * @see Song
+     */
     private LinkedList<Song> songs;
 
-    // /**
-    //  * Album constructor
-    //  *
-    //  * @param       title Title of the album
-    //  * @param       artist Artist of the album
-    //  * @param       artist Release date of the album
-    //  * @param       id Unique id of the album
-    //  * @param       songs List of the album songs
-    //  * @exception   Exception1  description de la première exception
-    //  *    :           :         :
-    //  * @exception ExceptionN  description de la Neme exception
-    //  *
-    //  * @author      Gaël Lejeune
-    //  */
+    /**
+     * Album constructor
+     *
+     * @param       title Title of the album
+     * @param       artist Artist of the album
+     * @param       duration Duration of the album
+     * @param       releaseDate Release date of the album
+     * @param       id Unique id of the album
+     * @param       songs List of the album songs
+     *
+     * @author      Gaël Lejeune
+     */
     public Album(String title, String artist, int duration, String releaseDate, UUID id, LinkedList<Song> songs) {
         this.title = title;
         this.artist = artist;
@@ -109,7 +96,7 @@ public class Album {
 
     /**
      * Accessor of the song list
-     * @return      String containing the album's song list
+     * @return      LinkedList containing the album's song list
      * @author      Gaël Lejeune
      */
     public LinkedList<Song> getSongs() {
@@ -150,15 +137,13 @@ public class Album {
     }
 
     /**
-     * Accessor of the title
-     * @param       Song
+     * Allow the user to add a given song to the album
+     * @param       song Song to add
      * @see         Song
      * @author      Gaël Lejeune
      */
     public void addSong(Song song) {
         this.songs.add(song);
     }
-
-
 
 }

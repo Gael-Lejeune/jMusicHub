@@ -2,34 +2,37 @@ package business;
 
 import java.util.UUID;
 
-/*
- * Nom de classe : Song
+/** Song Class representing a song and it's caracteristics
  *
- * Description   :
+ * @version 1.0
  *
- * Version       : 1.6
- *
- * Date          : 26/12/2020
- *
- * Copyright     : Lejeune Gaël
+ * @see Audio
+ * @author Gaël Lejeune
  */
-
- /**
-  * description de la classe.
-  * explication supplémentaire si nécessaire
-  *
-  * @version 1.0
-  *
-  * @see UneAutreClasse
-  * @author Jean Michel D.
-  */
 public class Song extends Audio
 {
+    /**
+     * Genre of the song
+     * @see Genre
+     */
     private Genre genre;
-	protected String artist;
 
     /**
-     *  Description de la methode
+     * Artist of the song
+     */
+    protected String artist;
+
+    /**
+     * Song constructor
+     *
+     * @param       title Title of the book
+     * @param       artist Artist of the song
+     * @param       duration Duration of the song
+	 * @param       id Unique id of the song
+	 * @param       content Path of the song's file
+	 * @param       genre Genre of the song
+     *
+     * @author      Gaël Lejeune
      */
     public Song(String title, String artist, int duration, UUID id, String content, Genre genre)
     {
@@ -42,7 +45,10 @@ public class Song extends Audio
     }
 
     /**
-     *  Description de la methode
+     * Accessor of the genre
+     * @return      Genre of the song
+     * @see         Genre
+     * @author      Gaël Lejeune
      */
     public Genre getGenre()
     {
@@ -50,7 +56,9 @@ public class Song extends Audio
     }
 
     /**
-     *  Description de la methode
+     * Accessor of the artist
+     * @return      String containing the song's artist
+     * @author      Gaël Lejeune
      */
     public String getArtist()
     {
@@ -58,7 +66,9 @@ public class Song extends Audio
     }
 
     /**
-     *  Description de la methode
+     * Override of the toString java method
+     * @return      String containing the songs's informations
+     * @author      Gaël Lejeune
      */
     public String toString() {
         return this.title + " by " + this.artist

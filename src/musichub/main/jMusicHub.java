@@ -16,25 +16,47 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 
-/**
-*
-* explication supplémentaire si nécessaire
-*
-* @version 1.0
-*
-* @see UneAutreClasse
-* @author Jean Michel D.
-*/
+/** jMusicHub is the main class of the jMusicHub program.
+ *
+ *
+ * Version : 1.0
+ *
+ * Date : 30/02/2001
+ *
+ * @author Gaël Lejeune and Steve Chevreau-Manat
+ */
 public class jMusicHub{
 
+    /**
+     * XML editor allowing to read and write XML files
+     * @see XMLReaderWriter
+     */
     private XMLReaderWriter xmlEditor;
+
+    /**
+     * List of the registered playlists
+     * @see Playlist
+     */
     private LinkedList<Playlist> playlists;
+
+    /**
+     * List of the registered albums
+     * @see Album
+     */
     private LinkedList<Album> albums;
+
+    /**
+     * List of the registered audio elements
+     * @see Audio
+     */
     private LinkedList<Audio> elements;
 
     /**
-    *  Description de la methode
-    */
+     * Album constructor
+     * Initialize all the attributes and fill the lists by reading the XML files
+     *
+     * @author Gaël Lejeune
+     */
     public jMusicHub()
     {
         this.xmlEditor = new XMLReaderWriter();
@@ -58,8 +80,10 @@ public class jMusicHub{
     }
 
     /**
-    *  Description de la methode
-    */
+     * Displays all the registered playlists
+     * @see         Playlist
+     * @author      Gaël Lejeune
+     */
     public void displayPlaylists() {
         System.out.println("Existing playlists :\n");
         for (int i = 0; i < playlists.size() ; i++) {
@@ -67,6 +91,11 @@ public class jMusicHub{
         }
     }
 
+    /**
+     * Asks and displays an specific registered playlist
+     * @see         Playlist
+     * @author      Gaël Lejeune
+     */
     public void displaySpecificPlaylist() {
         Scanner scanner = new Scanner (System.in);
         System.out.println("Name of the playlist :");
@@ -84,8 +113,10 @@ public class jMusicHub{
     }
 
     /**
-    *  Description de la methode
-    */
+     * Displays all the registered albums
+     * @see         Album
+     * @author      Gaël Lejeune
+     */
     public void displayAlbums() {
         System.out.println("\n\n\nExisting albums :\n");
         for (int i = 0; i < albums.size() ; i++) {
@@ -93,6 +124,11 @@ public class jMusicHub{
         }
     }
 
+    /**
+     * Asks and displays an specific registered album
+     * @see         Album
+     * @author      Gaël Lejeune
+     */
     public void displaySpecificAlbum() {
         Scanner scanner = new Scanner (System.in);
         System.out.println("Name of the album to display :");
@@ -110,8 +146,10 @@ public class jMusicHub{
 
 
         /**
-        *  Description de la methode
-        */
+         * Displays all the registered audio elements
+         * @see         Album
+         * @author      Gaël Lejeune
+         */
         public void displayElements() {
             System.out.println("\n\n\nExisting elements :\n");
             for (int i = 0; i < elements.size() ; i++) {
@@ -148,8 +186,11 @@ public class jMusicHub{
         }
 
         /**
-        *  Description de la methode
-        */
+         * Asks and add an existing song to a chosen album
+         * @see         Album
+         * @see         Song
+         * @author      Gaël Lejeune
+         */
         public void addSongToAlbum() {
             Scanner scanner = new Scanner (System.in);
             System.out.println("Enter the name of an album :");
@@ -185,8 +226,11 @@ public class jMusicHub{
         }
 
         /**
-        *  Description de la methode
-        */
+         * Asks and add an existing audio to a chosen playlist
+         * @see         Playlist
+         * @see         Audio
+         * @author      Gaël Lejeune
+         */
         public void addSongToPlaylist() {
             Scanner scanner = new Scanner (System.in);
             System.out.println("Enter the name of a playlist :");
@@ -207,7 +251,7 @@ public class jMusicHub{
                     boolean songFound = false;
                     for (int i = 0; i < this.elements.size(); i++) {
                         if (this.elements.get(i).getTitle().equals(songname)) {
-                            albums.get(playlists).addSong((Song)this.elements.get(i));
+                            playlists.get(playlistIndex).addSong((Song)this.elements.get(i));
                             System.out.println("Added song : " + this.elements.get(i));
                             songFound = true;
                         }
@@ -217,13 +261,15 @@ public class jMusicHub{
                     }
                 }
             } else {
-                System.out.println("No album found.");
+                System.out.println("No playlist found.");
             }
         }
 
         /**
-        *  Description de la methode
-        */
+         * Asks the informations and the audios to create and register a playlist
+         * @see         Playlist
+         * @author      Gaël Lejeune
+         */
         public void createPlaylistFromExisting() {
             Scanner scanner = new Scanner (System.in);
 
@@ -258,8 +304,10 @@ public class jMusicHub{
         }
 
         /**
-        *  Description de la methode
-        */
+         * Asks and delete the chosen playlist
+         * @see         Playlist
+         * @author      Gaël Lejeune
+         */
         public void deletePlaylist() {
             Scanner scanner = new Scanner (System.in);
             System.out.println("Name of the playlist to delete :");
@@ -272,8 +320,10 @@ public class jMusicHub{
         }
 
         /**
-        *  Description de la methode
-        */
+        * Create XML files containing the registered playlists, elements, and albums using the class XML editor
+         * @see         XMLReaderWriter
+         * @author      Gaël Lejeune
+         */
         public void save() {
             this.xmlEditor.writeElementXML("files/elements1.xml", this.elements);
             this.xmlEditor.writeAlbumXML("files/albums1.xml", this.albums);
@@ -288,24 +338,18 @@ public class jMusicHub{
         }
 
         /**
-        *  Description de la methode
-        */
+        * Execution of the jMusicHub program and interaction with the user using a terminal
+        * @param       args Arguments of the function
+        * @author Gaël Lejeune and Steve Chevreau-Manat
+         */
         public static void main(String[] args) {
             System.out.println("\n\nWelcome in jMusicHub,");
             System.out.println("Reading library...\n\n");
             jMusicHub jmusichub = new jMusicHub();
 
-            // jmusichub.displayPlaylists();
-            jmusichub.displayAlbums();
-            jmusichub.addSongToAlbum();
-            jmusichub.displayAlbums();
-            // jmusichub.displayElements();
-            // jmusichub.deletePlaylist("MaPlaylist3");
-            // jmusichub.displayElements();
-            // jmusichub.displayPlaylists();
-            // jmusichub.displaySpecificAlbum();
-            // jmusichub.createPlaylistFromExisting();
-            // jmusichub.displayPlaylists();
+            jmusichub.displayPlaylists();
+            jmusichub.addSongToPlaylist();
+            jmusichub.displayPlaylists();
 
             jmusichub.save();
         }

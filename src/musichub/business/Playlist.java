@@ -4,35 +4,41 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-/*
- * Nom de classe : Playlist
+/** Playlist class representing a playlist containing audios
  *
- * Description   :
+ * Version : 1.0
  *
- * Version       : 1.6
+ * Date : 30/02/2001
  *
- * Date          : 26/12/2020
- *
- * Copyright     : Lejeune Gaël
+ * @author Gaël Lejeune
  */
-
- /**
-  * description de la classe.
-  * explication supplémentaire si nécessaire
-  *
-  * @version 1.0
-  *
-  * @see UneAutreClasse
-  * @author Jean Michel D.
-  */
 public class Playlist{
+
+	/**
+     * Name of the playlist
+     */
 	private String name;
+
+	/**
+     * Unique ID identifying the playlist
+     */
 	private UUID id;
+
+	/**
+     * Audio list of the playlist
+     * @see Audio
+     */
 	private LinkedList<Audio> audios = new LinkedList<Audio>();
 
 	/**
-	 *  Description de la methode
-	 */
+     * Playlist constructor
+     *
+     * @param       name Name of the album
+     * @param       id Unique id of the album
+     * @param       audios List of the album audios
+     *
+     * @author      Gaël Lejeune
+     */
 	public Playlist(String name, UUID id, LinkedList<Audio> audios) {
 		this.name = name;
 		this.id = id;
@@ -40,30 +46,38 @@ public class Playlist{
 	}
 
 	/**
-	 *  Description de la methode
-	 */
+     * Accessor of the name
+     * @return      String containing the playlist's name
+     * @author      Gaël Lejeune
+     */
 	public String getName() {
 		return this.name;
 	}
 
 	/**
-	 *  Description de la methode
-	 */
+     * Accessor of the audio list
+     * @return      LinkedList containing the playlist's audio list
+     * @author      Gaël Lejeune
+     */
 	public LinkedList<Audio> getAudios() {
 		return this.audios;
 	}
 
 	/**
-	 *  Description de la methode
-	 */
+     * Accessor of the unique id
+     * @return      UUID containing the playlist's unique id
+     * @author      Gaël Lejeune
+     */
 	public UUID getID()
     {
     	return this.id;
     }
 
 	/**
-	 *  Description de la methode
-	 */
+     * Override of the toString java method
+     * @return      String containing the playlist's informations
+     * @author      Gaël Lejeune
+     */
 	public String toString() {
 		String str;
 		str = "Playlist " + this.name;
@@ -72,4 +86,14 @@ public class Playlist{
 		}
 		return str;
 	}
+
+	/**
+	 * Allow the user to add a given song to the playlist
+	 * @param       audio Audio to add
+	 * @see         Audio
+	 * @author      Gaël Lejeune
+	 */
+	public void addSong(Audio audio) {
+        this.audios.add(audio);
+    }
 }

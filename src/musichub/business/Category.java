@@ -1,27 +1,51 @@
 package business;
 
-/*
- * Nom de classe : Category
+/** Category Enumeration of the different available audio book categories
  *
- * Description   :
+ * Version : 1.0
  *
- * Version       : 1.6
+ * Date : 30/02/2001
  *
- * Date          : 26/12/2020
- *
- * Copyright     : Lejeune Gaël
+ * @author Gaël Lejeune
  */
-
-
 public enum Category
 {
-    JEUNESSE("Jeunesse"), ROMAN("Roman"), THEATRE("Theatre"),
-    DISCOURS("Discours"), DOCUMENTAIRE("Documentaire");
+    /**
+     * "Youth" category
+     */
+    JEUNESSE("Jeunesse"),
 
+    /**
+     * "Novel" category
+     */
+    ROMAN("Roman"),
+
+    /**
+     * "Theatre" category
+     */
+    THEATRE("Theatre"),
+
+    /**
+     * "Speech" category
+     */
+    DISCOURS("Discours"),
+
+    /**
+     * "Documentary" category
+     */
+    DOCUMENTAIRE("Documentaire");
+
+    /**
+     * Category of the enum
+     */
     private String category;
 
     /**
-     *  Description de la methode
+     * Category constructor
+     *
+     * @param       category
+     *
+     * @author      Gaël Lejeune
      */
     private Category(String category)
     {
@@ -29,7 +53,9 @@ public enum Category
     }
 
     /**
-     *  Description de la methode
+     * Override of the toString java method
+     * @return      String containing the category
+     * @author      Gaël Lejeune
      */
     public String toString()
     {

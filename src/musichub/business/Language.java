@@ -1,27 +1,51 @@
 package business;
 
-/*
- * Nom de classe : Language
+/** Language Enumeration of the different available audio book languages
  *
- * Description   :
+ * Version : 1.0
  *
- * Version       : 1.6
+ * Date : 30/02/2001
  *
- * Date          : 26/12/2020
- *
- * Copyright     : Lejeune Gaël
+ * @author Gaël Lejeune
  */
-
-
 public enum Language
 {
-    FRANCAIS("Francais"), ANGLAIS("Anglais"), ITALIEN("Italien"),
-    ESPAGNOL("Espagnol"), ALLEMAND("Allemand");
+    /**
+     * "French" language
+     */
+    FRANCAIS("Francais"),
 
+    /**
+     * "English" language
+     */
+    ANGLAIS("Anglais"),
+
+    /**
+     * "Italian" language
+     */
+    ITALIEN("Italien"),
+
+    /**
+     * "Spanish" language
+     */
+    ESPAGNOL("Espagnol"),
+
+    /**
+     * "German" language
+     */
+    ALLEMAND("Allemand");
+
+    /**
+     * Language of the enum
+     */
     private String language;
 
     /**
-     *  Description de la methode
+     * Language constructor
+     *
+     * @param       language
+     *
+     * @author      Gaël Lejeune
      */
     private Language(String language)
     {
@@ -29,7 +53,9 @@ public enum Language
     }
 
     /**
-     *  Description de la methode
+     * Override of the toString java method
+     * @return      String containing the language
+     * @author      Gaël Lejeune
      */
     public String toString()
     {

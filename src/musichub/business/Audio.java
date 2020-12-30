@@ -2,44 +2,50 @@ package business;
 
 import java.util.UUID;
 
-/*
- * Nom de classe : Audio
- *
- * Description   :
- *
- * Version       : 1.6
- *
- * Date          : 26/12/2020
- *
- * Copyright     : Lejeune Gaël
- */
 
- /**
-  * description de la classe.
-  * explication supplémentaire si nécessaire
+ /** Audio Abstract class representing an audio file
   *
   * @version 1.0
   *
-  * @see UneAutreClasse
   * @author Jean Michel D.
   */
 public abstract class Audio
 {
+
+	/**
+     * Title of the audio file
+     */
 	protected String title;
+
+	/**
+     * Duration of the audio file
+     */
     protected int duration;
+
+	/**
+     * Unique ID representing the audio file
+     */
     protected UUID id;
+
+	/**
+     * Path of the audio file
+     */
 	protected String content;
 
 	/**
-	 *  Description de la methode
-	 */
+     * Accessor of the title
+     * @return      String containing the audio file's title
+     * @author      Gaël Lejeune
+     */
     public String getTitle()
     {
     	return this.title;
     }
 
 	/**
-     *  Description de la methode
+     * Accessor of the duration
+     * @return      Int containing the audio file's duration
+     * @author      Gaël Lejeune
      */
     public int getDuration()
     {
@@ -47,7 +53,9 @@ public abstract class Audio
     }
 
 	/**
-     *  Description de la methode
+     * Accessor of the unique ID
+     * @return      UUID containing the audio file's unique ID
+     * @author      Gaël Lejeune
      */
     public UUID getID()
     {
@@ -55,7 +63,9 @@ public abstract class Audio
     }
 
 	/**
-     *  Description de la methode
+     * Accessor of the content
+     * @return      String containing the path of the audio file
+     * @author      Gaël Lejeune
      */
     public String getContent()
     {
