@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.UUID;
 
-/** jMusicHub Class is the main class of the jMusicHub program.
+/** JMusicHub Class is the main class of the JMusicHub program.
  *
  *
  * Version : 1.0
@@ -15,7 +15,7 @@ import java.util.UUID;
  *
  * @author Gaël Lejeune and Steve Chevreau-Manat
  */
-public class jMusicHub{
+public class JMusicHub{
 
     /**
       * XML editor allowing to read and write XML files
@@ -47,7 +47,7 @@ public class jMusicHub{
      *
      * @author Gaël Lejeune
      */
-    public jMusicHub() {
+    public JMusicHub() {
         this.xmlEditor = new XMLReaderWriter();
         /* Load of all the XML files */
         try {
@@ -333,14 +333,14 @@ public class jMusicHub{
     }
 
     /**
-     * Execution of the jMusicHub program and interaction with the user using a terminal
+     * Execution of the JMusicHub program and interaction with the user using a terminal
      * @param       args Arguments of the function
      * @author Gaël Lejeune and Steve Chevreau-Manat
      */
     public static void main(String[] args) {
-        System.out.println("\n\nWelcome in jMusicHub,");
+        System.out.println("\n\nWelcome in JMusicHub,");
         System.out.println("Reading library...\n\n");
-        jMusicHub jmusichub = new jMusicHub();
+        JMusicHub jmusichub = new JMusicHub();
 
         jmusichub.displayPlaylists();
         jmusichub.addSongToPlaylist();

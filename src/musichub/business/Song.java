@@ -20,7 +20,7 @@ public class Song extends Audio
     /**
      * Artist of the song
      */
-    protected String artist;
+    private String artist;
 
     /**
      * Song constructor
