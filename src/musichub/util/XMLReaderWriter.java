@@ -1,10 +1,8 @@
 package util;
 
 import business.*;
-
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -97,13 +95,9 @@ public class XMLReaderWriter{
 			Element root = document.getDocumentElement();
 
 			elementNodes = root.getChildNodes();
-		}
-		catch (SAXException e)
-		{
+		} catch (SAXException e) {
 			e.printStackTrace();
-		}
-		catch (IOException e)
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return elementNodes;
@@ -125,13 +119,14 @@ public class XMLReaderWriter{
 		String uuid = "";
 		try {
 			uuid = element.getElementsByTagName("UUID").item(0).getTextContent();
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			System.out.println("Empty UUID, will create a new one");
 		}
-		if ((uuid == null)  || (uuid.isEmpty()))
-		id = UUID.randomUUID();
-		else id = UUID.fromString(uuid);
+		if ((uuid == null) || (uuid.isEmpty())) {
+			id = UUID.randomUUID();
+		} else {
+			id = UUID.fromString(uuid);
+		}
 		String content = element.getElementsByTagName("content").item(0).getTextContent();
 		String genre = element.getElementsByTagName("genre").item(0).getTextContent();
 
@@ -155,13 +150,14 @@ public class XMLReaderWriter{
 		String uuid = "";
 		try {
 			uuid = element.getElementsByTagName("UUID").item(0).getTextContent();
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			System.out.println("Empty UUID, will create a new one");
 		}
-		if ((uuid == null)  || (uuid.isEmpty()))
-		id = UUID.randomUUID();
-		else id = UUID.fromString(uuid);
+		if ((uuid == null) || (uuid.isEmpty())) {
+			id = UUID.randomUUID();
+		} else {
+			id = UUID.fromString(uuid);
+		}
 		String content = element.getElementsByTagName("content").item(0).getTextContent();
 		String category = element.getElementsByTagName("category").item(0).getTextContent();
 		String language = element.getElementsByTagName("language").item(0).getTextContent();
@@ -187,15 +183,16 @@ public class XMLReaderWriter{
 			String uuid = null;
 			try {
 				uuid = element.getElementsByTagName("UUID").item(0).getTextContent();
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				System.out.println("Empty UUID, will create a new one");
 			}
-			if ((uuid == null)  || (uuid.isEmpty()))
-			uniqueID = UUID.randomUUID();
-			else uniqueID = UUID.fromString(uuid);
+			if ((uuid == null) || (uuid.isEmpty())) {
+				uniqueID = UUID.randomUUID();
+			} else {
+				uniqueID = UUID.fromString(uuid);
+			}
 			NodeList audios = element.getElementsByTagName("audios").item(0).getChildNodes();
-			for (int i = 0; i<audios.getLength(); i++) {
+			for (int i = 0; i < audios.getLength(); i++) {
 				if (audios.item(i).getNodeType() == Node.ELEMENT_NODE) {
 					Element currentElement = (Element) audios.item(i);
 					if (currentElement.getNodeName().equals("song")) {
@@ -235,15 +232,16 @@ public class XMLReaderWriter{
 			String uuid = null;
 			try {
 				uuid = element.getElementsByTagName("UUID").item(0).getTextContent();
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				System.out.println("Empty UUID, will create a new one");
 			}
-			if ((uuid == null)  || (uuid.isEmpty()))
-			uniqueID = UUID.randomUUID();
-			else uniqueID = UUID.fromString(uuid);
+			if ((uuid == null) || (uuid.isEmpty())) {
+				uniqueID = UUID.randomUUID();
+			} else {
+				uniqueID = UUID.fromString(uuid);
+			}
 			NodeList songs = element.getElementsByTagName("songs").item(0).getChildNodes();
-			for (int i = 0; i<songs.getLength(); i++) {
+			for (int i = 0; i < songs.getLength(); i++) {
 				if (songs.item(i).getNodeType() == Node.ELEMENT_NODE) {
 					Element currentElement = (Element) songs.item(i);
 					songList.add(getSong(currentElement));
@@ -260,13 +258,19 @@ public class XMLReaderWriter{
 	 * Read the playlist XML file and convert it into a list of playlist
 	 * @param       file Path of the file to read
 	 * @return		List of the read playlist
+	 * @exception   MissingFileException Thrown if one of the xml files is missing.
+	 * @see MissingFileException
 	 * @author      Gaël Lejeune
 	 */
-	public LinkedList<Playlist> readPlaylistXML(String file) {
+	public LinkedList<Playlist> readPlaylistXML(String file) throws MissingFileException {
+		File playlistsFile = new File("files/playlists.xml");
+		if(!playlistsFile.exists()) {
+			throw new MissingFileException("Missing XML files,\nPlease check in the \"files\" folder and search for :\n    -playlists.xml\nThe program won't work if the file is missing.");
+		}
 		NodeList list = this.parseXMLFile(file);
 		LinkedList<Playlist> playlistList = new LinkedList<Playlist>();
 
-		for (int i = 0; i<list.getLength(); i++) {
+		for (int i = 0; i < list.getLength(); i++) {
 			if (list.item(i).getNodeType() == Node.ELEMENT_NODE) {
 				Element currentElement = (Element) list.item(i);
 				if (currentElement.getNodeName().equals("playlist")) {
@@ -281,13 +285,19 @@ public class XMLReaderWriter{
 	 * Read the album XML file and convert it into a list of album
 	 * @param       file Path of the file to read
 	 * @return		List of the read album
+	 * @exception   MissingFileException Thrown if one of the xml files is missing.
+	 * @see MissingFileException
 	 * @author      Gaël Lejeune
 	 */
-	public LinkedList<Album> readAlbumXML(String file) {
+	public LinkedList<Album> readAlbumXML(String file) throws MissingFileException {
+		File albumsFile = new File("files/albums.xml");
+		if(!albumsFile.exists()) {
+			throw new MissingFileException("Missing XML files,\nPlease check in the \"files\" folder and search for :\n    -albums.xml\nThe program won't work if the file is missing.");
+		}
 		NodeList list = this.parseXMLFile(file);
 		LinkedList<Album> albumList = new LinkedList<Album>();
 
-		for (int i = 0; i<list.getLength(); i++) {
+		for (int i = 0; i < list.getLength(); i++) {
 			if (list.item(i).getNodeType() == Node.ELEMENT_NODE) {
 				Element currentElement = (Element) list.item(i);
 				if (currentElement.getNodeName().equals("album")) {
@@ -302,14 +312,19 @@ public class XMLReaderWriter{
 	 * Read the element XML file and convert it into a list of element
 	 * @param       file Path of the file to read
 	 * @return		List of the read element
+	 * @exception   MissingFileException Thrown if one of the xml files is missing.
+	 * @see MissingFileException
 	 * @author      Gaël Lejeune
 	 */
-	public LinkedList<Audio> readElementXML(String file) {
+	public LinkedList<Audio> readElementXML(String file) throws MissingFileException {
+		File elementsFile = new File("files/elements.xml");
+		if(!elementsFile.exists()) {
+			throw new MissingFileException("Missing XML files,\nPlease check in the \"files\" folder and search for :\n    -elements.xml\nThe program won't work if the file is missing.");
+		}
 		NodeList list = this.parseXMLFile(file);
-		// System.out.println(list.getLength());
 		LinkedList<Audio> elementList = new LinkedList<Audio>();
 
-		for (int i = 0; i<list.getLength(); i++) {
+		for (int i = 0; i < list.getLength(); i++) {
 			if (list.item(i).getNodeType() == Node.ELEMENT_NODE) {
 				Element currentElement = (Element) list.item(i);
 				if (currentElement.getNodeName().equals("song")) {
@@ -427,7 +442,7 @@ public class XMLReaderWriter{
 		Element root = document.createElement("albums");
 		document.appendChild(root);
 
-		for (int i = 0; i < albumList.size() ; i++) {
+		for (int i = 0; i < albumList.size(); i++) {
 			Album album = albumList.get(i);
 			// System.out.println(album);
 			Element albumElement = document.createElement("album");
@@ -508,7 +523,7 @@ public class XMLReaderWriter{
 		Element root = document.createElement("playlists");
 		document.appendChild(root);
 
-		for (int i = 0; i < playlistList.size() ; i++) {
+		for (int i = 0; i < playlistList.size(); i++) {
 			Playlist playlist = playlistList.get(i);
 			// System.out.println(album);
 			Element playlistElement = document.createElement("playlist");

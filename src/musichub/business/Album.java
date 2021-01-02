@@ -1,7 +1,6 @@
 package business;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
 
 
@@ -130,7 +129,7 @@ public class Album {
     public String toString() {
         String str;
         str = "Album " + this.title + "\nBy " + this.artist + "\nDuration " + this.duration + "\nReleased " + this.releaseDate + "\nSongs : ";
-        for (int i=0; i < this.songs.size(); i++) {
+        for (int i = 0; i < this.songs.size(); i++) {
             str += "\n" + this.songs.get(i);
         }
         return str;

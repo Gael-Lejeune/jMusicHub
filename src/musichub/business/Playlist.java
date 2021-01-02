@@ -1,7 +1,6 @@
 package business;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
 
 /** Playlist class representing a playlist containing audios
@@ -81,8 +80,8 @@ public class Playlist{
 	public String toString() {
 		String str;
 		str = "Playlist " + this.name;
-		for (int i=0; i < this.audios.size(); i++) {
-			str += "\n" + audios.get(i);
+		for (int i = 0; i < this.audios.size(); i++) {
+			str += "\n" + this.audios.get(i);
 		}
 		return str;
 	}
