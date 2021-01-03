@@ -141,7 +141,7 @@ public class JMusicHub{
     public void displayPlaylists() {
         System.out.println("\nExisting playlists :\n");
         for (int i = 0; i < this.playlists.size(); i++) {
-            System.out.println("\n"+this.playlists.get(i) + "\n");
+            System.out.println(this.playlists.get(i) + "\n");
         }
     }
 
@@ -157,12 +157,12 @@ public class JMusicHub{
         String name = scanner.nextLine();
         for (int i = 0; i < this.playlists.size(); i++) {
             if (this.playlists.get(i).getName().equals(name)) {
-                System.out.println("\n"+this.playlists.get(i) + "\n");
+                System.out.println(this.playlists.get(i) + "\n");
                 found = true;
             }
         }
         if (!found) {
-            System.out.println("\nNo playlist found.\n");
+            System.out.println("No playlist found.\n");
         }
     }
 
@@ -172,9 +172,9 @@ public class JMusicHub{
      * @author      Gaël Lejeune
      */
     public void displayAlbums() {
-        System.out.println("\n\n\nExisting albums :\n");
+        System.out.println("\nExisting albums :\n");
         for (int i = 0; i < this.albums.size(); i++) {
-            System.out.println("\n"+this.albums.get(i) + "\n");
+            System.out.println(this.albums.get(i) + "\n");
         }
     }
 
@@ -190,12 +190,12 @@ public class JMusicHub{
         String title = scanner.nextLine();  /* Album title entered by the user */
         for (int i = 0; i < this.albums.size(); i++) {
             if (this.albums.get(i).getTitle().equals(title)) {
-                System.out.println("\n"+this.albums.get(i) + "\n");
+                System.out.println(this.albums.get(i) + "\n");
                 found = true;
             }
         }
         if (!found) {
-            System.out.println("\nNo album found.\n");
+            System.out.println("No album found.\n");
         }
     }
 
@@ -206,7 +206,7 @@ public class JMusicHub{
      * @author      Gaël Lejeune
      */
     public void displayElements() {
-        System.out.println("\n\n\nExisting elements :\n");
+        System.out.println("\nExisting elements :\n");
         for (int i = 0; i < this.elements.size(); i++) {
             System.out.println(this.elements.get(i) + "\n");
         }
@@ -229,7 +229,7 @@ public class JMusicHub{
             System.out.println("\nAuthor : " + author+"\n");
             for (int i = 0; i < audioBooks.size(); i++) {
                 if (audioBooks.get(i).getAuthor().equals(author)) {
-                    System.out.println("\n"+audioBooks.get(i) + "\n");
+                    System.out.println(audioBooks.get(i) + "\n");
                     audioBooks.remove(i);
                     i--;
                 }
@@ -282,7 +282,7 @@ public class JMusicHub{
         String answer = scan.nextLine();
         if(answer.equals("y")) {
             this.elements.add(songToAdd);
-            System.out.println("\nSong registered.");
+            System.out.println("\nSong registered.\n");
         }
     }
 
