@@ -1,10 +1,11 @@
 # jMusicHub
 ## Object Oriented Programming Project in Java, 3rd year, ESIEA
-### Project produced by LEJEUNE Gaël and CHEVREAU-MANAT
+### Project produced by LEJEUNE Gaël and CHAUVREAU-MANAT
 Program used to manage a music library in a terminal.
 
 ### Description
 The program allows you to manage a music library containing audiobooks, music tracks, playlists, and albums.
+The program is build to work with real files. You can create your own files in "files/music" to try it out. The extension doesn't matter and the program works fine with ".txt" files.
 
 ### Available commands
 #### c :
