@@ -98,16 +98,9 @@ public class jMusicHub{
     public void displaySongByGenre() {
       LinkedList<Audio> song = new LinkedList<Audio>();
       int node[], mem;
-      boolean isASong = true;
       for(int i=0;i<elements.size()-1;i++)
       {
-        try {
-            this.elements.get(i).getGenre();
-            isASong = true;
-        } catch(IOException e) {
-            isASong = false
-        }
-        if(isASong)
+        if(elements.get(i) instanceof Song)
         {
             song.add(this.elements.get(i));
         }
@@ -170,16 +163,9 @@ public class jMusicHub{
     public void displayAudioBooks() {
       LinkedList<Audio> audioBook = new LinkedList<Audio>();
       int node[], mem;
-      boolean isAnAudioBook = true;
       for(int i=0;i<elements.size()-1;i++)
       {
-        try {
-            this.elements.get(i).getCategory();
-            isAnAudioBook = true;
-        } catch(IOException e) {
-            isAnAudioBook = false
-        }
-        if(isAnAudioBook)
+        if(elements.get(i) instanceof AudioBook)
         {
             audioBook.add(this.elements.get(i));
         }
