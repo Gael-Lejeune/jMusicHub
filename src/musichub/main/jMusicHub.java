@@ -59,8 +59,8 @@ public class jMusicHub{
         {
             for(int i=0;i<albums.size()-2;i++)
             {
-              date = albums[i].getRealeaseDate.split("/");
-              date2 = albums[i+1].getReleaseDate.split("/");
+              date = albums.get(i).getRealeaseDate.split("/");
+              date2 = albums.get(i).getReleaseDate.split("/");
               if(Integer.parseInt(date[2])>Integer.parseInt(date2[2]))
               {
                 mem = node[i];
