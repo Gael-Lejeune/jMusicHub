@@ -10,8 +10,7 @@ import java.util.UUID;
   * @see Audio
   * @author Gaël Lejeune
   */
-public class AudioBook extends Audio
-{
+public class AudioBook extends Audio {
 	/**
      * Author of the book
      */
@@ -42,8 +41,7 @@ public class AudioBook extends Audio
      *
      * @author      Gaël Lejeune
      */
-    public AudioBook(String title, String author, int duration, UUID id, String content, Language language, Category category)
-    {
+    public AudioBook(String title, String author, int duration, UUID id, String content, Language language, Category category) {
     	this.title = title;
     	this.author = author;
     	this.duration = duration;
@@ -58,8 +56,7 @@ public class AudioBook extends Audio
      * @return      String containing the audio book's author
      * @author      Gaël Lejeune
      */
-    public String getAuthor()
-    {
+    public String getAuthor() {
     	return this.author;
     }
 
@@ -69,8 +66,7 @@ public class AudioBook extends Audio
 	 * @see			Language
      * @author      Gaël Lejeune
      */
-    public Language getLanguage()
-    {
+    public Language getLanguage() {
     	return this.language;
     }
 
@@ -80,8 +76,7 @@ public class AudioBook extends Audio
 	 * @see			Category
      * @author      Gaël Lejeune
      */
-    public Category getCategory()
-    {
+    public Category getCategory() {
     	return this.category;
     }
 

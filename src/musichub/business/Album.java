@@ -116,8 +116,7 @@ public class Album implements AudioList {
      * @return      UUID containing the album's unique id
      * @author      Gaël Lejeune
      */
-    public UUID getID()
-    {
+    public UUID getID() {
         return this.id;
     }
 

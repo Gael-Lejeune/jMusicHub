@@ -9,8 +9,7 @@ import java.util.UUID;
   *
   * @author Jean Michel D.
   */
-public abstract class Audio
-{
+public abstract class Audio {
 
 	/**
      * Title of the audio file
@@ -37,8 +36,7 @@ public abstract class Audio
      * @return      String containing the audio file's title
      * @author      Gaël Lejeune
      */
-    public String getTitle()
-    {
+    public String getTitle() {
     	return this.title;
     }
 
@@ -47,8 +45,7 @@ public abstract class Audio
      * @return      Int containing the audio file's duration
      * @author      Gaël Lejeune
      */
-    public int getDuration()
-    {
+    public int getDuration() {
     	return this.duration;
     }
 
@@ -57,8 +54,7 @@ public abstract class Audio
      * @return      UUID containing the audio file's unique ID
      * @author      Gaël Lejeune
      */
-    public UUID getID()
-    {
+    public UUID getID() {
     	return this.id;
     }
 
@@ -67,8 +63,7 @@ public abstract class Audio
      * @return      String containing the path of the audio file
      * @author      Gaël Lejeune
      */
-    public String getContent()
-    {
+    public String getContent() {
     	return this.content;
     }
 

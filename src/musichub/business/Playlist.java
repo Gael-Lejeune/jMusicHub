@@ -67,8 +67,7 @@ public class Playlist implements AudioList {
      * @return      UUID containing the playlist's unique id
      * @author      Gaël Lejeune
      */
-	public UUID getID()
-    {
+	public UUID getID() {
     	return this.id;
     }
 

@@ -19,8 +19,7 @@ public class MissingFileException extends Exception {
      *
      * @author Gaël Lejeune
      */
-    public MissingFileException(String message)
-    {
+    public MissingFileException(String message) {
         System.out.println(message);
     }
 }

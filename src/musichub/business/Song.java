@@ -9,8 +9,7 @@ import java.util.UUID;
  * @see Audio
  * @author Gaël Lejeune
  */
-public class Song extends Audio
-{
+public class Song extends Audio {
     /**
      * Genre of the song
      * @see Genre
@@ -34,8 +33,7 @@ public class Song extends Audio
      *
      * @author      Gaël Lejeune
      */
-    public Song(String title, String artist, int duration, UUID id, String content, Genre genre)
-    {
+    public Song(String title, String artist, int duration, UUID id, String content, Genre genre) {
     	this.title = title;
     	this.artist = artist;
     	this.duration = duration;
@@ -50,8 +48,7 @@ public class Song extends Audio
      * @see         Genre
      * @author      Gaël Lejeune
      */
-    public Genre getGenre()
-    {
+    public Genre getGenre() {
     	return this.genre;
     }
 
@@ -60,8 +57,7 @@ public class Song extends Audio
      * @return      String containing the song's artist
      * @author      Gaël Lejeune
      */
-    public String getArtist()
-    {
+    public String getArtist() {
     	return this.artist;
     }
 

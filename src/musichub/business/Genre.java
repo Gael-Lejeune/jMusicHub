@@ -8,8 +8,7 @@ package business;
  *
  * @author Gaël Lejeune
  */
-public enum Genre
-{
+public enum Genre {
     /**
      * "Jazz" genre
      */

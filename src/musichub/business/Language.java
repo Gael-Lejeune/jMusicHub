@@ -8,8 +8,7 @@ package business;
  *
  * @author Gaël Lejeune
  */
-public enum Language
-{
+public enum Language {
     /**
      * "French" language
      */
@@ -47,8 +46,7 @@ public enum Language
      *
      * @author      Gaël Lejeune
      */
-    private Language(String language)
-    {
+    private Language(String language) {
         this.language = language;
     }
 
@@ -57,8 +55,7 @@ public enum Language
      * @return      String containing the language
      * @author      Gaël Lejeune
      */
-    public String toString()
-    {
+    public String toString() {
         return this.language;
     }
 }

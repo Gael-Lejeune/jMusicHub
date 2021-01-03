@@ -8,8 +8,7 @@ package business;
  *
  * @author Gaël Lejeune
  */
-public enum Category
-{
+public enum Category {
     /**
      * "Youth" category
      */
@@ -47,8 +46,7 @@ public enum Category
      *
      * @author      Gaël Lejeune
      */
-    private Category(String category)
-    {
+    private Category(String category) {
         this.category = category;
     }
 
@@ -57,8 +55,7 @@ public enum Category
      * @return      String containing the category
      * @author      Gaël Lejeune
      */
-    public String toString()
-    {
+    public String toString() {
         return this.category;
     }
 }
