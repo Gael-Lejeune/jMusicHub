@@ -542,7 +542,7 @@ public class JMusicHub{
 
     /**
      * Displays information and help about various commands
-     * @author Steve Chevreau-Manat
+     * @author Steve Chauvreau-Manat
      */
     public void help() {
         System.out.println("- c : add a new song");
@@ -568,7 +568,7 @@ public class JMusicHub{
     /**
      * Execution of the JMusicHub program and interaction with the user using a terminal
      * @param       args Arguments of the function
-     * @author Gaël Lejeune and Steve Chevreau-Manat
+     * @author Gaël Lejeune and Steve Chauvreau-Manat
      */
     public static void main(String[] args) {
         System.out.println("\n\nWelcome in JMusicHub,");
