@@ -19,7 +19,7 @@ import java.util.regex.Matcher;
  *
  * Date : 30/02/2001
  *
- * @author Gaël Lejeune and Steve Chevreau-Manat
+ * @author Gaël Lejeune and Steve Chauvreau-Manat
  */
 public class JMusicHub{
 
@@ -69,7 +69,7 @@ public class JMusicHub{
      * Display the album list ordered by release date
      * @exception   Exception Thrown the given String cannot be converted to date.
      * @see         Album
-     * @author      Gaël Lejeune and Steve Chevreau-Manat
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
      */
     public void displayAlbumByReleaseDate() throws Exception {
         Date datePrec = new SimpleDateFormat("dd/MM/yyyy").parse("0/00/0000");
@@ -77,7 +77,7 @@ public class JMusicHub{
         Date dateTemp = new SimpleDateFormat("dd/MM/yyyy").parse(this.albums.get(0).getReleaseDate());
         int albumIndex = 0;
         boolean found = true;
-        System.out.println("Albums ordered by release date :");
+        System.out.println("\nAlbums ordered by release date :");
         while (found) {
             found = false;
             date = new SimpleDateFormat("dd/MM/yyyy").parse("31/12/3000");
@@ -91,7 +91,7 @@ public class JMusicHub{
             }
             datePrec = date;
             if (found == true) {
-                System.out.println(albums.get(albumIndex) + "\n");
+                System.out.println("\n"+albums.get(albumIndex) + "\n");
             }
         }
     }
@@ -100,11 +100,11 @@ public class JMusicHub{
      * Display the song list of an asked album, ordered by genre
      * @see         Album
      * @see         Song
-     * @author      Gaël Lejeune and Steve Chevreau-Manat
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
      */
     public void displaySongByGenre() {
         Scanner scanner = new Scanner (System.in);
-        System.out.println("Name of the album to display :");
+        System.out.println("\nName of the album to display :");
         boolean found = false;
         Album album = this.albums.get(0);
         String title = scanner.nextLine();  /* Album title entered by the user */
@@ -121,14 +121,14 @@ public class JMusicHub{
                 System.out.println("\nSongs with genre : " + genre);
                 for (int i = 0; i < songs.size(); i++) {
                     if (songs.get(i).getGenre().equals(genre)) {
-                        System.out.println(songs.get(i) + "\n");
+                        System.out.println("\n"+songs.get(i) + "\n");
                         songs.remove(i);
                         i--;
                     }
                 }
             }
         } else {
-            System.out.println("No album found.");
+            System.out.println("\nNo album found.\n");
         }
     }
 
@@ -139,9 +139,9 @@ public class JMusicHub{
      * @author      Gaël Lejeune
      */
     public void displayPlaylists() {
-        System.out.println("Existing playlists :\n");
+        System.out.println("\nExisting playlists :\n");
         for (int i = 0; i < this.playlists.size(); i++) {
-            System.out.println(this.playlists.get(i) + "\n");
+            System.out.println("\n"+this.playlists.get(i) + "\n");
         }
     }
 
@@ -152,17 +152,17 @@ public class JMusicHub{
      */
     public void displaySpecificPlaylist() {
         Scanner scanner = new Scanner (System.in);
-        System.out.println("Name of the playlist :");
+        System.out.println("\nName of the playlist :\n");
         boolean found = false;
         String name = scanner.nextLine();
         for (int i = 0; i < this.playlists.size(); i++) {
             if (this.playlists.get(i).getName().equals(name)) {
-                System.out.println(this.playlists.get(i) + "\n");
+                System.out.println("\n"+this.playlists.get(i) + "\n");
                 found = true;
             }
         }
         if (!found) {
-            System.out.println("No playlist found.");
+            System.out.println("\nNo playlist found.\n");
         }
     }
 
@@ -174,7 +174,7 @@ public class JMusicHub{
     public void displayAlbums() {
         System.out.println("\n\n\nExisting albums :\n");
         for (int i = 0; i < this.albums.size(); i++) {
-            System.out.println(this.albums.get(i) + "\n");
+            System.out.println("\n"+this.albums.get(i) + "\n");
         }
     }
 
@@ -185,17 +185,17 @@ public class JMusicHub{
      */
     public void displaySpecificAlbum() {
         Scanner scanner = new Scanner (System.in);
-        System.out.println("Name of the album to display :");
+        System.out.println("\nName of the album to display :\n");
         boolean found = false;
         String title = scanner.nextLine();  /* Album title entered by the user */
         for (int i = 0; i < this.albums.size(); i++) {
             if (this.albums.get(i).getTitle().equals(title)) {
-                System.out.println(this.albums.get(i) + "\n");
+                System.out.println("\n"+this.albums.get(i) + "\n");
                 found = true;
             }
         }
         if (!found) {
-            System.out.println("No album found.");
+            System.out.println("\nNo album found.\n");
         }
     }
 
@@ -215,7 +215,7 @@ public class JMusicHub{
     /**
      * Display all audio books ordered by author
      * @see         AudioBook
-     * @author      Gaël Lejeune and Steve Chevreau-Manat
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
      */
     public void displayAudioBooksByAuthor() {
         LinkedList<AudioBook> audioBooks = new LinkedList<AudioBook>();
@@ -226,10 +226,10 @@ public class JMusicHub{
         }
         while(audioBooks.size() > 0) {
             String author = audioBooks.get(0).getAuthor();
-            System.out.println("Author : " + author);
+            System.out.println("\nAuthor : " + author+"\n");
             for (int i = 0; i < audioBooks.size(); i++) {
                 if (audioBooks.get(i).getAuthor().equals(author)) {
-                    System.out.println(audioBooks.get(i) + "\n");
+                    System.out.println("\n"+audioBooks.get(i) + "\n");
                     audioBooks.remove(i);
                     i--;
                 }
@@ -240,145 +240,145 @@ public class JMusicHub{
     /**
      * Asks the information about a song to add it to the audio elements
      * @see         Song
-     * @author      Gaël Lejeune and Steve Chevreau-Manat
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
      */
     public void addSong() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Title :");
+        System.out.println("\nTitle :");
         String title = scan.nextLine();
 
-        System.out.println("Artist :");
+        System.out.println("\nArtist :");
         String artist = scan.nextLine();
 
-        System.out.println("Duration (in seconds):");
+        System.out.println("\nDuration (in seconds):");
         String duration = scan.nextLine();
         Pattern pattern = Pattern.compile(".*[^0-9].*");
         while (pattern.matcher(duration).matches()) {
-            System.out.println("Please enter a valid duration :");
+            System.out.println("\nPlease enter a valid duration :");
             duration = scan.nextLine();
         }
         int durationInt = Integer.parseInt(duration);
 
         UUID uuid = UUID.randomUUID();
 
-        System.out.println("Path :");
+        System.out.println("\nPath :");
         String content = scan.nextLine();
         File file = new File(content);
         while(!file.exists()) {
-            System.out.println("No such file path, try again.\nPath : ");
+            System.out.println("\nNo such file path, try again.\nPath : ");
             content = scan.nextLine();
             file = new File(content);
         }
-        System.out.println("Genre : (JAZZ/CLASSIQUE/HipHop/ROCK/POP/RAP/METAL)");
+        System.out.println("\nGenre : (JAZZ/CLASSIQUE/HipHop/ROCK/POP/RAP/METAL)");
         String genre = scan.nextLine().toUpperCase();
         while(!genre.equals("JAZZ") && !genre.equals("CLASSIQUE") && !genre.equals("HIPHOP") && !genre.equals("ROCK") && !genre.equals("POP") && !genre.equals("RAP") && !genre.equals("METAL")) {
-            System.out.println("Wrong genre, try again.\nGenre : ");
+            System.out.println("\nWrong genre, try again.\nGenre : ");
             genre = scan.nextLine();
             file = new File(content);
         }
         Genre musicGenre = Genre.valueOf(genre);
         Song songToAdd = new Song(title, artist, durationInt, uuid, content, musicGenre);
-        System.out.println("Press \"y\" to add the following song, press anything else to abort : \n" + songToAdd);
+        System.out.println("\nPress \"y\" to add the following song, press anything else to abort : \n" + songToAdd);
         String answer = scan.nextLine();
         if(answer.equals("y")) {
             this.elements.add(songToAdd);
-            System.out.println("Song registered.");
+            System.out.println("\nSong registered.");
         }
     }
 
     /**
      * Asks the information about an audio book to add it to the audio elements
      * @see         AudioBook
-     * @author      Gaël Lejeune and Steve Chevreau-Manat
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
      */
     public void addAudioBook() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Title :");
+        System.out.println("\nTitle :");
         String title = scan.nextLine();
 
-        System.out.println("Author :");
+        System.out.println("\nAuthor :");
         String author = scan.nextLine();
 
-        System.out.println("Duration (in seconds):");
+        System.out.println("\nDuration (in seconds):");
         String duration = scan.nextLine();
         Pattern pattern = Pattern.compile(".*[^0-9].*");
         while (pattern.matcher(duration).matches()) {
-            System.out.println("Please enter a valid duration :");
+            System.out.println("\nPlease enter a valid duration :");
             duration = scan.nextLine();
         }
         int durationInt = Integer.parseInt(duration);
 
         UUID uuid = UUID.randomUUID();
 
-        System.out.println("Path :");
+        System.out.println("\nPath :");
         String content = scan.nextLine();
         File file = new File(content);
         while(!file.exists()) {
-            System.out.println("No such file path, try again.\nPath : ");
+            System.out.println("\nNo such file path, try again.\nPath : ");
             content = scan.nextLine();
             file = new File(content);
         }
 
-        System.out.println("Language : (FRANCAIS/ANGLAIS/ITALIEN/ESPAGNOL/ALLEMAND)");
+        System.out.println("\nLanguage : (FRANCAIS/ANGLAIS/ITALIEN/ESPAGNOL/ALLEMAND)");
         String language = scan.nextLine().toUpperCase();
         while(!language.equals("FRANCAIS") && !language.equals("ANGLAIS") && !language.equals("ITALIEN") && !language.equals("ESPAGNOL") && !language.equals("ALLEMAND")) {
-            System.out.println("Wrong language, try again.\nLanguage : ");
+            System.out.println("\nWrong language, try again.\nLanguage : ");
             language = scan.nextLine();
             file = new File(content);
         }
         Language audioBookLanguage = Language.valueOf(language);
 
-        System.out.println("Category : (JEUNESSE/ROMAN/THEATRE/DISCOURS/DOCUMENTAIRE)");
+        System.out.println("\nCategory : (JEUNESSE/ROMAN/THEATRE/DISCOURS/DOCUMENTAIRE)");
         String category = scan.nextLine().toUpperCase();
         while(!category.equals("JEUNESSE") && !category.equals("ROMAN") && !category.equals("THEATRE") && !category.equals("DISCOURS") && !category.equals("DOCUMENTAIRE")) {
-            System.out.println("Wrong category, try again.\nCategory : ");
+            System.out.println("\nWrong category, try again.\nCategory : ");
             category = scan.nextLine();
             file = new File(content);
         }
         Category audioBookCategory = Category.valueOf(category);
 
         AudioBook audioBookToAdd = new AudioBook(title, author, durationInt, uuid, content, audioBookLanguage, audioBookCategory);
-        System.out.println("Press \"y\" to add the following audio book, press anything else to abort : \n" + audioBookToAdd);
+        System.out.println("\nPress \"y\" to add the following audio book, press anything else to abort : \n" + audioBookToAdd);
         String answer = scan.nextLine();
         if(answer.equals("y")) {
-            System.out.println("Audio book registered.");
+            System.out.println("\nAudio book registered.");
         }
     }
 
     /**
      * Asks the information about an album to add it to the audio elements
      * @see         Album
-     * @author      Gaël Lejeune and Steve Chevreau-Manat
+     * @author      Gaël Lejeune and Steve Chauvreau-Manat
      */
     public void addAlbum() {
         Scanner scan = new Scanner(System.in);
         LinkedList<Song> songs = new LinkedList<Song>();
-        System.out.println("Adding an album :\nTitle :");
+        System.out.println("\nAdding an album :\nTitle :");
         String title = scan.nextLine();
 
-        System.out.println("Artist :");
+        System.out.println("\nArtist :");
         String artist = scan.nextLine();
 
-        System.out.println("Duration (in seconds):");
+        System.out.println("\nDuration (in seconds):");
         String duration = scan.nextLine();
         Pattern durationPattern = Pattern.compile(".*[^0-9].*");
         while (durationPattern.matcher(duration).matches()) {
-            System.out.println("Please enter a valid duration :");
+            System.out.println("\nPlease enter a valid duration :");
             duration = scan.nextLine();
         }
         int durationInt = Integer.parseInt(duration);
 
         UUID uuid = UUID.randomUUID();
 
-        System.out.println("Date (DD/MM/YYYY):");
+        System.out.println("\nDate (DD/MM/YYYY):");
         String date = scan.nextLine();
         Pattern datePattern = Pattern.compile("([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}");
         while (!datePattern.matcher(date).matches()) {
-            System.out.println("Please enter a valid date :");
+            System.out.println("\nPlease enter a valid date :");
             date = scan.nextLine();
         }
 
-        System.out.println("How many music is there in this album :");
+        System.out.println("\nHow many music is there in this album :");
         int numberMusic = Integer.parseInt(scan.nextLine());
         for(int i=0; i < numberMusic; i++) {
             this.addSong();
@@ -394,7 +394,7 @@ public class JMusicHub{
      */
     public void addSongToAlbum() {
         Scanner scanner = new Scanner (System.in);
-        System.out.println("Enter the name of an album :");
+        System.out.println("\nEnter the name of an album :");
         boolean found = false;
         String title = scanner.nextLine();
         int albumIndex = 0;
@@ -405,7 +405,7 @@ public class JMusicHub{
             }
         }
         if (found) {
-            System.out.println("Enter the name of the songs you wish to add or press enter to finish : ");
+            System.out.println("\nEnter the name of the songs you wish to add or press enter to finish : ");
             String songname = "1";
             while (!songname.equals("")) {
                 songname = scanner.nextLine();
@@ -414,17 +414,17 @@ public class JMusicHub{
                     for (int i = 0; i < this.elements.size(); i++) {
                         if (this.elements.get(i).getTitle().equals(songname)) {
                             this.albums.get(albumIndex).addAudio(this.elements.get(i));
-                            System.out.println("Added song : " + this.elements.get(i));
+                            System.out.println("\nAdded song : " + this.elements.get(i));
                             songFound = true;
                         }
                     }
                     if (!songFound) {
-                        System.out.println("No song found.");
+                        System.out.println("\nNo song found.");
                     }
                 }
             }
         } else {
-            System.out.println("No album found.");
+            System.out.println("\nNo album found.");
         }
     }
 
@@ -436,7 +436,7 @@ public class JMusicHub{
      */
     public void addSongToPlaylist() {
         Scanner scanner = new Scanner (System.in);
-        System.out.println("Enter the name of a playlist :");
+        System.out.println("\nEnter the name of a playlist :");
         boolean found = false;
         String name = scanner.nextLine();
         int playlistIndex = 0;
@@ -447,7 +447,7 @@ public class JMusicHub{
             }
         }
         if (found) {
-            System.out.println("Enter the name of the songs you wish to add or press enter to finish : ");
+            System.out.println("\nEnter the name of the songs you wish to add or press enter to finish : ");
             String songname = "1";
             while (!songname.equals("")) {
                 songname = scanner.nextLine();
@@ -455,16 +455,16 @@ public class JMusicHub{
                 for (int i = 0; i < this.elements.size(); i++) {
                     if (this.elements.get(i).getTitle().equals(songname)) {
                         this.playlists.get(playlistIndex).addAudio(this.elements.get(i));
-                        System.out.println("Added song : " + this.elements.get(i));
+                        System.out.println("\nAdded song : " + this.elements.get(i));
                         songFound = true;
                     }
                 }
                 if (!songFound) {
-                    System.out.println("No song found.");
+                    System.out.println("\nNo song found.");
                 }
             }
         } else {
-            System.out.println("No playlist found.");
+            System.out.println("\nNo playlist found.");
         }
     }
 
@@ -476,14 +476,14 @@ public class JMusicHub{
     public void createPlaylistFromExisting() {
         Scanner scanner = new Scanner (System.in);
 
-        System.out.println("Name of your new playlist :");
+        System.out.println("\nName of your new playlist :");
         String name = scanner.nextLine();
 
-        System.out.println("Generating UUID");
+        System.out.println("\nGenerating UUID");
         UUID uuid = UUID.randomUUID();
 
         LinkedList<Audio> audios = new LinkedList<Audio>();
-        System.out.println("Enter the name of the songs you wish to add or press enter to finish : ");
+        System.out.println("\nEnter the name of the songs you wish to add or press enter to finish : ");
         String songname = "1";
         while (!songname.equals("")) {
             songname = scanner.nextLine();
@@ -491,20 +491,20 @@ public class JMusicHub{
             for (int i = 0; i < this.elements.size(); i++) {
                 if (this.elements.get(i).getTitle().equals(songname)) {
                     audios.add(this.elements.get(i));
-                    System.out.println("Added song : " + this.elements.get(i));
+                    System.out.println("\nAdded song : " + this.elements.get(i));
                     found = true;
                 }
             }
             if (!found) {
-                System.out.println("No song found.");
+                System.out.println("\nNo song found.");
             }
         }
         if (audios.size() == 0) {
-            System.out.println("Empty playlist, abort creation.");
+            System.out.println("\nEmpty playlist, abort creation.");
             return;
         }
         this.playlists.add(new Playlist(name, uuid, audios));
-        System.out.println("Playlist created");
+        System.out.println("\nPlaylist created");
     }
 
     /**
@@ -514,17 +514,17 @@ public class JMusicHub{
      */
     public void deletePlaylist() {
         Scanner scanner = new Scanner (System.in);
-        System.out.println("Name of the playlist to delete :");
+        System.out.println("\nName of the playlist to delete :");
         String name = scanner.nextLine();
         boolean found = false;
         for (int i = 0; i < this.playlists.size(); i++) {
             if (this.playlists.get(i).getName().equals(name)) {
                 this.playlists.remove(i);
                 found = true;
-                System.out.println("Successfully removed");
+                System.out.println("\nSuccessfully removed");
             }
             if (!found) {
-                System.out.println("No playlist found");
+                System.out.println("\nNo playlist found");
             }
         }
     }
@@ -632,14 +632,14 @@ public class JMusicHub{
                     jMusicHub.help();
                     break;
                 case "q":
-                    System.out.println("All your unsaved changes will be lost, continue ?(Press \"y\" to quit or anything else to abort.)");
+                    System.out.println("\n\nAll your unsaved changes will be lost, continue ?(Press \"y\" to quit or anything else to abort.)");
                     String confirm = scanner.nextLine();
                     if (confirm.equals("y")) {
-                        System.out.println("Thank you to trust jMusicHub to manage your audio files :)");
+                        System.out.println("\n\nThank you to trust jMusicHub to manage your audio files :)");
                         return;
                     }
                 default:
-                    System.out.println("Wrong command, press \"h\" for help.");
+                    System.out.println("\nWrong command, press \"h\" for help.");
                     break;
             }
         }
