@@ -7,20 +7,20 @@ import java.util.Scanner;
 import java.util.UUID;
 
 /** JMusicHub Class is the main class of the JMusicHub program.
- *
- *
- * Version : 1.0
- *
- * Date : 30/02/2001
- *
- * @author Gaël Lejeune and Steve Chevreau-Manat
- */
+*
+*
+* Version : 1.0
+*
+* Date : 30/02/2001
+*
+* @author Gaël Lejeune and Steve Chevreau-Manat
+*/
 public class JMusicHub{
 
     /**
-      * XML editor allowing to read and write XML files
-      * @see XMLReaderWriter
-      */
+     * XML editor allowing to read and write XML files
+     * @see XMLReaderWriter
+     */
     private XMLReaderWriter xmlEditor;
 
     /**
@@ -64,90 +64,71 @@ public class JMusicHub{
      */
     public void displayAlbumByReleaseDate()
     {
-        String date[3];
-        String date2[3];
+        String date[];
+        String date2[];
         int node[], mem;
-        for(int i=0;i<albums.size()-1;j++)
-        {
+        for(int i=0; i<albums.size()-1; i++) {
             node[i]=i;
         }
-        for(int j=0;j<albums.size()-1;j++)
-        {
-            for(int i=0;i<albums.size()-2;i++)
-            {
-              date = albums.get(i).getRealeaseDate.split("/");
-              date2 = albums.get(i).getReleaseDate.split("/");
-              if(Integer.parseInt(date[2])>Integer.parseInt(date2[2]))
-              {
-                mem = node[i];
-                node[i] = node[i+1];
-                node[i+1] = mem;
-              }
-              else if(Integer.parseInt(date[2])==Integer.parseInt(date2[2]))
-              {
-                if(Integer.parseInt(date[1])>Integer.parseInt(date2[1]))
-                {
-                  mem = node[i];
-                  node[i] = node[i+1];
-                  node[i+1] = mem;
-                }
-                else if(Integer.parseInt(date[1])==Integer.parseInt(date2[1]))
-                {
-                  if(Integer.parseInt(date[0])>Integer.parseInt(date2[0]))
-                  {
+        for (int j=0;j<albums.size()-1;j++) {
+            for(int i=0;i<albums.size()-2;i++) {
+                date = albums.get(i).getReleaseDate().split("/");
+                date2 = albums.get(i).getReleaseDate().split("/");
+                if(Integer.parseInt(date[2])>Integer.parseInt(date2[2])) {
                     mem = node[i];
                     node[i] = node[i+1];
                     node[i+1] = mem;
-                  }
+                } else if (Integer.parseInt(date[2])==Integer.parseInt(date2[2])) {
+                    if(Integer.parseInt(date[1])>Integer.parseInt(date2[1])) {
+                        mem = node[i];
+                        node[i] = node[i+1];
+                        node[i+1] = mem;
+                    }
+                    else if(Integer.parseInt(date[1])==Integer.parseInt(date2[1]))
+                    {
+                        if(Integer.parseInt(date[0])>Integer.parseInt(date2[0]))
+                        {
+                            mem = node[i];
+                            node[i] = node[i+1];
+                            node[i+1] = mem;
+                        }
+                    }
                 }
-              }
             }
-            for(int i=0;i<albums.size()-1;i++)
-            {
-                System.out.println(albums.get(node[i]).toString()));
-            }
+        }
+        for(int i=0;i<albums.size()-1;i++)
+        {
+            System.out.println(albums.get(node[i]).toString());
+        }
     }
 
     /**
      *  Description de la methode
      */
     public void displaySongByGenre() {
-      LinkedList<Audio> song = new LinkedList<Audio>();
-      int node[], mem;
-      boolean isASong = true;
-      for(int i=0;i<elements.size()-1;i++)
-      {
-        try {
-            this.elements.get(i).getGenre();
-            isASong = true;
-        } catch(IOException e) {
-            isASong = false
+        LinkedList<Audio> song = new LinkedList<Audio>();
+        int node[], mem;
+        for(int i=0; i < this.elements.size()-1; i++) {
+            if(this.elements.get(i) instanceof Song)
+            {
+                song.add(this.elements.get(i));
+            }
         }
-        if(isASong)
-        {
-            song.add(this.elements.get(i));
+        for(int i=0;i<song.size()-1;i++) {
+            node[i] = i;
         }
-      }
-      for(int i=0;i<song.size()-1;i++)
-      {
-          node[i] = i;
-      }
-      for(int j=0;j<song.size()-1;j++)
-      {
-        for(int i=0;i<song.size()-2;i++)
-        {
-          if(song.get(i).getGenre.compareTo(song.get(i+1).getGenre)>0)
-          {
-            mem = node[i];
-            node[i] = node[i+1];
-            node[i+1] = mem;
-          }
+        for(int j=0;j<song.size()-1;j++) {
+            for(int i=0;i<song.size()-2;i++) {
+                // if(song.get(i).getGenre().compareTo(song.get(i+1).getGenre())>0) {
+                //     mem = node[i];
+                //     node[i] = node[i+1];
+                //     node[i+1] = mem;
+                // }
+            }
         }
-      }
-      for(int i=0;i<song.size()-1;i++)
-      {
-          System.out.println(song.get(node[i]).toString());
-      }
+        for(int i=0;i<song.size()-1;i++)  {
+            System.out.println(song.get(node[i]).toString());
+        }
     }
 
     /**
@@ -233,47 +214,33 @@ public class JMusicHub{
      *  Description de la methode
      */
     public void displayAudioBooks() {
-      LinkedList<Audio> audioBook = new LinkedList<Audio>();
-      int node[], mem;
-      boolean isAnAudioBook = true;
-      for(int i=0;i<elements.size()-1;i++)
-      {
-        try {
-            this.elements.get(i).getCategory();
-            isAnAudioBook = true;
-        } catch(IOException e) {
-            isAnAudioBook = false
+        LinkedList<Audio> audioBook = new LinkedList<Audio>();
+        int node[], mem;
+        for(int i=0;i<elements.size()-1;i++) {
+            if(this.elements.get(i) instanceof AudioBook) {
+                audioBook.add(this.elements.get(i));
+            }
         }
-        if(isAnAudioBook)
-        {
-            audioBook.add(this.elements.get(i));
+        for(int i=0;i<audioBook.size()-1;i++) {
+            node[i] = i;
         }
-      }
-      for(int i=0;i<audioBook.size()-1;i++)
-      {
-          node[i] = i;
-      }
-      for(int j=0;j<audioBook.size()-1;j++)
-      {
-        for(int i=0;i<audioBook.size()-2;i++)
-        {
-          if(audioBook.get(i).getAuthor.compareTo(audioBook.get(i+1).getAuthor)>0)
-          {
-            mem = node[i];
-            node[i] = node[i+1];
-            node[i+1] = mem;
-          }
+        for(int j=0;j<audioBook.size()-1;j++) {
+            for(int i=0;i<audioBook.size()-2;i++) {
+                // if(audioBook.get(i).getAuthor().compareTo(audioBook.get(i+1).getAuthor())>0) {
+                //     mem = node[i];
+                //     node[i] = node[i+1];
+                //     node[i+1] = mem;
+                // }
+            }
         }
-      }
-      for(int i=0;i<audioBook.size()-1;i++)
-      {
-          System.out.println(audioBook.get(node[i]).toString());
-      }
+        for(int i=0;i<audioBook.size()-1;i++) {
+            System.out.println(audioBook.get(node[i]).toString());
+        }
     }
 
     /**
-    *  Description de la methode
-    */
+     *  Description de la methode
+     */
     public void addingSong() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Adding a music :\nTitle :");
@@ -288,41 +255,41 @@ public class JMusicHub{
         boolean found = true;
         while(found)
         {
-          try {
-            FileReader file = new FileReader(content);
-            found = false;
-          } catch(IOException e) {
-            found = true;
-            System.out.println("This content doesn't exist, choose an existing content :");
-          } finally {
             try {
-              file.close();
+                File file = new File(content);
+                found = false;
             } catch(IOException e) {
-              System.out.println("Message " + e);
+                found = true;
+                System.out.println("This content doesn't exist, choose an existing content :");
+            } finally {
+                try {
+                    file.close();
+                } catch(IOException e) {
+                    System.out.println("Message " + e);
+                }
             }
-          }
         }
         do
         {
-          System.out.println("Genre : (Jazz/Classique/Hip-Hop/Rock/Pop/Rap/Metal)");
-          genre = scan.nextLine();
+            System.out.println("Genre : (Jazz/Classique/Hip-Hop/Rock/Pop/Rap/Metal)");
+            genre = scan.nextLine();
         }while(genre!="Jazz"&&genre!="Classique"&&genre!="Hip-Hop"&&genre!="Rock"&&genre!="Pop"&&genre!="Rap"&&genre!="Metal");
         Genre musicGenre = new Genre(genre);
-        datamusic = "Are you sure you want to add the "+duration+"-second "+title+" music from "+artist+" with the ID "+uuid+" and as a music genre the "+genre+" ? [y/n]");
+        datamusic = "Are you sure you want to add the " + duration + "-second " + title + " music from " + artist + " with the ID " + uuid + " and as a music genre the " + genre + " ? [y/n]";
         System.out.println(datamusic);
         do
         {
-          touche = scan.nextLine();
+            touche = scan.nextLine();
         }while(touche!="y"&&touche!="n");
         if(touche==y)
         {
-          this.elements.add(Song(title,artist,duration,uuid,content,musicGenre));
+            this.elements.add(Song(title,artist,duration,uuid,content,musicGenre));
         }
     }
 
     /**
-    *  Description de la methode
-    */
+     *  Description de la methode
+     */
     public void addingAudioBook() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Adding an audio book :\nTitle :");
@@ -338,46 +305,46 @@ public class JMusicHub{
         while(found)
         {
             try {
-              FileReader file = file = new FileReader(content);
+                File file = file = new File(content);
                 found = false;
             } catch(IOException e) {
-              found = true;
-              System.out.println("This content doesn't exist, choose an existing content :");
+                found = true;
+                System.out.println("This content doesn't exist, choose an existing content :");
             } finally {
-              try {
-                file.close();
-              } catch(IOException e) {
-                System.out.println("Message " + e);
-              }
+                try {
+                    file.close();
+                } catch(IOException e) {
+                    System.out.println("Message " + e);
+                }
             }
         }
         do
         {
-          System.out.println("Language : (Français/Anglais/Italien/Espagnol/Allemand)");
-          language = scan.nextLine();
+            System.out.println("Language : (Français/Anglais/Italien/Espagnol/Allemand)");
+            language = scan.nextLine();
         }while(language!="Français" && language!="Anglais" && language!="Italien" && language!="Espagnol" && language!="Allemand");
         Language audioBookLanguage = new Language(language);
         do
         {
-          System.out.println("Category : (Jeunesse/Roman/Théâtre/Discours/Documentaire)");
-          category = scan.nextLine();
+            System.out.println("Category : (Jeunesse/Roman/Théâtre/Discours/Documentaire)");
+            category = scan.nextLine();
         }while(category!="Jeunesse" && category!="Roman" && category!="Theatre" && category!="Discours" && category!="Documentaire");
         Category audioBookCategory = new Category(category);
-        audioBook = "Are you sure you want to add the "+artist+"\'s "+duration+"-second "+title+" audio book with ID "+id+" read in "+language+" and "+category+" type ? [y/n]");
+        audioBook = "Are you sure you want to add the " + artist + "\'s " + duration + "-second " + title + " audio book with ID " + id + " read in " + language + " and " + category + " type ? [y/n]";
         System.out.println(audioBook);
         do
         {
-          touche = scan.nextLine();
+            touche = scan.nextLine();
         }while(touche!="y"&&touche!="n");
         if(touche==y)
         {
-          this.elements.add(AudioBook(title,artist,duration,uuid,content,audioBookLanguage,audioBookCategory));
+            this.elements.add(AudioBook(title,artist,duration,uuid,content,audioBookLanguage,audioBookCategory));
         }
     }
 
     /**
-    *  Description de la methode
-    */
+     *  Description de la methode
+     */
     public void addingAlbum() {
         Scanner scan = new Scanner(System.in);
         LinkedList<Song> songs = new LinkedList<Song>();
