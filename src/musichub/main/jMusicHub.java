@@ -96,7 +96,42 @@ public class jMusicHub{
     *  Description de la methode
     */
     public void displaySongByGenre() {
-
+      LinkedList<Audio> song = new LinkedList<Audio>();
+      int node[], mem;
+      boolean isASong = true;
+      for(int i=0;i<elements.size()-1;i++)
+      {
+        try {
+            this.elements.get(i).getGenre();
+            isASong = true;
+        } catch(IOException e) {
+            isASong = false
+        }
+        if(isASong)
+        {
+            song.add(this.elements.get(i));
+        }
+      }
+      for(int i=0;i<song.size()-1;i++)
+      {
+          node[i] = i;
+      }
+      for(int j=0;j<song.size()-1;j++)
+      {
+        for(int i=0;i<song.size()-2;i++)
+        {    
+          if(song.get(i).getGenre.compareTo(song.get(i+1).getGenre)>0)
+          {
+            mem = node[i];
+            node[i] = node[i+1];
+            node[i+1] = mem;
+          }
+        }
+      }
+      for(int i=0;i<song.size()-1;i++)
+      {
+          System.out.println(song.get(node[i]).toString());
+      }
     }
 
     /**
@@ -157,7 +192,7 @@ public class jMusicHub{
       {
         for(int i=0;i<audioBook.size()-2;i++)
         {    
-          if(audioBook[i].getAuthor.compareTo(audioBook[i+1].getAuthor)>0)
+          if(audioBook.get(i).getAuthor.compareTo(audioBook.get(i+1).getAuthor)>0)
           {
             mem = node[i];
             node[i] = node[i+1];
