@@ -23,7 +23,7 @@ public enum Genre
     /**
      * "Hip-Hop" genre
      */
-    HIPHOP("Hip-Hop"),
+    HIPHOP("HipHop"),
 
     /**
      * "Rock" genre
@@ -57,8 +57,7 @@ public enum Genre
      *
      * @author      Gaël Lejeune
      */
-    private Genre(String genre)
-    {
+    private Genre(String genre) {
         this.genre = genre;
     }
 
@@ -67,8 +66,7 @@ public enum Genre
      * @return      String containing the genre
      * @author      Gaël Lejeune
      */
-    public String toString()
-    {
+    public String toString() {
         return this.genre;
     }
 }

@@ -12,7 +12,7 @@ import java.util.UUID;
  *
  * @author       Gaël Lejeune
  */
-public class Album {
+public class Album implements AudioList {
 
     /**
      * Title of the album
@@ -137,12 +137,13 @@ public class Album {
 
     /**
      * Allow the user to add a given song to the album
-     * @param       song Song to add
-     * @see         Song
+     * @param       audio Audio to add
+     * @see         Audio
      * @author      Gaël Lejeune
      */
-    public void addSong(Song song) {
-        this.songs.add(song);
+    @Override
+    public void addAudio(Audio audio) {
+        this.songs.add((Song)audio);
     }
 
 }

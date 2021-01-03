@@ -11,7 +11,7 @@ import java.util.UUID;
  *
  * @author Gaël Lejeune
  */
-public class Playlist{
+public class Playlist implements AudioList {
 
 	/**
      * Name of the playlist
@@ -87,12 +87,13 @@ public class Playlist{
 	}
 
 	/**
-	 * Allow the user to add a given song to the playlist
+	 * Allow the user to add a given audio file to the playlist
 	 * @param       audio Audio to add
 	 * @see         Audio
 	 * @author      Gaël Lejeune
 	 */
-	public void addSong(Audio audio) {
+	@Override
+	public void addAudio(Audio audio) {
         this.audios.add(audio);
     }
 }
